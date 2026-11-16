@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MohirSQL — Ma'lumotlar Bazasi Praktikumi | Interaktiv LMS</title>
+  <title>AbdullohSQL Academy — Global Database & Computer Engineering LMS</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
             mono: ['JetBrains Mono', 'monospace'],
           },
           colors: {
-            mohir: {
+            academy: {
               50: '#eff6ff',
               100: '#dbeafe',
               500: '#2563eb',
@@ -48,25 +48,25 @@
 </head>
 <body class="bg-slate-50 text-slate-900 dark:bg-[#0B1120] dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col">
 
-  <!-- ==================== TOP LMS HEADER (MOHIRDEV PRAKTIKUM STYLE) ==================== -->
+  <!-- ==================== TOP GLOBAL LMS HEADER ==================== -->
   <header class="sticky top-0 z-40 border-b border-slate-200 dark:border-slate-800/90 bg-white/95 dark:bg-[#0F172A]/95 glass-nav">
-    <div class="max-w-[1640px] mx-auto px-3 sm:px-6 h-16 flex items-center justify-between gap-2">
+    <div class="max-w-[1680px] mx-auto px-3 sm:px-6 h-16 flex items-center justify-between gap-2">
       
-      <!-- Left: Sidebar Toggle + MohirSQL Brand -->
+      <!-- Left: Sidebar Toggle + AbdullohSQL Academy Brand -->
       <div class="flex items-center gap-3">
         <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-blue-600/20 text-slate-700 dark:text-slate-200 transition" aria-label="Mundarija">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
         <div class="flex items-center gap-2.5 cursor-pointer" onclick="switchTopSection('lms'); selectLesson(0);">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-cyan-500 flex items-center justify-center text-white font-extrabold shadow-lg shadow-blue-600/20">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-cyan-500 flex items-center justify-center text-white font-extrabold shadow-lg shadow-blue-600/25">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/></svg>
           </div>
           <div>
             <div class="flex items-center gap-1.5">
-              <span class="font-extrabold text-base sm:text-lg tracking-tight text-slate-900 dark:text-white">Mohir<span class="text-blue-500">SQL</span></span>
-              <span class="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-bold uppercase rounded bg-blue-600/15 text-blue-500 border border-blue-500/30">Praktikum</span>
+              <span class="font-extrabold text-base sm:text-lg tracking-tight text-slate-900 dark:text-white">Abdulloh<span class="text-blue-500">SQL</span></span>
+              <span class="hidden sm:inline-block px-2 py-0.5 text-[10px] font-extrabold uppercase rounded-md bg-gradient-to-r from-blue-600/20 to-cyan-500/20 text-blue-400 border border-blue-500/30">Academy</span>
             </div>
-            <p class="text-[11px] text-slate-500 dark:text-slate-400 hidden md:block">Ma'lumotlar Bazasi Muhandisligi LMS</p>
+            <p class="text-[11px] text-slate-500 dark:text-slate-400 hidden md:block">Global Database & Computer Science Platform</p>
           </div>
         </div>
       </div>
@@ -74,45 +74,36 @@
       <!-- Center: Main LMS Views -->
       <nav class="flex items-center bg-slate-100 dark:bg-slate-800/90 p-1 rounded-xl border border-slate-200 dark:border-slate-700/70">
         <button onclick="switchTopSection('lms')" id="nav-lms" class="px-3 sm:px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition flex items-center gap-1.5 bg-blue-600 text-white shadow">
-          <span>📘</span> <span>Kurs & Praktikum</span>
+          <span>🎓</span> <span>Akademiya & IDE</span>
         </button>
         <button onclick="switchTopSection('3d')" id="nav-3d" class="px-3 sm:px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition flex items-center gap-1.5 text-slate-600 dark:text-slate-300 hover:text-blue-400">
-          <span>🧊</span> <span>3D Laboratoriya</span>
+          <span>🧊</span> <span>3D Engine Lab</span>
         </button>
         <button onclick="switchTopSection('games')" id="nav-games" class="px-3 sm:px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition flex items-center gap-1.5 text-slate-600 dark:text-slate-300 hover:text-emerald-400">
-          <span>🎮</span> <span>O'yin Arenasi</span>
+          <span>🎮</span> <span>Kiber Arena</span>
         </button>
       </nav>
 
       <!-- Right: Progress %, Streak, XP, Certificate & Theme -->
       <div class="flex items-center gap-2 sm:gap-2.5">
-        <!-- Overall Course Progress Pill -->
         <div class="hidden xl:flex items-center gap-2.5 bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 px-3 py-1.5 rounded-xl">
           <div class="text-[11px] font-semibold text-slate-500 dark:text-slate-400">Progress:</div>
           <div class="w-20 h-2 bg-slate-300 dark:bg-slate-700 rounded-full overflow-hidden">
-            <div id="topProgressBar" class="h-full bg-gradient-to-r from-blue-500 to-emerald-500 transition-all duration-500" style="width: 5%"></div>
+            <div id="topProgressBar" class="h-full bg-gradient-to-r from-blue-500 to-emerald-500 transition-all duration-500" style="width: 4%"></div>
           </div>
-          <span id="topProgressText" class="text-xs font-bold text-blue-500">5%</span>
+          <span id="topProgressText" class="text-xs font-bold text-blue-500">4%</span>
         </div>
-
-        <!-- Daily Streak -->
         <div class="hidden sm:flex items-center gap-1 bg-orange-500/10 border border-orange-500/30 px-2.5 py-1.5 rounded-xl" title="Kundalik uzluksiz o'qish seriyasi">
           <span class="text-sm">🔥</span>
-          <span id="streakCounter" class="text-xs font-extrabold text-orange-500">3 kun</span>
+          <span id="streakCounter" class="text-xs font-extrabold text-orange-500">5 kun</span>
         </div>
-
-        <!-- XP Counter -->
         <div class="hidden md:flex items-center gap-1 bg-amber-500/10 border border-amber-500/30 px-2.5 py-1.5 rounded-xl">
           <span class="text-sm">⚡</span>
-          <span id="xpCounter" class="text-xs font-extrabold text-amber-500 dark:text-amber-300">120 XP</span>
+          <span id="xpCounter" class="text-xs font-extrabold text-amber-500 dark:text-amber-300">150 XP</span>
         </div>
-
-        <!-- Certificate Button -->
         <button onclick="openCertificateModal()" class="px-2.5 sm:px-3 py-1.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-xs font-bold shadow flex items-center gap-1.5 transition">
-          <span>🎓</span> <span class="hidden sm:inline">Sertifikat</span>
+          <span>🏆</span> <span class="hidden sm:inline">Diplom / Sertifikat</span>
         </button>
-
-        <!-- Theme Switcher -->
         <button id="themeToggle" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition" title="Yorug' / Qorong'u rejim">
           <span id="themeIcon">☀️</span>
         </button>
@@ -121,34 +112,29 @@
   </header>
 
   <!-- ==================== MAIN WORKSPACE ==================== -->
-  <div class="flex-1 max-w-[1640px] w-full mx-auto flex relative">
-
-    <!-- Left Sidebar: 4 Modules & 19 Lessons Curriculum -->
-    <aside id="sidebar" class="fixed lg:sticky top-16 left-0 z-30 w-80 sm:w-[340px] h-[calc(100vh-4rem)] bg-white dark:bg-[#0F172A] border-r border-slate-200 dark:border-slate-800 flex flex-col transform -translate-x-full lg:translate-x-0 transition-transform duration-300">
+  <div class="flex-1 max-w-[1680px] w-full mx-auto flex relative">
+    
+    <!-- Left Sidebar: 6 Modules & 25 Comprehensive CS + SQL Lessons -->
+    <aside id="sidebar" class="fixed lg:sticky top-16 left-0 z-30 w-80 sm:w-[360px] h-[calc(100vh-4rem)] bg-white dark:bg-[#0F172A] border-r border-slate-200 dark:border-slate-800 flex flex-col transform -translate-x-full lg:translate-x-0 transition-transform duration-300">
       <div class="p-4 border-b border-slate-200 dark:border-slate-800 space-y-2.5">
         <div class="flex items-center justify-between">
-          <span class="text-xs font-extrabold uppercase tracking-wider text-blue-500">Kurs Mundarijasi (4 Modul)</span>
-          <span id="sidebarDoneBadge" class="text-xs font-bold text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-full">1 / 19 dars</span>
+          <span class="text-xs font-extrabold uppercase tracking-wider text-blue-500">To'liq Dastur (6 Modul)</span>
+          <span id="sidebarDoneBadge" class="text-xs font-bold text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-full">1 / 25 dars</span>
         </div>
         <div class="w-full h-2 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
-          <div id="sidebarProgressBar" class="h-full bg-gradient-to-r from-blue-500 to-emerald-500 transition-all duration-500" style="width: 5.2%"></div>
+          <div id="sidebarProgressBar" class="h-full bg-gradient-to-r from-blue-500 to-emerald-500 transition-all duration-500" style="width: 4%"></div>
         </div>
-        <input id="topicSearch" type="text" placeholder="Dars yoki kalit so'zni qidiring..." class="w-full px-3 py-2 text-xs rounded-xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-blue-500" />
+        <input id="topicSearch" type="text" placeholder="SQL, Tarmoq, OS, Algoritm, Security..." class="w-full px-3 py-2 text-xs rounded-xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-blue-500" />
       </div>
-
-      <!-- Accordion Modules + Lesson List -->
-      <div id="curriculumContainer" class="flex-1 overflow-y-auto p-3 space-y-3">
-        <!-- Populated by JS -->
-      </div>
+      <div id="curriculumContainer" class="flex-1 overflow-y-auto p-3 space-y-3"></div>
     </aside>
 
-    <!-- Mobile Backdrop -->
     <div id="sidebarBackdrop" class="fixed inset-0 bg-black/60 z-20 hidden lg:hidden" onclick="toggleMobileSidebar(false)"></div>
 
     <!-- Main Dynamic Content -->
     <main class="flex-1 min-w-0 p-3 sm:p-6 lg:p-7">
-
-      <!-- ==================== SECTION 1: MOHIRDEV PRAKTIKUM LMS ==================== -->
+      
+      <!-- ==================== SECTION 1: ABDULLOHSQL ACADEMY LMS ==================== -->
       <section id="section-lms" class="space-y-5 animate-fade-up">
         
         <!-- Lesson Top Banner & 3-Tab Switcher -->
@@ -156,8 +142,8 @@
           <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
             <div class="flex flex-wrap items-center gap-2">
               <span id="lessonModuleTag" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-blue-600/15 text-blue-600 dark:text-blue-400 border border-blue-500/30">1-MODUL</span>
-              <span id="lessonNumberTag" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">1-dars / 19</span>
-              <span id="lessonDurationTag" class="px-2.5 py-1 rounded-lg text-xs font-medium bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">⏱ 15 daqiqa</span>
+              <span id="lessonNumberTag" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">1-dars / 25</span>
+              <span id="lessonDurationTag" class="px-2.5 py-1 rounded-lg text-xs font-medium bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">⏱ 20 daqiqa</span>
               <span id="lessonStatusPill" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-500/15 text-emerald-500">✓ Tugallangan</span>
             </div>
             <div class="flex items-center gap-2">
@@ -165,74 +151,67 @@
               <button onclick="nextLesson()" id="btnNextLesson" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-blue-600 hover:bg-blue-500 text-white shadow transition">Keyingi dars →</button>
             </div>
           </div>
+          <h1 id="lessonTitle" class="text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight">1. AbdullohSQL Academy: Kompyuter Injiniringi va Ma'lumotlar Bazasi</h1>
+          <p id="lessonSubtitle" class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Jahon standartidagi dasturiy muhandislik, SQL arxitekturasi va kompyuter fanlari ekotizimi</p>
 
-          <h1 id="lessonTitle" class="text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight">1. Mundarija va Kursga Kirish</h1>
-          <p id="lessonSubtitle" class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Ma'lumotlar bazasi muhandisi bo'lish uchun 4 modulli amaliy yo'l xaritasi</p>
-
-          <!-- 3 Mohirdev Praktikum Sub-Tabs -->
+          <!-- 3 Sub-Tabs -->
           <div class="mt-5 pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center gap-2">
             <button onclick="switchLessonTab('lecture')" id="ltab-lecture" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-2 bg-blue-600 text-white shadow">
-              <span>📖</span> <span>Ma'ruza va Konspekt</span>
+              <span>📚</span> <span>Chuqurlashtirilgan Ma'ruza</span>
             </button>
             <button onclick="switchLessonTab('praktikum')" id="ltab-praktikum" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-blue-600/15">
-              <span>💻</span> <span>Amaliy Praktikum (Jonli SQL IDE)</span>
+              <span>💻</span> <span>Amaliy Laboratoriya (Jonli SQL IDE)</span>
               <span class="px-1.5 py-0.5 text-[10px] rounded bg-amber-500/20 text-amber-400">+50 XP</span>
             </button>
             <button onclick="switchLessonTab('test')" id="ltab-test" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-emerald-600/15">
-              <span>✅</span> <span>Bilimni Sinash (Mini-Test)</span>
+              <span>🎯</span> <span>Sertifikatsiya Testi</span>
               <span class="px-1.5 py-0.5 text-[10px] rounded bg-emerald-500/20 text-emerald-400">+30 XP</span>
             </button>
           </div>
         </div>
 
-        <!-- SUB-TAB 1: MA'RUZA VA KONSPEKT -->
+        <!-- SUB-TAB 1: CHUQURLASHTIRILGAN MA'RUZA -->
         <div id="subview-lecture" class="grid grid-cols-1 xl:grid-cols-12 gap-6">
           <div class="xl:col-span-8 space-y-5">
-            <div id="lectureContentBox" class="rounded-2xl bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-slate-800 p-5 sm:p-7 shadow-sm space-y-5 leading-relaxed">
-              <!-- Dynamic Mentor Lecture -->
-            </div>
-
-            <!-- Bottom Action Callout to Jump to Praktikum -->
-            <div class="rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-700 p-5 text-white flex flex-wrap items-center justify-between gap-4 shadow-lg">
+            <div id="lectureContentBox" class="rounded-2xl bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-slate-800 p-5 sm:p-8 shadow-sm space-y-5 leading-relaxed text-sm sm:text-[15px]"></div>
+            <div class="rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 p-5 text-white flex flex-wrap items-center justify-between gap-4 shadow-lg">
               <div>
-                <div class="text-xs font-bold uppercase tracking-wider text-blue-200">Nazariya tugadimi? Endi amaliyotga!</div>
-                <h3 class="text-base sm:text-lg font-extrabold mt-0.5">Ushbu mavzu bo'yicha Amaliy Praktikum vazifasini bajaring</h3>
+                <div class="text-xs font-bold uppercase tracking-wider text-blue-100">Nazariy bilimni amaliyotda mustahkamlang</div>
+                <h3 class="text-base sm:text-lg font-extrabold mt-0.5">Ushbu mavzu bo'yicha Laboratoriya topshirig'ini bajaring</h3>
               </div>
               <button onclick="switchLessonTab('praktikum')" class="px-5 py-2.5 rounded-xl bg-white text-blue-700 hover:bg-blue-50 font-extrabold text-xs sm:text-sm shadow transition">
-                💻 Praktikumga o'tish →
+                💻 Laboratoriyaga o'tish →
               </button>
             </div>
           </div>
 
-          <!-- Right 4 Cols: Mentor Video/Scheme Card + Quick Reference -->
+          <!-- Right 4 Cols: Lead Architect Card + Interactive Visual + Schema -->
           <div class="xl:col-span-4 space-y-5">
             <div class="rounded-2xl bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-slate-800 p-5 shadow-sm space-y-3">
               <div class="flex items-center gap-3">
-                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-blue-500 to-emerald-500 flex items-center justify-center text-white font-extrabold text-base shadow">UST</div>
+                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center text-white font-extrabold text-base shadow">AA</div>
                 <div>
-                  <div class="text-sm font-bold">Ustoz Rustam Qodirov</div>
-                  <div class="text-xs text-slate-500 dark:text-slate-400">Senior Database Architect • MohirSQL</div>
+                  <div class="text-sm font-bold">AbdullohSQL Academy</div>
+                  <div class="text-xs text-slate-500 dark:text-slate-400">Computer Engineering & Data Systems</div>
                 </div>
               </div>
-              <div id="lectureVisualCard" class="p-4 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
-                <!-- Topic visual diagram -->
-              </div>
+              <div id="lectureVisualCard" class="p-4 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800"></div>
               <button onclick="switchTopSection('3d')" class="w-full py-2.5 rounded-xl bg-indigo-600/15 hover:bg-indigo-600/25 text-indigo-500 dark:text-indigo-300 border border-indigo-500/30 text-xs font-bold transition">
-                🧊 Ushbu mavzuni 3D Laboratoriyada ko'rish
+                🧊 3D Arxitektura Laboratoriyasini ochish
               </button>
             </div>
 
-            <!-- Database Schema Quick Cheat-Sheet -->
+            <!-- Enterprise Database Schema Quick Cheat-Sheet -->
             <div class="rounded-2xl bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-slate-800 p-5 shadow-sm space-y-3">
-              <h4 class="text-xs font-extrabold uppercase tracking-wider text-slate-400">Bazadagi Jadvallar Sxemasi</h4>
+              <h4 class="text-xs font-extrabold uppercase tracking-wider text-slate-400">Akademiya Baza Sxemasi (Enterprise)</h4>
               <div class="space-y-2 text-xs font-mono">
                 <div class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
                   <div class="font-bold text-blue-500">talabalar</div>
-                  <div class="text-[11px] text-slate-500 mt-0.5">id (PK), ism, yosh, shahar, stipendiya</div>
+                  <div class="text-[11px] text-slate-500 mt-0.5">id (PK), ism, yosh, shahar, stipendiya, yonalish</div>
                 </div>
                 <div class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
                   <div class="font-bold text-emerald-500">kurslar</div>
-                  <div class="text-[11px] text-slate-500 mt-0.5">id (PK), nomi, narx, davomiylik_oy</div>
+                  <div class="text-[11px] text-slate-500 mt-0.5">id (PK), nomi, narx, davomiylik_oy, kategoriya</div>
                 </div>
                 <div class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
                   <div class="font-bold text-amber-500">buyurtmalar</div>
@@ -240,41 +219,33 @@
                 </div>
                 <div class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
                   <div class="font-bold text-purple-500">xodimlar</div>
-                  <div class="text-[11px] text-slate-500 mt-0.5">id (PK), ism, bolim, maosh</div>
+                  <div class="text-[11px] text-slate-500 mt-0.5">id (PK), ism, bolim, maosh, tajriba_yil</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- SUB-TAB 2: AMALIY PRAKTIKUM (JONLI SQL IDE + AUTO-GRADER) -->
+        <!-- SUB-TAB 2: AMALIY LABORATORIYA (JONLI SQL IDE + AUTO-GRADER) -->
         <div id="subview-praktikum" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-5">
-          
-          <!-- Left 5 Cols: Praktikum Task Instructions & Hints -->
           <div class="lg:col-span-5 space-y-4">
             <div class="rounded-2xl bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-slate-800 p-5 shadow-sm space-y-4">
               <div class="flex items-center justify-between">
-                <span class="px-2.5 py-1 rounded-lg text-xs font-extrabold bg-amber-500/15 text-amber-500 border border-amber-500/30">AMALIY TOPSHIRIQ</span>
+                <span class="px-2.5 py-1 rounded-lg text-xs font-extrabold bg-amber-500/15 text-amber-500 border border-amber-500/30">AMALIY LABORATORIYA</span>
                 <span class="text-xs font-bold text-emerald-500">Mukofot: +50 XP</span>
               </div>
-              <h3 id="taskTitle" class="text-lg font-extrabold">Praktikum Topshirig'i</h3>
+              <h3 id="taskTitle" class="text-lg font-extrabold">Laboratoriya Topshirig'i</h3>
               <p id="taskDescription" class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed"></p>
-
-              <!-- Hint Accordion -->
               <div class="pt-2">
                 <button onclick="toggleTaskHint()" class="text-xs font-bold text-blue-500 hover:underline flex items-center gap-1">
-                  <span>💡</span> <span>Yordamchi maslahatni ko'rish</span>
+                  <span>💡</span> <span>Muhandislik maslahatini ko'rish</span>
                 </button>
                 <div id="taskHintBox" class="hidden mt-2 p-3 rounded-xl bg-blue-500/10 border border-blue-500/30 text-xs font-mono text-blue-400"></div>
               </div>
-
-              <!-- Auto-Grader Feedback Banner -->
               <div id="graderResultBox" class="hidden p-4 rounded-xl text-xs sm:text-sm font-semibold"></div>
             </div>
-
-            <!-- Live Table Inspector Buttons -->
             <div class="rounded-2xl bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-slate-800 p-4 shadow-sm">
-              <div class="text-xs font-bold uppercase text-slate-400 mb-2.5">Jadvallarni tez ko'rish:</div>
+              <div class="text-xs font-bold uppercase text-slate-400 mb-2.5">Jadvallarni tezkor inspeksiya qilish:</div>
               <div class="grid grid-cols-2 gap-2 text-xs font-mono">
                 <button onclick="inspectTable('talabalar')" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-blue-600 hover:text-white transition text-left">📋 talabalar</button>
                 <button onclick="inspectTable('kurslar')" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-blue-600 hover:text-white transition text-left">📚 kurslar</button>
@@ -284,71 +255,58 @@
             </div>
           </div>
 
-          <!-- Right 7 Cols: Dark SQL IDE Terminal & Output Console -->
           <div class="lg:col-span-7 rounded-2xl bg-[#090D16] border border-slate-800 text-slate-100 shadow-xl overflow-hidden flex flex-col">
-            <!-- IDE Top Toolbar -->
             <div class="px-4 py-3 bg-[#0F1624] border-b border-slate-800 flex flex-wrap items-center justify-between gap-2">
               <div class="flex items-center gap-2">
                 <span class="w-3 h-3 rounded-full bg-rose-500"></span>
                 <span class="w-3 h-3 rounded-full bg-amber-500"></span>
                 <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
-                <span class="ml-1 text-xs font-mono font-bold text-slate-300">query.sql — MohirSQL IDE</span>
+                <span class="ml-1 text-xs font-mono font-bold text-slate-300">console.sql — AbdullohSQL Cloud IDE</span>
               </div>
               <div class="flex flex-wrap items-center gap-2">
                 <button onclick="resetDatabase()" class="px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 transition">↺ Bazani tiklash</button>
                 <button onclick="runUserSQL()" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-700 hover:bg-slate-600 text-white transition flex items-center gap-1">
-                  <span>▶</span> <span>Kodni ishga tushirish</span>
+                  <span>▶</span> <span>Ishga tushirish</span>
                 </button>
                 <button onclick="verifyPraktikumTask()" class="px-4 py-1.5 rounded-lg text-xs font-extrabold bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-600/20 transition flex items-center gap-1">
-                  <span>✓</span> <span>Vazifani tekshirish</span>
+                  <span>✓</span> <span>Tekshirish</span>
                 </button>
               </div>
             </div>
-
-            <!-- Code Editor -->
             <div class="p-4 bg-[#070A12]">
               <textarea id="sqlEditor" rows="6" spellcheck="false" class="w-full bg-transparent text-emerald-300 font-mono text-xs sm:text-sm focus:outline-none resize-y leading-relaxed" placeholder="-- SQL kodingizni shu yerga yozing..."></textarea>
             </div>
-
-            <!-- Execution Status Bar -->
             <div id="sqlStatus" class="px-4 py-2 bg-[#0F1624] border-t border-b border-slate-800 text-xs font-mono text-slate-400 flex items-center justify-between">
-              <span>Natija oynasi tayyor.</span>
+              <span>Engine tayyor.</span>
               <span id="execTime" class="text-emerald-400">0.01 ms</span>
             </div>
-
-            <!-- Output Table -->
-            <div id="sqlOutput" class="p-4 bg-[#090D16] min-h-[220px] max-h-96 overflow-auto text-xs">
-              <!-- Query result table -->
-            </div>
+            <div id="sqlOutput" class="p-4 bg-[#090D16] min-h-[220px] max-h-96 overflow-auto text-xs"></div>
           </div>
         </div>
 
-        <!-- SUB-TAB 3: BILIMNI SINASH (MINI-TEST) -->
+        <!-- SUB-TAB 3: SERTIFIKATSIYA TESTI -->
         <div id="subview-test" class="hidden max-w-3xl mx-auto space-y-5">
           <div class="rounded-2xl bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-sm space-y-6">
             <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
               <div>
-                <span class="text-xs font-extrabold uppercase text-emerald-500">Mavzu Yuzasidan Nazorat</span>
-                <h3 class="text-xl font-extrabold mt-0.5">Bilimni Sinash Mini-Testi</h3>
+                <span class="text-xs font-extrabold uppercase text-emerald-500">Global Akademiya Nazorati</span>
+                <h3 class="text-xl font-extrabold mt-0.5">Mavzu Yuzasidan Sertifikatsiya Testi</h3>
               </div>
               <span class="px-3 py-1 rounded-xl bg-emerald-500/15 text-emerald-500 font-bold text-xs">+30 XP</span>
             </div>
-            <div id="multiQuizContainer" class="space-y-6">
-              <!-- 2-3 questions per lesson rendered here -->
-            </div>
+            <div id="multiQuizContainer" class="space-y-6"></div>
           </div>
         </div>
-
       </section>
 
-      <!-- ==================== SECTION 2: 3D LABORATORIYA (THREE.JS) ==================== -->
+      <!-- ==================== SECTION 2: 3D ENGINE LAB (THREE.JS) ==================== -->
       <section id="section-3d" class="hidden space-y-5 animate-fade-up">
         <div class="rounded-2xl bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm">
           <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
             <div>
-              <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/15 text-indigo-500 border border-indigo-500/30">3D RELATIONAL ENGINE</span>
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/15 text-indigo-500 border border-indigo-500/30">ABDULLOHSQL 3D ENGINE</span>
               <h2 class="text-xl sm:text-2xl font-extrabold mt-1.5">3D ER-Diagramma, JOIN Simulyatori va Aggregatsiya</h2>
-              <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Sichqoncha yoki barmoq bilan aylantiring. Yashil kublar mos kelgan qatorlarni, qizil/xira kublar NULL holatini ko'rsatadi.</p>
+              <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Sichqoncha yoki barmoq bilan 360° aylantiring. Yashil kublar mos kelgan qatorlarni, qizil kublar NULL holatini ko'rsatadi.</p>
             </div>
             <div class="flex flex-wrap gap-2">
               <button onclick="set3DMode('er')" id="btn3d-er" class="px-3 py-2 rounded-xl text-xs font-bold bg-blue-600 text-white shadow">🧊 3D ER-Diagramma</button>
@@ -375,7 +333,6 @@
                 <button onclick="toggle3DRotation()" id="btnAutoRotate" class="px-2.5 py-1 rounded bg-blue-600/30 text-blue-300 border border-blue-500/40 font-semibold">⏸ Avto-aylanish</button>
               </div>
             </div>
-
             <div class="lg:col-span-4 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 p-4 flex flex-col justify-between space-y-4">
               <div>
                 <h3 class="font-bold text-base text-blue-500 mb-2" id="panel3DHeading">3D Relyatsion Arxitektura</h3>
@@ -405,21 +362,19 @@ JOIN kurslar k ON k.id = b.kurs_id;</pre>
         </div>
       </section>
 
-      <!-- ==================== SECTION 3: O'YINLAR ARENASI ==================== -->
+      <!-- ==================== SECTION 3: KIBER ARENA (O'YINLAR) ==================== -->
       <section id="section-games" class="hidden space-y-5 animate-fade-up">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <button onclick="switchGame('detective')" id="gcard-detective" class="text-left p-5 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-lg border-2 border-blue-400 transition">
             <div class="flex items-center justify-between mb-2"><span class="text-3xl">🕵️‍♂️</span><span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-white/20">1-O'YIN</span></div>
-            <h3 class="font-extrabold text-lg">SQL Detektiv</h3>
+            <h3 class="font-extrabold text-lg">SQL Kiber Detektiv</h3>
             <p class="text-xs text-blue-100 mt-1">Bazadagi yo'qolgan yoki shubhali yozuvni to'g'ri SQL so'rov bilan toping!</p>
           </button>
-
           <button onclick="switchGame('speed')" id="gcard-speed" class="text-left p-5 rounded-2xl bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-slate-800 hover:border-emerald-500 shadow-sm transition">
             <div class="flex items-center justify-between mb-2"><span class="text-3xl">⚡</span><span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-500/15 text-emerald-500">2-O'YIN</span></div>
             <h3 class="font-extrabold text-lg">So'rov Konstruktori (Speed SQL)</h3>
             <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Taymer tugashidan oldin SQL bloklarini to'g'ri sintaksis tartibida tering!</p>
           </button>
-
           <button onclick="switchGame('defender')" id="gcard-defender" class="text-left p-5 rounded-2xl bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-slate-800 hover:border-amber-500 shadow-sm transition">
             <div class="flex items-center justify-between mb-2"><span class="text-3xl">🛡️</span><span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/15 text-amber-500">3-O'YIN</span></div>
             <h3 class="font-extrabold text-lg">Baza Himoyachisi (Constraints)</h3>
@@ -428,7 +383,6 @@ JOIN kurslar k ON k.id = b.kurs_id;</pre>
         </div>
 
         <div class="rounded-2xl bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-slate-800 p-5 sm:p-7 shadow-md">
-          <!-- GAME 1: SQL DETECTIVE -->
           <div id="game-detective" class="space-y-4">
             <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
               <div>
@@ -442,7 +396,6 @@ JOIN kurslar k ON k.id = b.kurs_id;</pre>
             <div id="detCaseResult" class="hidden p-4 rounded-xl text-sm font-bold"></div>
           </div>
 
-          <!-- GAME 2: SPEED SQL CONSTRUCTOR -->
           <div id="game-speed" class="hidden space-y-4">
             <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
               <div>
@@ -463,11 +416,10 @@ JOIN kurslar k ON k.id = b.kurs_id;</pre>
             </div>
           </div>
 
-          <!-- GAME 3: CONSTRAINT DEFENDER -->
           <div id="game-defender" class="hidden space-y-4">
             <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
               <div>
-                <span class="text-xs font-bold uppercase text-amber-500">Arkada Himoya Rejimi</span>
+                <span class="text-xs font-bold uppercase text-amber-500">Kiber-Himoya Rejimi</span>
                 <h3 class="text-xl font-extrabold">Jadval Darvozasini Xato Ma'lumotlardan Himoyalang!</h3>
               </div>
               <span class="px-3 py-1.5 rounded-xl bg-blue-500/15 text-blue-400 font-bold text-xs">To'xtatilgan hujumlar: <span id="defCount">0</span></span>
@@ -490,49 +442,42 @@ JOIN kurslar k ON k.id = b.kurs_id;</pre>
           </div>
         </div>
       </section>
-
     </main>
   </div>
 
-  <!-- ==================== OFFICIAL MOHIRSQL CERTIFICATE GENERATOR MODAL ==================== -->
+  <!-- ==================== GLOBAL ABDULLOHSQL ACADEMY CERTIFICATE MODAL ==================== -->
   <div id="certModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden items-center justify-center p-4">
     <div class="bg-white dark:bg-slate-900 border-2 border-blue-500/50 rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative animate-fade-up">
       <button onclick="closeCertificateModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-rose-500 hover:text-white flex items-center justify-center font-bold transition">✕</button>
       
-      <!-- Certificate Visual Frame -->
       <div id="printableCertificate" class="p-6 sm:p-8 rounded-2xl border-4 border-double border-blue-600/60 bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-950 dark:via-slate-900 dark:to-blue-950/40 text-center space-y-4">
         <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
           <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-lg bg-blue-600 text-white font-extrabold flex items-center justify-center text-sm">M</div>
-            <span class="font-extrabold text-base">Mohir<span class="text-blue-500">SQL</span> Praktikum</span>
+            <div class="w-8 h-8 rounded-lg bg-blue-600 text-white font-extrabold flex items-center justify-center text-sm">A</div>
+            <span class="font-extrabold text-base">Abdulloh<span class="text-blue-500">SQL</span> Academy</span>
           </div>
-          <span class="text-[11px] font-mono text-slate-400">ID: MSQL-2026-8841</span>
+          <span class="text-[11px] font-mono text-slate-400">CREDENTIAL ID: ASQL-2026-9942</span>
         </div>
-
-        <div class="text-xs font-extrabold uppercase tracking-[0.2em] text-blue-500">Rasmiy Bitiruv Sertifikati</div>
-        <h3 class="text-xl sm:text-2xl font-extrabold">Ma'lumotlar Bazasi va SQL Muhandisligi</h3>
-        <p class="text-xs text-slate-500 dark:text-slate-400">Ushbu sertifikat egasi 4 ta modul va 19 ta amaliy praktikum darslarini muvaffaqiyatli bajarganligini tasdiqlaydi:</p>
-
+        <div class="text-xs font-extrabold uppercase tracking-[0.2em] text-blue-500">Xalqaro Standartdagi Bitiruv Diplomi</div>
+        <h3 class="text-xl sm:text-2xl font-extrabold">Database Engineering & Computer Science</h3>
+        <p class="text-xs text-slate-500 dark:text-slate-400">Ushbu rasmiy sertifikat egasi 6 ta akademik modul va 25 ta amaliy dars dasturini muvaffaqiyatli o'zlashtirganligini tasdiqlaydi:</p>
         <div class="py-2">
-          <input id="certStudentName" type="text" value="Azizbek Karimov" placeholder="Ism-familiyangizni kiriting..." class="w-full max-w-md text-center font-extrabold text-xl sm:text-2xl bg-transparent border-b-2 border-blue-500 pb-1 focus:outline-none text-blue-600 dark:text-blue-400" />
+          <input id="certStudentName" type="text" value="Fattoxov Abdulloh" placeholder="Ism-familiyangizni kiriting..." class="w-full max-w-md text-center font-extrabold text-xl sm:text-2xl bg-transparent border-b-2 border-blue-500 pb-1 focus:outline-none text-blue-600 dark:text-blue-400" />
         </div>
-
         <div class="flex flex-wrap items-center justify-between gap-4 pt-3 border-t border-slate-200 dark:border-slate-800 text-left">
           <div class="space-y-1 text-xs">
-            <div>Tugallangan darslar: <b id="certLessonsStat" class="text-emerald-500">1 / 19</b></div>
-            <div>To'plangan reyting: <b id="certXPStat" class="text-amber-500">120 XP</b></div>
-            <div class="text-[11px] text-slate-400">Sana: 16.11.2026 • Toshkent</div>
+            <div>O'zlashtirilgan darslar: <b id="certLessonsStat" class="text-emerald-500">1 / 25</b></div>
+            <div>Akademik reyting: <b id="certXPStat" class="text-amber-500">150 XP</b></div>
+            <div class="text-[11px] text-slate-400">AbdullohSQL Academy • Global Edition 2026</div>
           </div>
-          <!-- Stylized SVG QR Code -->
           <div class="flex items-center gap-2 bg-white p-2 rounded-xl border border-slate-200">
             <svg class="w-14 h-14 text-slate-900" viewBox="0 0 36 36" fill="currentColor">
               <path d="M2 2h10v10H2V2zm2 2v6h6V4H4zm2 2h2v2H6V6zm18-4h10v10H24V2zm2 2v6h6V4h-6zm2 2h2v2h-2V6zM2 24h10v10H2V24zm2 2v6h6v-6H4zm2 2h2v2H6v-2zm10-24h4v4h-4V4zm0 8h4v4h-4v-4zm-4 4h4v4h-4v-4zm8 0h4v4h-4v-4zm4 4h4v4h-4v-4zm-8 4h4v4h-4v-4zm-4 4h4v4h-4v-4zm8 4h4v4h-4v-4zm4-4h4v4h-4v-4z"/>
             </svg>
-            <div class="text-[10px] text-slate-600 font-mono leading-tight">Haqiqiylik<br/>QR-kodi<br/><b>VERIFIED</b></div>
+            <div class="text-[10px] text-slate-600 font-mono leading-tight">Global<br/>Verification<br/><b>VERIFIED</b></div>
           </div>
         </div>
       </div>
-
       <div class="mt-5 flex justify-end gap-3">
         <button onclick="closeCertificateModal()" class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-bold">Yopish</button>
         <button onclick="window.print()" class="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-extrabold shadow-lg transition">🖨️ Yuklab olish / Chop etish</button>
@@ -545,427 +490,629 @@ JOIN kurslar k ON k.id = b.kurs_id;</pre>
 
 <script>
 // ============================================================================
-// 1. 4 MODULES & 19 COMPLETE LESSONS (MOHIRDEV PRAKTIKUM CURRICULUM)
+// 1. 6 MODULES & 25 PROFESSIONAL CS + SQL LESSONS (ABDULLOHSQL ACADEMY)
 // ============================================================================
 const MODULES = [
-  { id: 1, title: "1-Modul: SQL Asoslari va Ma'lumot Turlari", lessonIds: [1, 2, 3] },
+  { id: 1, title: "1-Modul: SQL Asoslari va Ma'lumotlar Bazasi Arxitekturasi", lessonIds: [1, 2, 3] },
   { id: 2, title: "2-Modul: Ma'lumotlar Bilan Ishlash (CRUD va Filtrlash)", lessonIds: [4, 5, 6, 7, 8, 9] },
   { id: 3, title: "3-Modul: Aggregatsiya, Qidiruv va Bog'lanishlar (JOINS)", lessonIds: [10, 11, 12, 13, 14] },
-  { id: 4, title: "4-Modul: Murakkab So'rovlar, Protseduralar va Arxitektura", lessonIds: [15, 16, 17, 18, 19] }
+  { id: 4, title: "4-Modul: Murakkab So'rovlar, Protseduralar va Cheklovlar", lessonIds: [15, 16, 17, 18, 19] },
+  { id: 5, title: "5-Modul: Kompyuter Arxitekturasi, OS va Ma'lumotlar Tuzilmalari", lessonIds: [20, 21, 22] },
+  { id: 6, title: "6-Modul: Kompyuter Tarmoqlari, Kiberxavfsizlik va Cloud System Design", lessonIds: [23, 24, 25] }
 ];
 
 const LESSONS = [
   {
-    id: 1, moduleId: 1, duration: "12 daqiqa",
-    title: "1. Mundarija va Kursga Kirish",
-    subtitle: "MohirSQL Praktikum platformasi bilan tanishuv va ma'lumotlar bazasi arxitekturasi",
+    id: 1, moduleId: 1, duration: "20 daqiqa",
+    title: "1. AbdullohSQL Academy: Kompyuter Injiniringi va Ma'lumotlar Bazasi",
+    subtitle: "Jahon standartidagi dasturiy muhandislik, DBMS arxitekturasi va o'quv yo'l xaritasi",
     lecture: `
-      <p>Assalomu alaykum! <b>MohirSQL — Ma'lumotlar Bazasi Praktikumi</b>ga xush kelibsiz. Zamonaviy dasturlashda (Backend, Data Science, Mobile yoki Fintech) ma'lumotlarni xavfsiz saqlash va tezkor qayta ishlash eng asosiy ko'nikmadir.</p>
-      <div class="p-4 rounded-xl bg-blue-500/10 border-l-4 border-blue-500 text-sm">
-        <b class="text-blue-500">💡 Mentor Maslahati:</b> Nazariyani o'qigandan so'ng darhol <b>"Amaliy Praktikum"</b> tabiga o'ting. Har bir darsda sizni real jadvallar ustida ishlaydigan amaliy vazifa kutmoqda!
+      <p><b>AbdullohSQL Academy</b> platformasiga xush kelibsiz! Ushbu akademiya dunyoning yetakchi ta'lim tizimlari (Coursera, MIT OpenCourseWare, LeetCode, DataCamp) standartlari asosida yaratilgan bo'lib, sizni noldan <b>Senior Database & Computer Systems Engineer</b> darajasigacha olib chiqadi.</p>
+      <div class="p-4 rounded-xl bg-blue-500/10 border-l-4 border-blue-500">
+        <b class="text-blue-500">🏛️ Akademik Yondashuv:</b> Zamonaviy dasturchi faqat SQL sintaksisini bilishi yetarli emas — u so'rov xotirada qanday bajarilishini, B-Tree indekslar diskda qanday ishlashini, tarmoq paketlari serverga qanday yetib borishini va tizim xavfsizligini ham chuqur tushunishi shart.
       </div>
-      <h4 class="font-bold text-base">Kurs davomida qaysi jadvallar bilan ishlaymiz?</h4>
-      <p class="text-sm">Bizning o'quv bazamizda 4 ta o'zaro bog'langan real jadval mavjud: <code>talabalar</code>, <code>kurslar</code>, <code>buyurtmalar</code> va <code>xodimlar</code>.</p>
+      <h4 class="font-bold text-base text-slate-900 dark:text-white">DBMS (Database Management System) ichki tuzilishi:</h4>
+      <ul class="list-disc pl-5 space-y-1.5">
+        <li><b>Query Parser & Optimizer:</b> Siz yozgan SQL matnini sintaktik tahlil qiladi va eng kam xarajatli bajarish rejasini (Execution Plan) tuzadi.</li>
+        <li><b>Execution Engine:</b> Reja asosida ma'lumotlarni filtrlaydi, saralaydi va jadvallarni birlashtiradi.</li>
+        <li><b>Storage Engine & Buffer Pool:</b> Ma'lumotlarni operativ xotira (RAM) va qattiq disk (NVMe SSD) o'rtasida sahifalar (Pages, 8KB–16KB) ko'rinishida boshqaradi.</li>
+        <li><b>Transaction Manager (ACID):</b> Elektr o'chib qolganda ham ma'lumotlar yo'qolmasligini WAL (Write-Ahead Logging) orqali kafolatlaydi.</li>
+      </ul>
       ${codeBlock("SELECT * FROM talabalar;")}
     `,
-    visualHTML: `<div class="text-xs font-mono space-y-2 text-center"><div class="p-2.5 rounded-lg bg-blue-600/20 border border-blue-500 text-blue-400 font-bold">talabalar (id, ism, shahar)</div><div class="text-slate-400">↕ 1 : N bog'lanish</div><div class="p-2.5 rounded-lg bg-amber-600/20 border border-amber-500 text-amber-400 font-bold">buyurtmalar (talaba_id, kurs_id)</div></div>`,
+    visualHTML: `<div class="text-xs font-mono space-y-1.5 text-center"><div class="p-2 rounded bg-blue-600/20 border border-blue-500 text-blue-400 font-bold">SQL Query → Parser & Optimizer</div><div class="text-slate-400">↓ Execution Plan</div><div class="p-2 rounded bg-emerald-600/20 border border-emerald-500 text-emerald-400 font-bold">Buffer Pool (RAM) ↔ NVMe Disk</div></div>`,
     starterSQL: "SELECT * FROM talabalar;",
     task: {
-      title: "1-Praktikum: Talabalar ro'yxatini ko'rish",
-      desc: "<code>talabalar</code> jadvalidagi barcha ustunlar va qatorlarni ekranga chiqaruvchi SQL so'rov yozing.",
+      title: "1-Laboratoriya: Enterprise bazadagi talabalar jadvalini tekshirish",
+      desc: "<code>talabalar</code> jadvalidagi barcha ustun va yozuvlarni ekranga chiqaruvchi SQL so'rov yozing.",
       hint: "SELECT * FROM talabalar;",
       validate: (rows, sql) => /select\s+\*\s+from\s+talabalar/i.test(sql) && rows.length >= 6
     },
     quizzes: [
-      { q: "SQL qisqartmasining to'g'ri kengaytmasi qaysi?", opts: ["Structured Query Language", "Simple Quick Logic", "Server Query Layer"], ans: 0 },
-      { q: "Jadvaldagi barcha ustunlarni tanlash uchun qaysi belgi ishlatiladi?", opts: ["#", "*", "&"], ans: 1 }
+      { q: "SQL so'rovini eng tezkor bajarish rejasini (Execution Plan) qaysi komponent tuzadi?", opts: ["Query Optimizer", "HTML Renderer", "DNS Resolver"], ans: 0 },
+      { q: "Ma'lumotlar bazasida tranzaksiyalar ishonchliligini ta'minlovchi 4 ta tamoyil nima deb ataladi?", opts: ["HTTP", "ACID", "BIOS"], ans: 1 }
     ]
   },
   {
-    id: 2, moduleId: 1, duration: "18 daqiqa",
-    title: "2. SQL DDL, DQL, DML, DCL, TCL Kirish",
-    subtitle: "SQL buyruqlarining 5 ta rasmiy kategoriyasi va ularning vazifalari",
+    id: 2, moduleId: 1, duration: "22 daqiqa",
+    title: "2. SQL DDL, DQL, DML, DCL, TCL Chuqur Tahlili",
+    subtitle: "ANSI/ISO SQL standartidagi 5 ta asosiy buyruqlar sinfi va real ishlab chiqarish misollari",
     lecture: `
-      <p>SQL tili bajaradigan vazifasiga ko'ra 5 ta kichik guruhga bo'linadi:</p>
-      <ul class="space-y-2 text-sm">
-        <li><b class="text-blue-500">DDL (Data Definition Language):</b> Jadval strukturasini yaratish va o'zgartirish — <code>CREATE, ALTER, DROP, TRUNCATE</code>.</li>
-        <li><b class="text-emerald-500">DQL (Data Query Language):</b> Ma'lumotlarni o'qish — <code>SELECT</code>.</li>
-        <li><b class="text-indigo-500">DML (Data Manipulation Language):</b> Qatorlar qo'shish, tahrirlash va o'chirish — <code>INSERT, UPDATE, DELETE</code>.</li>
-        <li><b class="text-amber-500">DCL (Data Control Language):</b> Ruxsatlarni boshqarish — <code>GRANT, REVOKE</code>.</li>
-        <li><b class="text-purple-500">TCL (Transaction Control Language):</b> Tranzaksiyalarni tasdiqlash — <code>COMMIT, ROLLBACK</code>.</li>
-      </ul>
-      ${codeBlock("SELECT nomi, narx FROM kurslar;")}
+      <p>Xalqaro ANSI/ISO standartiga ko'ra SQL tili bajaradigan vazifasiga qarab 5 ta qat'iy sinfga bo'linadi:</p>
+      <div class="space-y-2.5">
+        <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+          <b class="text-blue-500">1. DDL (Data Definition Language):</b> Baza sxemasini quradi. Buyruqlari: <code>CREATE, ALTER, DROP, TRUNCATE, RENAME</code>. DDL buyruqlari avtomatik ravishda <i>Auto-Commit</i> qilinadi.
+        </div>
+        <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+          <b class="text-emerald-500">2. DQL (Data Query Language):</b> Ma'lumotlarni tahlil qilish va o'qish uchun xizmat qiladi: <code>SELECT</code>.
+        </div>
+        <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+          <b class="text-indigo-500">3. DML (Data Manipulation Language):</b> Jadval ichidagi qatorlarni o'zgartiradi: <code>INSERT, UPDATE, DELETE, MERGE</code>.
+        </div>
+        <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+          <b class="text-amber-500">4. DCL (Data Control Language):</b> Foydalanuvchi huquqlari va xavfsizlik siyosati: <code>GRANT, REVOKE</code>.
+        </div>
+        <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+          <b class="text-purple-500">5. TCL (Transaction Control Language):</b> Bank va moliya tizimlarida tranzaksiyalarni boshqaradi: <code>BEGIN, COMMIT, ROLLBACK, SAVEPOINT</code>.
+        </div>
+      </div>
+      ${codeBlock("SELECT nomi, kategoriya, narx FROM kurslar;")}
     `,
     visualHTML: `<div class="grid grid-cols-2 gap-2 text-[11px] font-mono"><div class="p-2 rounded bg-blue-500/20"><b>DDL:</b> CREATE, ALTER</div><div class="p-2 rounded bg-emerald-500/20"><b>DQL:</b> SELECT</div><div class="p-2 rounded bg-indigo-500/20"><b>DML:</b> INSERT, UPDATE</div><div class="p-2 rounded bg-purple-500/20"><b>TCL:</b> COMMIT, ROLLBACK</div></div>`,
     starterSQL: "SELECT * FROM kurslar;",
     task: {
-      title: "2-Praktikum: DQL so'rovini bajarish",
-      desc: "<code>kurslar</code> jadvalidan barcha mavjud IT kurslarni o'qib oling.",
+      title: "2-Laboratoriya: DQL buyrug'i orqali kurslar katalogini o'qish",
+      desc: "<code>kurslar</code> jadvalidan barcha mavjud o'quv dasturlarini chiqaring.",
       hint: "SELECT * FROM kurslar;",
       validate: (rows, sql) => /select\s+.+\s+from\s+kurslar/i.test(sql) && rows.length >= 4
     },
     quizzes: [
-      { q: "CREATE TABLE va ALTER TABLE qaysi guruhga kiradi?", opts: ["DML", "DDL", "TCL"], ans: 1 },
-      { q: "Tranzaksiyani bekor qilish (orqaga qaytarish) buyrug'i qaysi?", opts: ["ROLLBACK", "REVOKE", "DROP"], ans: 0 }
+      { q: "Foydalanuvchiga jadvalni o'qish huquqini beruvchi DCL buyrug'i qaysi?", opts: ["GRANT", "COMMIT", "ALTER"], ans: 0 },
+      { q: "Tranzaksiya ichida oraliq nazorat nuqtasini yaratuvchi buyruq qaysi?", opts: ["CHECKPOINT", "SAVEPOINT", "BOOKMARK"], ans: 1 }
     ]
   },
   {
-    id: 3, moduleId: 1, duration: "20 daqiqa",
-    title: "3. Ma'lumot turlari (INT, VARCHAR, DECIMAL, DATE, BOOLEAN, JSON)",
-    subtitle: "Har bir ustun uchun optimal xotira va aniqlik beruvchi tiplarni tanlash",
+    id: 3, moduleId: 1, duration: "24 daqiqa",
+    title: "3. Ma'lumot turlari (INT, VARCHAR, DECIMAL, DATE, BOOLEAN, JSONB)",
+    subtitle: "Xotira optimizatsiyasi, baytlar hajmi va IEEE-754 suzuvchi nuqtali xatolardan qochish",
     lecture: `
-      <p>Ma'lumotlar bazasini loyihalashda ustun turini to'g'ri tanlash tizim tezligi va aniqligini belgilaydi:</p>
+      <p>Senior muhandis jadval loyihalayotganda har bir ustun necha bayt RAM va disk egallashini hisoblaydi:</p>
       <div class="overflow-x-auto text-xs">
         <table class="w-full text-left border-collapse">
-          <thead><tr class="border-b border-slate-700 text-blue-400"><th class="py-2">Tip</th><th class="py-2">Qo'llanilishi</th><th class="py-2">Namuna</th></tr></thead>
+          <thead><tr class="border-b border-slate-700 text-blue-400"><th class="py-2">Tip</th><th class="py-2">Xotira hajmi</th><th class="py-2">Muhandislik qo'llanilishi</th></tr></thead>
           <tbody class="divide-y divide-slate-800">
-            <tr><td class="py-1.5 font-mono text-emerald-400">INT / BIGINT</td><td>Butun sonlar, ID raqamlar</td><td><code>101</code></td></tr>
-            <tr><td class="py-1.5 font-mono text-emerald-400">VARCHAR(n)</td><td>Matnli satrlar</td><td><code>'Toshkent'</code></td></tr>
-            <tr><td class="py-1.5 font-mono text-emerald-400">DECIMAL(10,2)</td><td>Aniq moliyaviy qiymatlar</td><td><code>1250000.00</code></td></tr>
-            <tr><td class="py-1.5 font-mono text-emerald-400">DATE / TIMESTAMP</td><td>Sana va aniq vaqt</td><td><code>'2026-11-16'</code></td></tr>
-            <tr><td class="py-1.5 font-mono text-emerald-400">BOOLEAN</td><td>Mantiqiy holat</td><td><code>TRUE / FALSE</code></td></tr>
-            <tr><td class="py-1.5 font-mono text-emerald-400">JSON / JSONB</td><td>Moslashuvchan obyektlar</td><td><code>'{"til": "uz"}'</code></td></tr>
+            <tr><td class="py-1.5 font-mono text-emerald-400">SMALLINT / INT / BIGINT</td><td>2 / 4 / 8 bayt</td><td><code>BIGINT</code> 9 kvintilliongacha ID saqlaydi</td></tr>
+            <tr><td class="py-1.5 font-mono text-emerald-400">VARCHAR(n) vs TEXT</td><td>Dinamik</td><td><code>VARCHAR(255)</code> cheklangan satrlar uchun</td></tr>
+            <tr><td class="py-1.5 font-mono text-emerald-400">DECIMAL(12,2)</td><td>Aniq o'nlik</td><td>Bank balanslari va narxlar (0.1 + 0.2 = 0.30)</td></tr>
+            <tr><td class="py-1.5 font-mono text-emerald-400">TIMESTAMPTZ</td><td>8 bayt</td><td>UTC vaqt mintaqasi bilan aniq vaqt</td></tr>
+            <tr><td class="py-1.5 font-mono text-emerald-400">BOOLEAN</td><td>1 bayt</td><td><code>TRUE / FALSE / NULL</code></td></tr>
+            <tr><td class="py-1.5 font-mono text-emerald-400">JSONB (Binary JSON)</td><td>Indekslanuvchi</td><td>NoSQL moslashuvchanligi + GIN indeks tezligi</td></tr>
           </tbody>
         </table>
       </div>
       <div class="p-3.5 rounded-xl bg-rose-500/10 border-l-4 border-rose-500 text-xs">
-        <b>⚠️ Diqqat! Keng tarqalgan xato:</b> Pul birliklarini saqlashda <code>FLOAT</code> ishlatmang — yaxlitlash xatolari yuz beradi. Doimo <code>DECIMAL</code> ishlating!
+        <b>⚠️ Nega moliya tizimlarida FLOAT/DOUBLE taqiqlanadi?</b> IEEE-754 ikkilik kasr standarti tufayli kompyuterda <code>0.1 + 0.2 = 0.30000000000000004</code> chiqadi. Millionlab tranzaksiyalarda bu katta moliyaviy tafovutga olib keladi!
       </div>
     `,
-    visualHTML: `<div class="space-y-1.5 text-xs font-mono"><div class="p-2 rounded bg-slate-800 flex justify-between"><span>narx</span><span class="text-emerald-400">DECIMAL(12,2)</span></div><div class="p-2 rounded bg-slate-800 flex justify-between"><span>sozlamalar</span><span class="text-amber-400">JSONB</span></div></div>`,
+    visualHTML: `<div class="space-y-1.5 text-xs font-mono"><div class="p-2 rounded bg-slate-800 flex justify-between"><span>BIGINT</span><span class="text-blue-400">8 Bytes (64-bit)</span></div><div class="p-2 rounded bg-slate-800 flex justify-between"><span>DECIMAL(12,2)</span><span class="text-emerald-400">Exact Precision</span></div></div>`,
     starterSQL: "SELECT nomi, narx FROM kurslar;",
     task: {
-      title: "3-Praktikum: Kurs nomi va narxini ajratib olish",
-      desc: "<code>kurslar</code> jadvalidan faqat <code>nomi</code> (VARCHAR) va <code>narx</code> (DECIMAL) ustunlarini chiqaring.",
+      title: "3-Laboratoriya: Kurs nomi va aniq narxini ajratish",
+      desc: "<code>kurslar</code> jadvalidan faqat <code>nomi</code> va <code>narx</code> ustunlarini chiqaring.",
       hint: "SELECT nomi, narx FROM kurslar;",
       validate: (rows, sql) => /select\s+nomi\s*,\s*narx\s+from\s+kurslar/i.test(sql) && rows.length >= 4
     },
     quizzes: [
-      { q: "Moliya va narxlarni saqlash uchun eng aniq SQL tipi qaysi?", opts: ["FLOAT", "DECIMAL(10,2)", "TEXT"], ans: 1 }
+      { q: "64-bitli BIGINT tipi xotirada necha bayt joy egallaydi?", opts: ["4 bayt", "8 bayt", "16 bayt"], ans: 1 }
     ]
   },
   {
-    id: 4, moduleId: 2, duration: "16 daqiqa",
-    title: "4. SELECT kalit so'zi va ustunlar bilan ishlash",
-    subtitle: "Kerakli ustunlarni tanlash, DISTINCT bilan dublikatlarni olib tashlash va AS taxalluslari",
+    id: 4, moduleId: 2, duration: "18 daqiqa",
+    title: "4. SELECT kalit so'zi, DISTINCT va ustunlar bilan ishlash",
+    subtitle: "SQL so'rovlarining mantiqiy bajarilish tartibi (Logical Query Processing Order)",
     lecture: `
-      <p>Real loyihalarda jadvalda 40-50 ta ustun bo'lishi mumkin. Shuning uchun faqat kerakli ustunlarni nomma-nom ko'rsatish tarmoq yuklamasini kamaytiradi.</p>
+      <p>Ko'pchilik dasturchilar SQL yozilgan tartibda (<code>SELECT → FROM → WHERE</code>) bajariladi deb o'ylaydi. Aslida DBMS engine uni quyidagi tartibda bajaradi:</p>
+      <ol class="list-decimal pl-5 space-y-1 font-mono text-xs bg-slate-100 dark:bg-slate-900 p-3.5 rounded-xl">
+        <li><b>FROM / JOIN</b> (Jadvallarni yuklash)</li>
+        <li><b>WHERE</b> (Qatorlarni filtrlash)</li>
+        <li><b>GROUP BY</b> (Guruhlash)</li>
+        <li><b>HAVING</b> (Guruhlarni filtrlash)</li>
+        <li><b>SELECT</b> (Ustunlarni hisoblash va AS nomlash)</li>
+        <li><b>DISTINCT</b> (Dublikatlarni o'chirish)</li>
+        <li><b>ORDER BY</b> (Saralash)</li>
+        <li><b>LIMIT / OFFSET</b> (Kesib olish)</li>
+      </ol>
       ${codeBlock("SELECT DISTINCT shahar AS Talaba_Shahri FROM talabalar;")}
-      <p class="text-sm"><code>DISTINCT</code> — bir xil qiymatlarni faqat bir martadan chiqaradi. <code>AS</code> esa ustun sarlavhasini o'zgartiradi.</p>
     `,
-    visualHTML: `<div class="text-xs font-mono text-center"><div class="p-2 rounded bg-blue-500/20 text-blue-300">SELECT DISTINCT shahar → Noyob shaharlar</div></div>`,
+    visualHTML: `<div class="text-xs font-mono text-center"><div class="p-2 rounded bg-blue-500/20 text-blue-300">FROM → WHERE → SELECT → DISTINCT → ORDER BY</div></div>`,
     starterSQL: "SELECT ism, shahar FROM talabalar;",
     task: {
-      title: "4-Praktikum: Noyob shaharlar ro'yxati",
-      desc: "<code>talabalar</code> jadvalidan takrorlanmaydigan (noyob) <code>shahar</code> nomlarini chiqaring.",
+      title: "4-Laboratoriya: Noyob shaharlar ro'yxati",
+      desc: "<code>talabalar</code> jadvalidan takrorlanmaydigan <code>shahar</code> nomlarini <code>DISTINCT</code> yordamida chiqaring.",
       hint: "SELECT DISTINCT shahar FROM talabalar;",
       validate: (rows, sql) => /select\s+distinct\s+shahar\s+from\s+talabalar/i.test(sql) && rows.length === 3
     },
     quizzes: [
-      { q: "Natijada ustunga vaqtinchalik chiroyli nom berish uchun qaysi kalit so'z ishlatiladi?", opts: ["ALIAS", "AS", "RENAME"], ans: 1 }
+      { q: "DBMS so'rovni bajarishda birinchi navbatda qaysi bandni ishga tushiradi?", opts: ["SELECT", "FROM", "ORDER BY"], ans: 1 }
     ]
   },
   {
-    id: 5, moduleId: 2, duration: "15 daqiqa",
-    title: "5. INSERT INTO — Ma'lumot qo'shish",
-    subtitle: "Jadvallarga yangi qatorlar kiritish va PRIMARY KEY noyobligi",
+    id: 5, moduleId: 2, duration: "16 daqiqa",
+    title: "5. INSERT INTO — Ma'lumot qo'shish va Bulk Insert",
+    subtitle: "Yagona va ko'p qatorli (Batch) kiritish operatsiyalari",
     lecture: `
-      <p>Jadvalga yangi yozuv qo'shish uchun <code>INSERT INTO jadval (ustunlar) VALUES (qiymatlar);</code> sintaksisidan foydalanamiz.</p>
-      ${codeBlock("INSERT INTO talabalar (id, ism, yosh, shahar, stipendiya)\nVALUES (7, 'Jasur Aliyev', 21, 'Xiva', 700000);")}
+      <p>Jadvalga yangi yozuv qo'shish uchun <code>INSERT INTO</code> ishlatiladi. Yuqori yuklamali tizimlarda 1000 ta qatorni bittadan emas, <b>Bulk Insert</b> orqali bitta tranzaksiyada kiritish 50 barobar tezroq ishlaydi.</p>
+      ${codeBlock("INSERT INTO talabalar (id, ism, yosh, shahar, stipendiya, yonalish)
+VALUES (7, 'Jasur Aliyev', 21, 'Xiva', 700000, 'Cybersecurity');")}
     `,
-    visualHTML: `<div class="text-xs font-mono text-center p-2.5 rounded bg-emerald-500/20 text-emerald-300">+ INSERT INTO → Jadvalga yangi qator qo'shildi</div>`,
-    starterSQL: "INSERT INTO talabalar (id, ism, yosh, shahar, stipendiya) VALUES (7, 'Jasur Aliyev', 21, 'Xiva', 700000);",
+    visualHTML: `<div class="text-xs font-mono text-center p-2.5 rounded bg-emerald-500/20 text-emerald-300">INSERT INTO → WAL Log → B-Tree Page Write</div>`,
+    starterSQL: "INSERT INTO talabalar (id, ism, yosh, shahar, stipendiya, yonalish) VALUES (7, 'Jasur Aliyev', 21, 'Xiva', 700000, 'Cybersecurity');",
     task: {
-      title: "5-Praktikum: Yangi talaba qo'shish",
+      title: "5-Laboratoriya: Yangi talaba qo'shish",
       desc: "<code>talabalar</code> jadvaliga <code>id = 7</code> bo'lgan yangi talabani <code>INSERT INTO</code> orqali qo'shing.",
-      hint: "INSERT INTO talabalar (id, ism, yosh, shahar, stipendiya) VALUES (7, 'Jasur Aliyev', 21, 'Xiva', 700000);",
+      hint: "INSERT INTO talabalar (id, ism, yosh, shahar, stipendiya, yonalish) VALUES (7, 'Jasur Aliyev', 21, 'Xiva', 700000, 'Cybersecurity');",
       validate: (rows, sql) => /insert\s+into\s+talabalar/i.test(sql) && db.talabalar.some(t => t.id === 7)
     },
     quizzes: [
-      { q: "INSERT INTO buyrug'ida matnli qiymatlar qanday yoziladi?", opts: ["Bir tirnoq 'matn' ichida", "Tirnoqsiz", "Kvadrat qavs [matn] ichida"], ans: 0 }
+      { q: "Minglab yozuvlarni bazaga eng tez kiritish usuli qaysi?", opts: ["Bulk / Batch INSERT", "Har birini alohida ulanishda yuborish", "UPDATE"], ans: 0 }
     ]
   },
   {
-    id: 6, moduleId: 2, duration: "17 daqiqa",
-    title: "6. UPDATE — Ma'lumotni tahrirlash",
-    subtitle: "Mavjud ma'lumotlarni yangilash va WHERE sharti bilan xavfsiz ishlash",
+    id: 6, moduleId: 2, duration: "18 daqiqa",
+    title: "6. UPDATE — Ma'lumotni tahrirlash va MVCC mexanizmi",
+    subtitle: "Xavfsiz yangilash, blokirovkalar (Row-Level Locking) va MVCC asoslari",
     lecture: `
-      <p><code>UPDATE</code> buyrug'i mavjud qatorlarni tahrirlaydi. Har doim qaysi qator o'zgarishini <code>WHERE</code> orqali aniq ko'rsating!</p>
+      <p>Zamonaviy bazalar (PostgreSQL, InnoDB) <code>UPDATE</code> bajarayotganda <b>MVCC (Multi-Version Concurrency Control)</b> texnologiyasidan foydalanadi: o'qish operatsiyalari yozish operatsiyalarini kutib qolmaydi.</p>
       ${codeBlock("UPDATE talabalar SET stipendiya = 950000 WHERE id = 1;")}
       <div class="p-3.5 rounded-xl bg-rose-500/10 border-l-4 border-rose-500 text-xs">
-        <b>🚨 Diqqat!</b> <code>WHERE</code> shartisiz yozilgan <code>UPDATE</code> jadvaldagi hamma qatorlarni o'zgartirib yuboradi!
+        <b>🚨 Production Xavfsizlik Qoidasi:</b> <code>UPDATE</code> yoki <code>DELETE</code> yozishdan oldin xuddi o'sha <code>WHERE</code> sharti bilan <code>SELECT</code> ishga tushirib, qaysi qatorlar o'zgarishini tekshiring!
       </div>
     `,
-    visualHTML: `<div class="text-xs font-mono p-2 rounded bg-amber-500/20 text-amber-300 text-center">UPDATE ... SET ... WHERE id = 1</div>`,
+    visualHTML: `<div class="text-xs font-mono p-2 rounded bg-amber-500/20 text-amber-300 text-center">MVCC: Old Version (Read) | New Version (Write)</div>`,
     starterSQL: "UPDATE talabalar SET stipendiya = 950000 WHERE id = 1;",
     task: {
-      title: "6-Praktikum: Talaba stipendiyasini oshirish",
+      title: "6-Laboratoriya: Talaba stipendiyasini yangilash",
       desc: "<code>id = 1</code> bo'lgan talabaning stipendiyasini <code>950000</code> ga o'zgartiring.",
       hint: "UPDATE talabalar SET stipendiya = 950000 WHERE id = 1;",
       validate: (rows, sql) => /update\s+talabalar/i.test(sql) && db.talabalar.find(t => t.id === 1)?.stipendiya === 950000
     },
     quizzes: [
-      { q: "UPDATE so'rovida ustun qiymatini belgilash uchun qaysi kalit so'z ishlatiladi?", opts: ["VALUES", "SET", "INTO"], ans: 1 }
+      { q: "Bir vaqtning o'zida o'qish va yozish operatsiyalari bir-birini to'sib qo'ymasligini ta'minlovchi texnologiya nima?", opts: ["MVCC", "BIOS", "SMTP"], ans: 0 }
     ]
   },
   {
-    id: 7, moduleId: 2, duration: "15 daqiqa",
-    title: "7. DELETE — Ma'lumotlarni o'chirish",
-    subtitle: "Keraksiz yozuvlarni o'chirish va DELETE vs TRUNCATE farqi",
+    id: 7, moduleId: 2, duration: "16 daqiqa",
+    title: "7. DELETE vs TRUNCATE va Soft Delete arxitekturasi",
+    subtitle: "Ma'lumotlarni o'chirish strategiyalari va audit izlarini saqlab qolish",
     lecture: `
-      <p>Jadvaldan keraksiz yozuvni o'chirish uchun <code>DELETE FROM jadval WHERE shart;</code> ishlatiladi.</p>
+      <p>Katta loyihalarda (Bank, E-commerce) ma'lumotlar odatda bazadan jismonan o'chirilmaydi — buning o'rniga <code>deleted_at TIMESTAMP</code> ustuni to'ldiriladi (<b>Soft Delete</b>). Jismoniy o'chirish uchun esa <code>DELETE</code> (DML, har bir qatorni loglaydi) yoki <code>TRUNCATE</code> (DDL, butun jadval sahifalarini bir zumda bo'shatadi) ishlatiladi.</p>
       ${codeBlock("DELETE FROM talabalar WHERE id = 6;")}
     `,
-    visualHTML: `<div class="text-xs font-mono p-2 rounded bg-rose-500/20 text-rose-300 text-center">DELETE FROM talabalar WHERE id = 6</div>`,
+    visualHTML: `<div class="text-xs font-mono p-2 rounded bg-rose-500/20 text-rose-300 text-center">DELETE (Row-by-row DML) vs TRUNCATE (Instant DDL)</div>`,
     starterSQL: "DELETE FROM talabalar WHERE id = 6;",
     task: {
-      title: "7-Praktikum: Yozuvni o'chirish",
+      title: "7-Laboratoriya: Yozuvni o'chirish",
       desc: "<code>talabalar</code> jadvalidan <code>id = 6</code> bo'lgan talabani o'chiring.",
       hint: "DELETE FROM talabalar WHERE id = 6;",
       validate: (rows, sql) => /delete\s+from\s+talabalar/i.test(sql) && !db.talabalar.some(t => t.id === 6)
     },
     quizzes: [
-      { q: "Barcha qatorlarni WHERE shartisiz eng tez tozalovchi DDL buyrug'i qaysi?", opts: ["DELETE", "TRUNCATE TABLE", "ALTER"], ans: 1 }
+      { q: "Yozuvni bazadan butunlay o'chirmasdan, faqat 'o'chirilgan' deb belgilash usuli nima deb ataladi?", opts: ["Soft Delete", "Hard Drop", "Flush"], ans: 0 }
     ]
   },
   {
     id: 8, moduleId: 2, duration: "18 daqiqa",
-    title: "8. AND, OR, NOT mantiqiy operatorlari",
-    subtitle: "Bir nechta shartlarni mantiqiy bog'lovchilar bilan birlashtirish",
+    title: "8. AND, OR, NOT mantiqiy operatorlari va Bul algebrasi",
+    subtitle: "Mantiqiy ustuvorlik (Precedence) va qavslar bilan murakkab shartlar qurish",
     lecture: `
-      <p>Murakkab qidiruvlarda shartlarni <code>AND</code> (va), <code>OR</code> (yoki) hamda <code>NOT</code> (emas) operatorlari bilan birlashtiramiz.</p>
-      ${codeBlock("SELECT * FROM talabalar\nWHERE shahar = 'Toshkent' AND yosh >= 21;")}
+      <p>Kompyuter fanida mantiqiy operatorlar qat'iy ustuvorlik tartibiga ega: <b>1. NOT → 2. AND → 3. OR</b>. Shuning uchun <code>AND</code> va <code>OR</code> aralash kelganda doimo qavslardan <code>(...)</code> foydalaning.</p>
+      ${codeBlock("SELECT * FROM talabalar
+WHERE shahar = 'Toshkent' AND stipendiya >= 600000;")}
     `,
-    visualHTML: `<div class="grid grid-cols-3 gap-1.5 text-center text-[11px] font-mono"><div class="p-2 rounded bg-blue-500/20">AND (Ikkalasi)</div><div class="p-2 rounded bg-emerald-500/20">OR (Kamida 1)</div><div class="p-2 rounded bg-rose-500/20">NOT (Inkor)</div></div>`,
+    visualHTML: `<div class="grid grid-cols-3 gap-1.5 text-center text-[11px] font-mono"><div class="p-2 rounded bg-purple-500/20">1. NOT</div><div class="p-2 rounded bg-blue-500/20">2. AND</div><div class="p-2 rounded bg-emerald-500/20">3. OR</div></div>`,
     starterSQL: "SELECT * FROM talabalar WHERE shahar = 'Toshkent' AND stipendiya >= 600000;",
     task: {
-      title: "8-Praktikum: Toshkentlik va stipendiyasi yuqori talabalar",
+      title: "8-Laboratoriya: Ko'p shartli filtrlash",
       desc: "<code>shahar = 'Toshkent'</code> va <code>stipendiya >= 600000</code> shartlariga mos talabalarni chiqaring.",
       hint: "SELECT * FROM talabalar WHERE shahar = 'Toshkent' AND stipendiya >= 600000;",
       validate: (rows, sql) => /where/i.test(sql) && /and/i.test(sql) && rows.every(r => r.shahar === "Toshkent" && r.stipendiya >= 600000)
     },
     quizzes: [
-      { q: "Qaysi operator birinchi bajariladi (qavslar bo'lmasa)?", opts: ["OR", "AND", "Ikkalasi teng"], ans: 1 }
+      { q: "Bul algebrasida qaysi operator eng yuqori ustuvorlikka ega?", opts: ["NOT", "AND", "OR"], ans: 0 }
     ]
   },
   {
-    id: 9, moduleId: 2, duration: "19 daqiqa",
-    title: "9. Ma'lumotlarni filtrlash (ORDER BY, LIMIT, TOP, OFFSET)",
-    subtitle: "Natijalarni saralash va sahifalash (Pagination) texnikasi",
+    id: 9, moduleId: 2, duration: "20 daqiqa",
+    title: "9. Saralash va Sahifalash (ORDER BY, LIMIT, OFFSET, Keyset Pagination)",
+    subtitle: "Katta hajmli jadvallarda tezkor sahifalash arxitekturasi",
     lecture: `
-      <p><code>ORDER BY ... DESC</code> — kamayish tartibida saralaydi. <code>LIMIT N</code> — faqat N ta qatorni oladi. <code>OFFSET K</code> — dastlabki K ta qatorni tashlab o'tadi (sahifalash uchun).</p>
-      ${codeBlock("SELECT ism, stipendiya FROM talabalar\nORDER BY stipendiya DESC\nLIMIT 3;")}
+      <p><code>ORDER BY ustun DESC</code> natijani kamayish tartibida saralaydi. Kichik jadvallarda <code>LIMIT 10 OFFSET 20</code> qulay, ammo 10 million qatorli jadvallarda katta <code>OFFSET</code> sekin ishlaydi — buning o'rniga <b>Keyset (Cursor) Pagination</b> (<code>WHERE id > oxirgi_id LIMIT 10</code>) qo'llaniladi.</p>
+      ${codeBlock("SELECT ism, stipendiya FROM talabalar
+ORDER BY stipendiya DESC
+LIMIT 3;")}
     `,
     visualHTML: `<div class="text-xs font-mono p-2 rounded bg-indigo-500/20 text-indigo-300 text-center">ORDER BY stipendiya DESC → LIMIT 3</div>`,
     starterSQL: "SELECT ism, stipendiya FROM talabalar ORDER BY stipendiya DESC LIMIT 3;",
     task: {
-      title: "9-Praktikum: TOP-3 eng yuqori stipendiyali talabalar",
-      desc: "Talabalarni <code>stipendiya</code> bo'yicha kamayish tartibida (<code>DESC</code>) saralab, faqat dastlabki <code>3</code> tasini chiqaring.",
+      title: "9-Laboratoriya: TOP-3 eng yuqori stipendiyali talabalar",
+      desc: "Talabalarni <code>stipendiya</code> bo'yicha kamayish tartibida (<code>DESC</code>) saralab, dastlabki <code>3</code> tasini chiqaring.",
       hint: "SELECT ism, stipendiya FROM talabalar ORDER BY stipendiya DESC LIMIT 3;",
       validate: (rows, sql) => /order\s+by\s+stipendiya\s+desc/i.test(sql) && /limit\s+3/i.test(sql) && rows.length === 3
     },
     quizzes: [
-      { q: "Sahifalashda (Pagination) dastlabki 10 ta yozuvni o'tkazib yuborish uchun qaysi kalit so'z ishlatiladi?", opts: ["SKIP 10", "OFFSET 10", "DROP 10"], ans: 1 }
+      { q: "Millionlab qatorli jadvallarda OFFSET o'rniga qaysi usul eng yuqori tezlik beradi?", opts: ["Keyset / Cursor Pagination", "SELECT *", "CROSS JOIN"], ans: 0 }
     ]
   },
   {
     id: 10, moduleId: 3, duration: "20 daqiqa",
     title: "10. Aggregat funksiyalar (MIN, MAX, COUNT, AVG, SUM)",
-    subtitle: "Jadval bo'yicha umumiy statistika va moliyaviy hisob-kitoblar",
+    subtitle: "Analitik hisob-kitoblar va NULL qiymatlarning aggregatsiyaga ta'siri",
     lecture: `
-      <p>Aggregat funksiyalar ko'plab qatorlarni bitta umumlashtiruvchi qiymatga keltiradi: <code>COUNT(*)</code>, <code>SUM()</code>, <code>AVG()</code>, <code>MIN()</code>, <code>MAX()</code>.</p>
-      ${codeBlock("SELECT COUNT(*) AS Jami, AVG(stipendiya) AS Ortacha FROM talabalar;")}
+      <p>Aggregat funksiyalar ko'plab qatorlarni yagona statistik qiymatga jamlaydi. Muhim qoida: <code>COUNT(*)</code> barcha qatorlarni sanaydi, lekin <code>COUNT(ustun)</code>, <code>AVG(ustun)</code> va <code>SUM(ustun)</code> <b>NULL qiymatlarni e'tiborsiz qoldiradi</b>.</p>
+      ${codeBlock("SELECT COUNT(*) AS Jami, SUM(stipendiya) AS Fond, AVG(stipendiya) AS Ortacha FROM talabalar;")}
     `,
     visualHTML: `<div class="grid grid-cols-3 gap-1.5 text-center text-xs font-mono"><div class="p-2 rounded bg-blue-500/20">COUNT</div><div class="p-2 rounded bg-emerald-500/20">SUM / AVG</div><div class="p-2 rounded bg-amber-500/20">MIN / MAX</div></div>`,
     starterSQL: "SELECT COUNT(*) AS Jami, SUM(stipendiya) AS Fond FROM talabalar;",
     task: {
-      title: "10-Praktikum: Umumiy stipendiya fondini hisoblash",
+      title: "10-Laboratoriya: Umumiy stipendiya fondini hisoblash",
       desc: "<code>talabalar</code> jadvalidan talabalar soni (<code>COUNT(*)</code>) va umumiy stipendiya yig'indisini (<code>SUM(stipendiya)</code>) hisoblang.",
       hint: "SELECT COUNT(*) AS Jami, SUM(stipendiya) AS Fond FROM talabalar;",
       validate: (rows, sql) => /count\s*\(/i.test(sql) && /sum\s*\(\s*stipendiya\s*\)/i.test(sql) && rows.length === 1
     },
     quizzes: [
-      { q: "Ustundagi NULL qiymatlarni sanamaydigan funksiya qaysi?", opts: ["COUNT(*)", "COUNT(ustun_nomi)", "SUM(*)"], ans: 1 }
+      { q: "Agar jadvalda 5 ta qator bo'lib, 2 tasida bonus ustuni NULL bo'lsa, AVG(bonus) nechta qiymatga bo'lib hisoblaydi?", opts: ["5 ga", "3 ga", "2 ga"], ans: 1 }
     ]
   },
   {
-    id: 11, moduleId: 3, duration: "18 daqiqa",
-    title: "11. LIKE, IN, BETWEEN maxsus operatorlari",
-    subtitle: "Shablonli qidiruv, ro'yxatlar va oraliq qiymatlar bilan ishlash",
+    id: 11, moduleId: 3, duration: "19 daqiqa",
+    title: "11. LIKE, IN, BETWEEN va Regulyar Ifodalar (Pattern Matching)",
+    subtitle: "Matnli qidiruv va B-Tree indeksdan unumli foydalanish sirlari",
     lecture: `
-      <p><code>LIKE 'A%'</code> — 'A' harfi bilan boshlanuvchi matnlarni topadi. <code>IN ('Toshkent', 'Buxoro')</code> — ro'yxatdagi qiymatlarni tekshiradi. <code>BETWEEN 19 AND 22</code> — oraliqni tekshiradi.</p>
+      <p><code>LIKE 'Ali%'</code> prefiksli qidiruv bo'lib, B-Tree indeksdan foydalana oladi. Biroq <code>LIKE '%Ali%'</code> (boshida <code>%</code> belgisi bo'lsa) oddiy indeksni ishlata olmaydi va butun jadvalni skanerlaydi (Full Table Scan) — buning uchun Full-Text Search yoki Trigram indeks qo'llaniladi.</p>
       ${codeBlock("SELECT * FROM talabalar WHERE yosh BETWEEN 19 AND 21;")}
     `,
-    visualHTML: `<div class="text-xs font-mono space-y-1"><div class="p-1.5 rounded bg-blue-500/20">LIKE '%ova' → Familiya shabloni</div><div class="p-1.5 rounded bg-emerald-500/20">BETWEEN 19 AND 21 → Oraliq</div></div>`,
+    visualHTML: `<div class="text-xs font-mono space-y-1"><div class="p-1.5 rounded bg-emerald-500/20">LIKE 'Ali%' → Index Scan (Tez)</div><div class="p-1.5 rounded bg-rose-500/20">LIKE '%Ali%' → Full Scan (Sekin)</div></div>`,
     starterSQL: "SELECT * FROM talabalar WHERE yosh BETWEEN 19 AND 21;",
     task: {
-      title: "11-Praktikum: BETWEEN operatori bilan qidiruv",
+      title: "11-Laboratoriya: BETWEEN operatori bilan oraliq qidiruv",
       desc: "<code>talabalar</code> jadvalidan yoshi <code>19</code> va <code>21</code> oralig'ida bo'lgan talabalarni <code>BETWEEN</code> yordamida toping.",
       hint: "SELECT * FROM talabalar WHERE yosh BETWEEN 19 AND 21;",
       validate: (rows, sql) => /between\s+19\s+and\s+21/i.test(sql) && rows.every(r => r.yosh >= 19 && r.yosh <= 21)
     },
     quizzes: [
-      { q: "LIKE operatorida bitta belgini anglatuvchi wildcard qaysi?", opts: ["%", "_", "?"], ans: 1 }
+      { q: "Qaysi LIKE shabloni oddiy B-Tree indeksdan foydalana oladi?", opts: ["LIKE 'Tosh%'", "LIKE '%kent'", "LIKE '%shk%'"], ans: 0 }
     ]
   },
   {
     id: 12, moduleId: 3, duration: "25 daqiqa",
-    title: "12. Bog'lanishlar (JOINS) 1-qism (INNER JOIN, LEFT JOIN)",
-    subtitle: "Ikki yoki undan ortiq jadvallarni umumiy kalitlar orqali birlashtirish",
+    title: "12. Bog'lanishlar (JOINS) 1-qism: INNER JOIN va LEFT JOIN",
+    subtitle: "To'plamlar nazariyasi va Hash Join / Nested Loop algoritmlari",
     lecture: `
-      <p><code>INNER JOIN</code> — faqat ikkala jadvalda ham mosligi bor yozuvlarni qaytaradi. <code>LEFT JOIN</code> — chap jadvaldagi barcha yozuvlarni saqlab, moslik bo'lmasa <code>NULL</code> qaytaradi.</p>
-      ${codeBlock("SELECT t.ism, b.summa, b.holat\nFROM talabalar t\nLEFT JOIN buyurtmalar b ON t.id = b.talaba_id;")}
+      <p>Relyatsion algebrada jadvallarni birlashtirish uchun DBMS uch xil ichki algoritmdan foydalanadi: <b>Nested Loop Join</b> (kichik jadvallar uchun), <b>Hash Join</b> (katta jadvallar uchun O(N+M) tezlikda) va <b>Merge Join</b> (oldindan saralangan jadvallar uchun).</p>
+      ${codeBlock("SELECT t.ism, b.summa, b.holat
+FROM talabalar t
+LEFT JOIN buyurtmalar b ON t.id = b.talaba_id;")}
     `,
-    visualHTML: `<div class="text-center text-xs"><button onclick="switchTopSection('3d'); set3DMode('left');" class="px-3 py-1.5 rounded-lg bg-blue-600 text-white font-bold">🧊 3D LEFT JOIN Animatsiyasini Ko'rish</button></div>`,
+    visualHTML: `<div class="text-center text-xs"><button onclick="switchTopSection('3d'); set3DMode('left');" class="px-3 py-1.5 rounded-lg bg-blue-600 text-white font-bold">🧊 3D LEFT JOIN Simulyatorini Ochish</button></div>`,
     starterSQL: "SELECT t.ism, b.summa, b.holat FROM talabalar t LEFT JOIN buyurtmalar b ON t.id = b.talaba_id;",
     task: {
-      title: "12-Praktikum: Talabalar va ularning buyurtmalarini birlashtirish",
+      title: "12-Laboratoriya: Talabalar va buyurtmalarni birlashtirish",
       desc: "<code>talabalar</code> va <code>buyurtmalar</code> jadvallarini <code>LEFT JOIN</code> orqali birlashtirib, barcha talabalar ismi va buyurtma summasini chiqaring.",
       hint: "SELECT t.ism, b.summa FROM talabalar t LEFT JOIN buyurtmalar b ON t.id = b.talaba_id;",
       validate: (rows, sql) => /left\s+join\s+buyurtmalar/i.test(sql) && rows.length >= 6
     },
     quizzes: [
-      { q: "Hali birorta buyurtma qilmagan talabalarni ham ro'yxatda ko'rish uchun qaysi JOIN kerak?", opts: ["INNER JOIN", "LEFT JOIN", "CROSS JOIN"], ans: 1 }
+      { q: "Katta hajmli, saralanmagan ikki jadvalni birlashtirishda DBMS qaysi algoritmni afzal ko'radi?", opts: ["Hash Join", "Bubble Sort", "Linear Scan"], ans: 0 }
     ]
   },
   {
-    id: 13, moduleId: 3, duration: "22 daqiqa",
-    title: "13. Bog'lanishlar (JOINS) 2-qism (RIGHT JOIN, FULL OUTER JOIN, CROSS JOIN)",
-    subtitle: "O'ng tomonlama, to'liq tashqi va Dekart ko'paytmasi bog'lanishlari",
+    id: 13, moduleId: 3, duration: "23 daqiqa",
+    title: "13. Bog'lanishlar (JOINS) 2-qism: RIGHT, FULL OUTER va CROSS JOIN",
+    subtitle: "Ko'p jadvalli (Multi-Table) bog'lanishlar va Dekart ko'paytmasi",
     lecture: `
-      <p><code>RIGHT JOIN</code> — o'ng jadvaldagi barcha qatorlarni oladi. <code>FULL OUTER JOIN</code> — ikkala jadvalning to'liq birlashmasini beradi. <code>CROSS JOIN</code> — har bir qatorni har bir qator bilan juftlaydi (N × M).</p>
-      ${codeBlock("SELECT t.ism, k.nomi FROM talabalar t INNER JOIN buyurtmalar b ON t.id = b.talaba_id INNER JOIN kurslar k ON k.id = b.kurs_id;")}
+      <p>Murakkab axborot tizimlarida 3, 5 yoki 10 ta jadval bir-biriga bog'lanadi (masalan: <code>talabalar → buyurtmalar → kurslar</code>). <code>FULL OUTER JOIN</code> esa ikkala jadvaldagi yetishmayotgan (orphan) yozuvlarni topishda juda foydali.</p>
+      ${codeBlock("SELECT t.ism, k.nomi
+FROM talabalar t
+INNER JOIN buyurtmalar b ON t.id = b.talaba_id
+INNER JOIN kurslar k ON k.id = b.kurs_id;")}
     `,
     visualHTML: `<div class="text-center text-xs"><button onclick="switchTopSection('3d'); set3DMode('full');" class="px-3 py-1.5 rounded-lg bg-indigo-600 text-white font-bold">🌐 3D FULL OUTER JOIN Ko'rish</button></div>`,
     starterSQL: "SELECT t.ism, k.nomi FROM talabalar t INNER JOIN buyurtmalar b ON t.id = b.talaba_id INNER JOIN kurslar k ON k.id = b.kurs_id;",
     task: {
-      title: "13-Praktikum: 3 ta jadvalni bog'lash (Talaba + Buyurtma + Kurs)",
+      title: "13-Laboratoriya: 3 ta jadvalni bog'lash",
       desc: "<code>talabalar</code>, <code>buyurtmalar</code> va <code>kurslar</code> jadvallarini <code>JOIN</code> qilib, talaba ismi va kurs nomini chiqaring.",
       hint: "SELECT t.ism, k.nomi FROM talabalar t INNER JOIN buyurtmalar b ON t.id = b.talaba_id INNER JOIN kurslar k ON k.id = b.kurs_id;",
       validate: (rows, sql) => /join\s+buyurtmalar/i.test(sql) && /join\s+kurslar/i.test(sql) && rows.length >= 5
     },
     quizzes: [
-      { q: "6 ta talaba va 4 ta kurs CROSS JOIN qilinsa nechta kombinatsiya hosil bo'ladi?", opts: ["10 ta", "24 ta", "6 ta"], ans: 1 }
+      { q: "Ikkala jadvaldagi barcha qatorlarni, mos kelmaganlarini ham NULL bilan qaytaruvchi JOIN qaysi?", opts: ["FULL OUTER JOIN", "INNER JOIN", "SELF JOIN"], ans: 0 }
     ]
   },
   {
     id: 14, moduleId: 3, duration: "24 daqiqa",
-    title: "14. GROUP BY va HAVING orqali guruhlash",
-    subtitle: "Kategoriyalar bo'yicha hisobotlar tuzish va guruhlangan natijalarni filtrlash",
+    title: "14. GROUP BY, HAVING va ROLLUP/CUBE analitik guruhlash",
+    subtitle: "BI (Business Intelligence) hisobotlari va ko'p o'lchovli agregatsiya",
     lecture: `
-      <p><code>GROUP BY</code> bir xil qiymatli qatorlarni bitta guruhga jamlaydi. Guruhlangan natijalarni filtrlash uchun <code>WHERE</code> emas, <code>HAVING</code> ishlatiladi!</p>
-      ${codeBlock("SELECT shahar, COUNT(*) AS Soni, AVG(stipendiya) AS Ortacha\nFROM talabalar\nGROUP BY shahar\nHAVING COUNT(*) >= 2;")}
+      <p><code>GROUP BY</code> xesh-jadval (Hash Aggregate) yordamida bir xil kalitli qatorlarni yig'adi. <code>WHERE</code> — guruhlashdan <b>oldin</b> individual qatorlarni filtrlaydi, <code>HAVING</code> esa guruhlashdan <b>keyin</b> tayyor guruhlarni filtrlaydi.</p>
+      ${codeBlock("SELECT shahar, COUNT(*) AS Soni, AVG(stipendiya) AS Ortacha
+FROM talabalar
+GROUP BY shahar;")}
     `,
     visualHTML: `<div class="text-center text-xs"><button onclick="switchTopSection('3d'); set3DMode('groupby');" class="px-3 py-1.5 rounded-lg bg-emerald-600 text-white font-bold">📊 3D GROUP BY Ustunlarini Ko'rish</button></div>`,
     starterSQL: "SELECT shahar, COUNT(*) AS Soni FROM talabalar GROUP BY shahar;",
     task: {
-      title: "14-Praktikum: Shaharlar kesimida talabalar statistikasi",
-      desc: "<code>talabalar</code> jadvalini <code>shahar</code> bo'yicha guruhlab (<code>GROUP BY shahar</code>), har bir shahardagi talabalar sonini (<code>COUNT(*)</code>) chiqaring.",
+      title: "14-Laboratoriya: Shaharlar kesimida talabalar statistikasi",
+      desc: "<code>talabalar</code> jadvalini <code>shahar</code> bo'yicha guruhlab (<code>GROUP BY shahar</code>), har bir shahardagi talabalar sonini chiqaring.",
       hint: "SELECT shahar, COUNT(*) AS Soni FROM talabalar GROUP BY shahar;",
       validate: (rows, sql) => /group\s+by\s+shahar/i.test(sql) && rows.length >= 3
     },
     quizzes: [
-      { q: "GROUP BY dan keyin COUNT(*) > 5 shartini tekshirish uchun qaysi kalit so'z yoziladi?", opts: ["WHERE", "HAVING", "ORDER BY"], ans: 1 }
+      { q: "Guruhlashdan OLDIN qatorlarni filtrlash uchun qaysi band ishlatiladi?", opts: ["WHERE", "HAVING", "GROUP BY"], ans: 0 }
     ]
   },
   {
-    id: 15, moduleId: 4, duration: "18 daqiqa",
-    title: "15. Murakkab SELECT va INSERT ifodalar (SELECT INTO, INSERT INTO SELECT)",
-    subtitle: "Ma'lumotlarni jadvallar o'rtasida tezkor ko'chirish va arxivlash",
+    id: 15, moduleId: 4, duration: "20 daqiqa",
+    title: "15. Murakkab SELECT, Subqueries va CTE (Common Table Expressions)",
+    subtitle: "WITH kalit so'zi orqali o'qilishi oson va rekursiv so'rovlar yozish",
     lecture: `
-      <p>Bir so'rov natijasini ikkinchi jadvalga yozish uchun <code>INSERT INTO maqsad_jadval SELECT ...</code> konstruksiyasi ishlatiladi.</p>
-      ${codeBlock("INSERT INTO arxiv_talabalar (id, ism, shahar)\nSELECT id, ism, shahar FROM talabalar WHERE yosh >= 22;")}
+      <p>Zamonaviy SQL muhandisligida murakkab ichma-ich so'rovlar (Subqueries) o'rniga <b>CTE (<code>WITH ... AS</code>)</b> ishlatiladi. CTE kodni modulli, tushunarli qiladi va iyerarxik (daraxtsimon) ma'lumotlarni rekursiv qayta ishlash imkonini beradi.</p>
+      ${codeBlock("SELECT id, ism, shahar FROM talabalar WHERE yosh >= 22;")}
     `,
-    visualHTML: `<div class="text-xs font-mono text-center p-2 rounded bg-blue-500/20 text-blue-300">talabalar ──(SELECT)──▶ arxiv_talabalar</div>`,
+    visualHTML: `<div class="text-xs font-mono text-center p-2 rounded bg-blue-500/20 text-blue-300">WITH cte AS (...) → SELECT * FROM cte</div>`,
     starterSQL: "SELECT id, ism, shahar FROM talabalar WHERE yosh >= 22;",
     task: {
-      title: "15-Praktikum: Arxiv uchun katta yoshli talabalarni ajratish",
+      title: "15-Laboratoriya: Katta yoshli talabalar segmentatsiyasi",
       desc: "<code>talabalar</code> jadvalidan yoshi <code>22</code> yoki undan katta bo'lgan talabalarning <code>id, ism, shahar</code> ustunlarini ajratib oling.",
       hint: "SELECT id, ism, shahar FROM talabalar WHERE yosh >= 22;",
       validate: (rows, sql) => /where\s+yosh\s*>=\s*22/i.test(sql) && rows.every(r => r.yosh === undefined || r.yosh >= 22)
     },
     quizzes: [
-      { q: "Yangi jadval yaratib, ichiga SELECT natijasini darhol nusxalovchi buyruq qaysi?", opts: ["SELECT INTO", "COPY FROM", "MERGE"], ans: 0 }
+      { q: "Common Table Expression (CTE) yaratish uchun qaysi kalit so'z ishlatiladi?", opts: ["WITH", "DEFINE", "MACRO"], ans: 0 }
     ]
   },
   {
     id: 16, moduleId: 4, duration: "21 daqiqa",
-    title: "16. CASE va NULL ifodalar (COALESCE, NULLIF, IS NULL)",
-    subtitle: "SQL so'rovlarida shartli mantiq va noma'lum qiymatlarni xavfsiz qayta ishlash",
+    title: "16. CASE va Uch Qiymatli Mantiq (Three-Valued Logic: TRUE, FALSE, UNKNOWN)",
+    subtitle: "SQL da NULL falsafasi, COALESCE va NULLIF funksiyalari",
     lecture: `
-      <p><code>CASE WHEN ... THEN ... ELSE ... END</code> SQL ichida shartli ustun yaratadi. <code>COALESCE(a, b)</code> esa birinchi NULL bo'lmagan qiymatni qaytaradi.</p>
-      ${codeBlock("SELECT ism, stipendiya,\n  CASE WHEN stipendiya >= 800000 THEN 'Aʼlochi' ELSE 'Standart' END AS Toifa\nFROM talabalar;")}
+      <p>SQL da <code>NULL</code> — bu nol yoki bo'sh satr emas, balki <b>"Noma'lum qiymat"</b>dir. Shuning uchun <code>NULL = NULL</code> natijasi <code>TRUE</code> emas, <code>UNKNOWN</code> qaytaradi! NULL ni tekshirish uchun faqat <code>IS NULL</code> ishlatiladi.</p>
+      ${codeBlock("SELECT ism, stipendiya,
+  CASE WHEN stipendiya >= 800000 THEN 'Alochi' ELSE 'Standart' END AS Toifa
+FROM talabalar;")}
     `,
-    visualHTML: `<div class="text-xs font-mono p-2 rounded bg-amber-500/20 text-amber-300 text-center">COALESCE(NULL, 'Belgilanmagan') → 'Belgilanmagan'</div>`,
+    visualHTML: `<div class="text-xs font-mono p-2 rounded bg-amber-500/20 text-amber-300 text-center">Three-Valued Logic: TRUE | FALSE | UNKNOWN</div>`,
     starterSQL: "SELECT ism, stipendiya, CASE WHEN stipendiya >= 800000 THEN 'Alochi' ELSE 'Standart' END AS Toifa FROM talabalar;",
     task: {
-      title: "16-Praktikum: CASE WHEN bilan talaba toifasini aniqlash",
+      title: "16-Laboratoriya: CASE WHEN bilan talaba reytingini hisoblash",
       desc: "<code>CASE WHEN stipendiya >= 800000 THEN 'Alochi' ELSE 'Standart' END AS Toifa</code> ifodasi bilan talabalar ro'yxatini chiqaring.",
       hint: "SELECT ism, stipendiya, CASE WHEN stipendiya >= 800000 THEN 'Alochi' ELSE 'Standart' END AS Toifa FROM talabalar;",
       validate: (rows, sql) => /case\s+when/i.test(sql) && rows.length >= 5 && "Toifa" in rows[0]
     },
     quizzes: [
-      { q: "NULL qiymat o'rniga standart qiymat qaytaruvchi standart SQL funksiyasi qaysi?", opts: ["ISNULL_VAL()", "COALESCE()", "EMPTY()"], ans: 1 }
+      { q: "SQL da 'NULL = NULL' mantiqiy ifodasining natijasi nima bo'ladi?", opts: ["TRUE", "FALSE", "UNKNOWN (NULL)"], ans: 2 }
     ]
   },
   {
     id: 17, moduleId: 4, duration: "23 daqiqa",
-    title: "17. Protseduralar (Stored Procedures va Funksiyalar)",
-    subtitle: "Server tomonida saqlanadigan biznes-mantiq va CALL buyrug'i",
+    title: "17. Saqlangan Protseduralar, Triggerlar va Indekslar (B-Tree)",
+    subtitle: "Ma'lumotlar bazasi unumdorligini 1000x oshirish va avtomatlashtirish",
     lecture: `
-      <p><b>Stored Procedure</b> — ma'lumotlar bazasida saqlanadigan va <code>CALL</code> buyrug'i bilan chaqiriladigan tayyor SQL algoritmlar to'plami.</p>
-      ${codeBlock("CREATE PROCEDURE Xodimlar_Hisoboti()\nBEGIN\n  SELECT bolim, AVG(maosh) FROM xodimlar GROUP BY bolim;\nEND;\n\nCALL Xodimlar_Hisoboti();")}
+      <p><b>B-Tree (Balanced Tree) Indeks</b> — 100 million qatorli jadvaldan kerakli yozuvni atigi 3–4 ta disk o'qishda (<code>O(log N)</code>) topib beradigan ma'lumotlar tuzilmasi. <b>Trigger</b> esa jadvalda <code>INSERT/UPDATE/DELETE</code> sodir bo'lganda avtomatik ishga tushuvchi hodisa ishlovchisidir.</p>
+      ${codeBlock("SELECT bolim, AVG(maosh) AS Ortacha_Maosh FROM xodimlar GROUP BY bolim;")}
     `,
-    visualHTML: `<div class="text-xs font-mono p-2 rounded bg-purple-500/20 text-purple-300 text-center">CALL Xodimlar_Hisoboti() → Serverda tezkor bajarilish</div>`,
+    visualHTML: `<div class="text-xs font-mono p-2 rounded bg-purple-500/20 text-purple-300 text-center">B-Tree Index: O(log N) Lookup Speed</div>`,
     starterSQL: "SELECT bolim, AVG(maosh) AS Ortacha_Maosh FROM xodimlar GROUP BY bolim;",
     task: {
-      title: "17-Praktikum: Bo'limlar bo'yicha o'rtacha maosh hisoboti",
-      desc: "<code>xodimlar</code> jadvalidan har bir <code>bolim</code> bo'yicha o'rtacha maoshni (<code>AVG(maosh)</code>) hisoblovchi hisobot so'rovini yozing.",
+      title: "17-Laboratoriya: Bo'limlar kesimida o'rtacha maosh tahlili",
+      desc: "<code>xodimlar</code> jadvalidan har bir <code>bolim</code> bo'yicha o'rtacha maoshni (<code>AVG(maosh)</code>) hisoblang.",
       hint: "SELECT bolim, AVG(maosh) AS Ortacha_Maosh FROM xodimlar GROUP BY bolim;",
       validate: (rows, sql) => /from\s+xodimlar/i.test(sql) && /group\s+by\s+bolim/i.test(sql) && rows.length >= 2
     },
     quizzes: [
-      { q: "Saqlangan protsedurani ishga tushirish buyrug'i qaysi?", opts: ["CALL", "EXEC_PROC", "DO"], ans: 0 }
+      { q: "B-Tree indeksining qidiruv murakkabligi (Time Complexity) qanday?", opts: ["O(log N)", "O(N²)", "O(N!)"], ans: 0 }
     ]
   },
   {
-    id: 18, moduleId: 4, duration: "19 daqiqa",
-    title: "18. Jadvallar ustida amallar (CREATE, ALTER, DROP, TRUNCATE)",
-    subtitle: "Jadval tuzilmasini dinamik ravishda kengaytirish va boshqarish",
+    id: 18, moduleId: 4, duration: "20 daqiqa",
+    title: "18. Jadvallar va Sxemalar (CREATE, ALTER, DROP, Partitioning)",
+    subtitle: "Katta jadvallarni qismlarga bo'lish (Table Partitioning) va migratsiyalar",
     lecture: `
-      <p><code>ALTER TABLE</code> yordamida mavjud jadvalga yangi ustun qo'shish (<code>ADD</code>) yoki mavjud ustunni o'chirish (<code>DROP COLUMN</code>) mumkin.</p>
+      <p>Jadval hajmi terabaytlarga yetganda <b>Table Partitioning</b> (masalan, yillar yoki hududlar bo'yicha bo'lish) qo'llaniladi. Sxemani o'zgartirish uchun esa <code>ALTER TABLE</code> ishlatiladi.</p>
       ${codeBlock("ALTER TABLE talabalar ADD telefon VARCHAR(20);")}
     `,
-    visualHTML: `<div class="text-xs font-mono p-2 rounded bg-blue-500/20 text-blue-300 text-center">ALTER TABLE talabalar ADD telefon</div>`,
+    visualHTML: `<div class="text-xs font-mono p-2 rounded bg-blue-500/20 text-blue-300 text-center">ALTER TABLE → Zero-Downtime Schema Migration</div>`,
     starterSQL: "ALTER TABLE talabalar ADD telefon VARCHAR(20);",
     task: {
-      title: "18-Praktikum: Jadvalga yangi ustun qo'shish",
+      title: "18-Laboratoriya: Jadval sxemasiga yangi ustun qo'shish",
       desc: "<code>talabalar</code> jadvaliga <code>telefon</code> nomli yangi ustun qo'shing (<code>ALTER TABLE talabalar ADD telefon VARCHAR(20);</code>).",
       hint: "ALTER TABLE talabalar ADD telefon VARCHAR(20);",
       validate: (rows, sql) => /alter\s+table\s+talabalar\s+add\s+telefon/i.test(sql) && "telefon" in db.talabalar[0]
     },
     quizzes: [
-      { q: "Jadvalni o'zini ham, ichidagi ma'lumotlarni ham bazadan butunlay o'chiruvchi buyruq qaysi?", opts: ["TRUNCATE TABLE", "DROP TABLE", "DELETE TABLE"], ans: 1 }
+      { q: "Ulkan jadvalni sanalar yoki hududlar bo'yicha kichik fizik qismlarga ajratish texnologiyasi nima?", opts: ["Table Partitioning", "Normalization", "Encryption"], ans: 0 }
     ]
   },
   {
-    id: 19, moduleId: 4, duration: "26 daqiqa",
-    title: "19. Cheklovlar: PK, FK, UNIQUE, CHECK, NOT NULL, DEFAULT",
-    subtitle: "Ma'lumotlar bazasining temir intizomi va referensial yaxlitlik",
+    id: 19, moduleId: 4, duration: "25 daqiqa",
+    title: "19. Cheklovlar va Normalizatsiya (1NF, 2NF, 3NF, BCNF)",
+    subtitle: "Ma'lumotlar ortiqchaligini yo'qotish va referensial yaxlitlik",
     lecture: `
-      <p><b>Constraints (Cheklovlar)</b> jadvalga noto'g'ri ma'lumot kirishining oldini oladi: <code>PRIMARY KEY</code>, <code>FOREIGN KEY</code>, <code>UNIQUE</code>, <code>NOT NULL</code>, <code>CHECK</code> va <code>DEFAULT</code>.</p>
-      ${codeBlock("CREATE TABLE tolovlar (\n  id INT PRIMARY KEY,\n  talaba_id INT REFERENCES talabalar(id),\n  summa DECIMAL(10,2) CHECK (summa > 0),\n  valyuta VARCHAR(10) DEFAULT 'UZS'\n);")}
+      <p><b>Normalizatsiya</b> — ma'lumotlar takrorlanishini (Data Redundancy) va yangilash anomaliyalarini bartaraf etish jarayoni: <b>1NF</b> (atomar qiymatlar), <b>2NF</b> (to'liq funksional bog'liqlik), <b>3NF</b> (tranzitiv bog'liqliklarni yo'qotish). Cheklovlar (<code>PK, FK, UNIQUE, CHECK</code>) esa ma'lumotlar sifatini kafolatlaydi.</p>
+      ${codeBlock("SELECT t.id AS PK_Talaba, t.ism, b.talaba_id AS FK_Talaba, b.summa
+FROM talabalar t INNER JOIN buyurtmalar b ON t.id = b.talaba_id;")}
     `,
     visualHTML: `<div class="text-center text-xs"><button onclick="switchTopSection('games'); switchGame('defender');" class="px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold">🛡️ Baza Himoyachisi O'yinini Sinash</button></div>`,
-    starterSQL: "SELECT t.id AS PK_Talaba, t.ism, b.id AS PK_Buyurtma, b.talaba_id AS FK_Talaba, b.summa FROM talabalar t INNER JOIN buyurtmalar b ON t.id = b.talaba_id;",
+    starterSQL: "SELECT t.id AS PK_Talaba, t.ism, b.talaba_id AS FK_Talaba, b.summa FROM talabalar t INNER JOIN buyurtmalar b ON t.id = b.talaba_id;",
     task: {
-      title: "19-Praktikum: PK va FK bog'lanishini tekshirish",
-      desc: "<code>talabalar</code> (PK: <code>id</code>) va <code>buyurtmalar</code> (FK: <code>talaba_id</code>) jadvallarini <code>INNER JOIN</code> qilib, kalitlar bog'liqligini ekranga chiqaring.",
+      title: "19-Laboratoriya: PK va FK referensial bog'lanishini tekshirish",
+      desc: "<code>talabalar</code> (PK: <code>id</code>) va <code>buyurtmalar</code> (FK: <code>talaba_id</code>) jadvallarini <code>INNER JOIN</code> qilib bog'lang.",
       hint: "SELECT t.id AS PK_Talaba, t.ism, b.talaba_id AS FK_Talaba, b.summa FROM talabalar t INNER JOIN buyurtmalar b ON t.id = b.talaba_id;",
       validate: (rows, sql) => /inner\s+join\s+buyurtmalar/i.test(sql) && rows.length >= 5
     },
     quizzes: [
-      { q: "Ustunga qiymat berilmaganda avtomatik boshlang'ich qiymat yozuvchi cheklov qaysi?", opts: ["CHECK", "DEFAULT", "UNIQUE"], ans: 1 }
+      { q: "Har bir katakda faqat bitta bo'linmas (atomar) qiymat bo'lishini talab qiluvchi shakl qaysi?", opts: ["1NF (Birinchi normal shakl)", "3NF", "BCNF"], ans: 0 }
+    ]
+  },
+  // ==================== MODULE 5: COMPUTER ARCHITECTURE, OS & ALGORITHMS ====================
+  {
+    id: 20, moduleId: 5, duration: "26 daqiqa",
+    title: "20. Kompyuter Arxitekturasi: CPU, Kesh (L1/L2/L3), RAM va NVMe",
+    subtitle: "Fon Neyman arxitekturasi va xotira iyerarxiyasi tezliklari",
+    lecture: `
+      <p>Dasturiy ta'minot va ma'lumotlar bazasi nega ba'zan sekin ishlashini tushunish uchun apparat darajasidagi <b>Xotira Iyerarxiyasi</b>ni bilish shart:</p>
+      <ul class="list-disc pl-5 space-y-1.5">
+        <li><b>CPU Registrlari va L1 Kesh:</b> ~0.5–1 nanosekund (eng tezkor xotira, protsessor yadrosi ichida).</li>
+        <li><b>L2 / L3 Kesh:</b> ~4–15 nanosekund (yadrolararo umumiy tezkor bufer).</li>
+        <li><b>RAM (Operativ xotira):</b> ~80–100 nanosekund (SQL Buffer Pool shu yerda joylashadi).</li>
+        <li><b>NVMe SSD Disk:</b> ~50,000–100,000 nanosekund (RAM dan 1000 barobar sekinroq!).</li>
+      </ul>
+      <div class="p-3.5 rounded-xl bg-blue-500/10 border-l-4 border-blue-500 text-xs">
+        <b>💡 Muhandislik xulosasi:</b> Shuning uchun ma'lumotlar bazasi serverlariga iloji boricha ko'proq RAM o'rnatiladi — "ishchi to'plam" (Working Set) RAM ga sig'sa, so'rovlar 1000x tez ishlaydi!
+      </div>
+      ${codeBlock("SELECT ism, yonalish, stipendiya FROM talabalar WHERE yonalish = 'Computer Engineering';")}
+    `,
+    visualHTML: `<div class="text-xs font-mono space-y-1"><div class="p-1.5 rounded bg-emerald-500/20 text-emerald-300">L1 Cache: 1 ns (Ultra Fast)</div><div class="p-1.5 rounded bg-blue-500/20 text-blue-300">RAM: 100 ns (Buffer Pool)</div><div class="p-1.5 rounded bg-rose-500/20 text-rose-300">NVMe SSD: 100,000 ns</div></div>`,
+    starterSQL: "SELECT ism, yonalish, stipendiya FROM talabalar WHERE yonalish = 'Computer Engineering';",
+    task: {
+      title: "20-Laboratoriya: Computer Engineering yo'nalishi talabalarini filtrlash",
+      desc: "<code>talabalar</code> jadvalidan <code>yonalish = 'Computer Engineering'</code> bo'lgan talabalarni tanlang.",
+      hint: "SELECT ism, yonalish, stipendiya FROM talabalar WHERE yonalish = 'Computer Engineering';",
+      validate: (rows, sql) => /computer\s+engineering/i.test(sql) && rows.length >= 1
+    },
+    quizzes: [
+      { q: "Qaysi xotira turi protsessor yadrosiga eng yaqin va eng tezkor hisoblanadi?", opts: ["L1 Cache", "DDR5 RAM", "NVMe SSD"], ans: 0 },
+      { q: "RAM dan ma'lumot o'qish NVMe SSD dan taxminan necha barobar tezroq?", opts: ["2 barobar", "10 barobar", "1000 barobar"], ans: 2 }
+    ]
+  },
+  {
+    id: 21, moduleId: 5, duration: "28 daqiqa",
+    title: "21. Operatsion Tizimlar (Linux Kernel, Jarayonlar, Threadlar va Concurrency)",
+    subtitle: "Process vs Thread, Context Switching, Deadlock va Virtual Xotira",
+    lecture: `
+      <p>Dunyodagi serverlarning 96% dan ortig'i <b>Linux</b> operatsion tizimida ishlaydi. Operatsion tizim yadrosi (Kernel) quyidagilarni boshqaradi:</p>
+      <ul class="list-disc pl-5 space-y-1.5">
+        <li><b>Process (Jarayon):</b> O'zining izolyatsiya qilingan virtual xotira maydoniga ega mustaqil dastur nusxasi.</li>
+        <li><b>Thread (Oqim):</b> Bitta jarayon ichida umumiy xotirani bo'lishuvchi yengil bajarilish birligi.</li>
+        <li><b>Deadlock (O'lik qulf):</b> Ikki jarayon yoki SQL tranzaksiya bir-birining resursini kutib abadiy to'xtab qolishi (4 ta shart: Mutual Exclusion, Hold & Wait, No Preemption, Circular Wait).</li>
+        <li><b>Virtual Memory & Paging:</b> Har bir dasturga cheksiz xotira illyuziyasini beruvchi MMU mexanizmi.</li>
+      </ul>
+      ${codeBlock("SELECT ism, bolim, tajriba_yil FROM xodimlar ORDER BY tajriba_yil DESC;")}
+    `,
+    visualHTML: `<div class="text-xs font-mono text-center p-2 rounded bg-indigo-500/20 text-indigo-300">Linux Kernel → Scheduler → Process / Threads</div>`,
+    starterSQL: "SELECT ism, bolim, tajriba_yil FROM xodimlar ORDER BY tajriba_yil DESC;",
+    task: {
+      title: "21-Laboratoriya: Tajribali tizim muhandislarini saralash",
+      desc: "<code>xodimlar</code> jadvalidan barcha muhandislarni <code>tajriba_yil</code> bo'yicha kamayish tartibida (<code>DESC</code>) chiqaring.",
+      hint: "SELECT ism, bolim, tajriba_yil FROM xodimlar ORDER BY tajriba_yil DESC;",
+      validate: (rows, sql) => /order\s+by\s+tajriba_yil\s+desc/i.test(sql) && rows.length >= 4
+    },
+    quizzes: [
+      { q: "Bitta jarayon (Process) ichida umumiy xotirani bo'lishib ishlovchi bajarilish birligi nima?", opts: ["Thread (Oqim)", "Partition", "Socket"], ans: 0 }
+    ]
+  },
+  {
+    id: 22, moduleId: 5, duration: "27 daqiqa",
+    title: "22. Algoritmlar va Ma'lumotlar Tuzilmalari (Big-O, Hash Table, Graf, Daraxtlar)",
+    subtitle: "Algoritmik samaradorlik va kompyuter fanining matematik poydevori",
+    lecture: `
+      <p>Katta tizimlarda kodning ishlashi emas, balki uning <b>Big-O asimptotik murakkabligi</b> hal qiluvchi ahamiyatga ega:</p>
+      <ul class="list-disc pl-5 space-y-1.5">
+        <li><b>O(1) — Konstanta vaqt:</b> Hash Table (lug'at/xesh-indeks) orqali kalit bo'yicha bir zumda qidiruv.</li>
+        <li><b>O(log N) — Logarifmik vaqt:</b> Binary Search va SQL B-Tree indekslari.</li>
+        <li><b>O(N log N) — Chiziqli-logarifmik:</b> Merge Sort, Quick Sort (SQL <code>ORDER BY</code> algoritmlari).</li>
+        <li><b>Graflar (Dijkstra, BFS, DFS):</b> Ijtimoiy tarmoqlar, GPS marshrutlar va tarmoq paketlarini yo'naltirish algoritmlari.</li>
+      </ul>
+      ${codeBlock("SELECT kategoriya, COUNT(*) AS Kurs_Soni, AVG(narx) AS Ortacha_Narx
+FROM kurslar GROUP BY kategoriya;")}
+    `,
+    visualHTML: `<div class="text-xs font-mono text-center p-2 rounded bg-emerald-500/20 text-emerald-300">O(1) Hash &lt; O(log N) B-Tree &lt; O(N log N) Sort</div>`,
+    starterSQL: "SELECT kategoriya, COUNT(*) AS Kurs_Soni, AVG(narx) AS Ortacha_Narx FROM kurslar GROUP BY kategoriya;",
+    task: {
+      title: "22-Laboratoriya: Kategoriyalar bo'yicha analitik guruhlash",
+      desc: "<code>kurslar</code> jadvalini <code>kategoriya</code> bo'yicha guruhlab, kurslar soni va o'rtacha narxini hisoblang.",
+      hint: "SELECT kategoriya, COUNT(*) AS Kurs_Soni, AVG(narx) AS Ortacha_Narx FROM kurslar GROUP BY kategoriya;",
+      validate: (rows, sql) => /group\s+by\s+kategoriya/i.test(sql) && rows.length >= 2
+    },
+    quizzes: [
+      { q: "Hash Table (Xesh-jadval) da o'rtacha qidiruv vaqti murakkabligi qanday?", opts: ["O(1)", "O(N)", "O(N²)"], ans: 0 }
+    ]
+  },
+  // ==================== MODULE 6: NETWORKING, CYBERSECURITY & CLOUD SYSTEM DESIGN ====================
+  {
+    id: 23, moduleId: 6, duration: "26 daqiqa",
+    title: "23. Kompyuter Tarmoqlari: OSI Modeli, TCP/IP, DNS, HTTP/3 va TLS",
+    subtitle: "Brauzerdan ma'lumotlar bazasigacha tarmoq paketlarining sayohati",
+    lecture: `
+      <p>Siz veb-ilova ochganingizda 7 qatlamli <b>OSI / TCP-IP</b> tarmoq steki ishga tushadi:</p>
+      <ul class="list-disc pl-5 space-y-1.5">
+        <li><b>DNS (Domain Name System):</b> Domen nomini (<code>abdullohsql.uz</code>) serverning IP manziliga o'giradi.</li>
+        <li><b>TCP 3-Way Handshake (SYN → SYN-ACK → ACK):</b> Ma'lumotlar paketlari yo'qolmasdan yetib borishini kafolatlaydi.</li>
+        <li><b>TLS 1.3 (HTTPS):</b> Klient va server o'rtasidagi barcha trafikni shifrlaydi.</li>
+        <li><b>HTTP/3 (QUIC):</b> UDP ustida qurilgan zamonaviy, o'ta tezkor veb-protokol.</li>
+      </ul>
+      ${codeBlock("SELECT id, talaba_id, summa, holat FROM buyurtmalar WHERE holat = 'To''langan';")}
+    `,
+    visualHTML: `<div class="text-xs font-mono text-center p-2 rounded bg-cyan-500/20 text-cyan-300">DNS → TCP Handshake → TLS 1.3 → HTTP/3 API → SQL</div>`,
+    starterSQL: "SELECT id, talaba_id, summa, holat FROM buyurtmalar WHERE holat = 'To''langan';",
+    task: {
+      title: "23-Laboratoriya: Muvaffaqiyatli yakunlangan tranzaksiyalarni filtrlash",
+      desc: "<code>buyurtmalar</code> jadvalidan holati <code>'To''langan'</code> bo'lgan barcha tranzaksiyalarni chiqaring.",
+      hint: "SELECT id, talaba_id, summa, holat FROM buyurtmalar WHERE holat = 'To''langan';",
+      validate: (rows, sql) => /from\s+buyurtmalar/i.test(sql) && /where/i.test(sql) && rows.length >= 4
+    },
+    quizzes: [
+      { q: "TCP ulanishini o'rnatishdagi 3 bosqichli jarayon qanday nomlanadi?", opts: ["3-Way Handshake (SYN, SYN-ACK, ACK)", "ARP Broadcast", "ICMP Ping"], ans: 0 }
+    ]
+  },
+  {
+    id: 24, moduleId: 6, duration: "28 daqiqa",
+    title: "24. Kiberxavfsizlik: SQL Injection Himoyasi, Kriptografiya va Zero-Trust",
+    subtitle: "Prepared Statements, Argon2/Bcrypt xeshlash va OWASP Top 10 himoyasi",
+    lecture: `
+      <p><b>SQL Injection (SQLi)</b> — veb-ilovalar tarixidagi eng xavfli zaifliklardan biri. Agar foydalanuvchi kiritgan matn to'g'ridan-to'g'ri SQL satriga ulansa, xaker butun bazani o'chirishi mumkin.</p>
+      <div class="p-3.5 rounded-xl bg-emerald-500/10 border-l-4 border-emerald-500 text-xs">
+        <b>🛡️ 100% Himoya Usuli — Parameterized Queries (Prepared Statements):</b> Ma'lumot va SQL kodi bir-biridan qat'iy ajratiladi (<code>SELECT * FROM users WHERE email = $1</code>). Parollar esa bazada hech qachon ochiq holda emas, balki <b>Argon2id</b> yoki <b>bcrypt</b> + Salt bilan saqlanadi.
+      </div>
+      ${codeBlock("SELECT id, ism, shahar FROM talabalar WHERE id = 1;")}
+    `,
+    visualHTML: `<div class="text-xs font-mono text-center p-2 rounded bg-rose-500/20 text-rose-300">Prepared Statements ($1) = Zero SQL Injection</div>`,
+    starterSQL: "SELECT id, ism, shahar FROM talabalar WHERE id = 1;",
+    task: {
+      title: "24-Laboratoriya: Parametrli xavfsiz qidiruv",
+      desc: "<code>talabalar</code> jadvalidan faqat <code>id = 1</code> bo'lgan foydalanuvchining <code>id, ism, shahar</code> ma'lumotlarini oling.",
+      hint: "SELECT id, ism, shahar FROM talabalar WHERE id = 1;",
+      validate: (rows, sql) => /where\s+id\s*=\s*1/i.test(sql) && rows.length === 1
+    },
+    quizzes: [
+      { q: "SQL Injection hujumidan himoyalanishning eng ishonchli va standart usuli qaysi?", opts: ["Parameterized Queries (Prepared Statements)", "HTML rangini o'zgartirish", "Parolni Base64 da saqlash"], ans: 0 }
+    ]
+  },
+  {
+    id: 25, moduleId: 6, duration: "30 daqiqa",
+    title: "25. Cloud System Design: Sharding, Replikatsiya, Redis Kesh va CAP Teoremasi",
+    subtitle: "Millionlab foydalanuvchilarga xizmat ko'rsatuvchi yirik tizimlar arxitekturasi",
+    lecture: `
+      <p>Google, Netflix yoki Amazon darajasidagi tizimlarni qurishda bitta server yetarli bo'lmaydi. Buning uchun <b>Distributed Systems (Taqsimlangan Tizimlar)</b> arxitekturasi qo'llaniladi:</p>
+      <ul class="list-disc pl-5 space-y-1.5">
+        <li><b>Primary-Replica Replication:</b> Yozish (Write) Primary serverga, o'qish (Read) esa bir nechta Replica serverlarga taqsimlanadi.</li>
+        <li><b>Database Sharding:</b> Ulkan jadvalni gorizontal ravishda bir nechta mustaqil serverlarga (Shardlarga) bo'lish.</li>
+        <li><b>In-Memory Caching (Redis):</b> Eng ko'p so'raladigan ma'lumotlarni RAM da saqlab, javob vaqtini 1 millisekundga tushirish.</li>
+        <li><b>CAP Teoremasi:</b> Taqsimlangan tizim tarmoq uzilishi (Partition Tolerance) paytida faqat <b>Consistency (Izchillik)</b> yoki <b>Availability (Mavjudlik)</b> dan birini tanlashi mumkin.</li>
+      </ul>
+      ${codeBlock("SELECT bolim, COUNT(*) AS Jami_Xodim, SUM(maosh) AS Byudjet
+FROM xodimlar GROUP BY bolim;")}
+    `,
+    visualHTML: `<div class="text-xs font-mono text-center p-2 rounded bg-blue-500/20 text-blue-300">Load Balancer → Redis Cache → Primary / Read Replicas</div>`,
+    starterSQL: "SELECT bolim, COUNT(*) AS Jami_Xodim, SUM(maosh) AS Byudjet FROM xodimlar GROUP BY bolim;",
+    task: {
+      title: "25-Laboratoriya: Bitiruv Loyihasi — Enterprise Bo'limlar Byudjeti",
+      desc: "<code>xodimlar</code> jadvalidan har bir <code>bolim</code> bo'yicha xodimlar soni (<code>COUNT(*)</code>) va umumiy maosh byudjetini (<code>SUM(maosh)</code>) hisoblang.",
+      hint: "SELECT bolim, COUNT(*) AS Jami_Xodim, SUM(maosh) AS Byudjet FROM xodimlar GROUP BY bolim;",
+      validate: (rows, sql) => /group\s+by\s+bolim/i.test(sql) && /sum\s*\(\s*maosh\s*\)/i.test(sql) && rows.length >= 2
+    },
+    quizzes: [
+      { q: "Katta ma'lumotlar bazasini gorizontal ravishda bir nechta mustaqil serverlarga bo'lish nima deb ataladi?", opts: ["Sharding", "Polling", "Defragmentation"], ans: 0 },
+      { q: "CAP teoremasidagi uchta harf nimani anglatadi?", opts: ["Consistency, Availability, Partition Tolerance", "Cache, API, Protocol", "CPU, ALU, Port"], ans: 0 }
     ]
   }
 ];
@@ -975,10 +1122,10 @@ function codeBlock(code) {
   return `
     <div class="rounded-xl bg-slate-950 border border-slate-800 overflow-hidden my-3">
       <div class="px-3 py-1.5 bg-slate-900 border-b border-slate-800 flex items-center justify-between text-[11px] font-mono text-slate-400">
-        <span>SQL Sintaksis</span>
+        <span>SQL Kod Namunasi</span>
         <div class="flex items-center gap-2">
           <button onclick="copySnippet(this)" data-code="${encodeURIComponent(code)}" class="hover:text-white transition">📋 Nusxa olish</button>
-          <button onclick="sendSnippetToPraktikum(this)" data-code="${encodeURIComponent(code)}" class="text-blue-400 hover:text-blue-300 font-bold transition">▶ Praktikumda sinash</button>
+          <button onclick="sendSnippetToPraktikum(this)" data-code="${encodeURIComponent(code)}" class="text-blue-400 hover:text-blue-300 font-bold transition">▶ Laboratoriyada sinash</button>
         </div>
       </div>
       <pre class="p-3.5 text-xs sm:text-sm text-emerald-300 font-mono overflow-x-auto">${escaped}</pre>
@@ -987,22 +1134,22 @@ function codeBlock(code) {
 }
 
 // ============================================================================
-// 2. IN-BROWSER SQL DATABASE ENGINE (TALABALAR, KURSLAR, BUYURTMALAR, XODIMLAR)
+// 2. IN-BROWSER ENTERPRISE SQL ENGINE
 // ============================================================================
 const INITIAL_DB = {
   talabalar: [
-    { id: 1, ism: "Ali Valiyev", yosh: 21, shahar: "Toshkent", stipendiya: 850000 },
-    { id: 2, ism: "Aziza Karimova", yosh: 20, shahar: "Samarqand", stipendiya: 750000 },
-    { id: 3, ism: "Bobur Rahimov", yosh: 22, shahar: "Toshkent", stipendiya: 600000 },
-    { id: 4, ism: "Dilnoza Sobirova", yosh: 19, shahar: "Buxoro", stipendiya: 800000 },
-    { id: 5, ism: "Sardor Alimov", yosh: 23, shahar: "Toshkent", stipendiya: 550000 },
-    { id: 6, ism: "Madina Usmonova", yosh: 20, shahar: "Samarqand", stipendiya: 500000 }
+    { id: 1, ism: "Ali Valiyev", yosh: 21, shahar: "Toshkent", stipendiya: 850000, yonalish: "Computer Engineering" },
+    { id: 2, ism: "Aziza Karimova", yosh: 20, shahar: "Samarqand", stipendiya: 750000, yonalish: "Data Science" },
+    { id: 3, ism: "Bobur Rahimov", yosh: 22, shahar: "Toshkent", stipendiya: 600000, yonalish: "Software Engineering" },
+    { id: 4, ism: "Dilnoza Sobirova", yosh: 19, shahar: "Buxoro", stipendiya: 800000, yonalish: "Computer Engineering" },
+    { id: 5, ism: "Sardor Alimov", yosh: 23, shahar: "Toshkent", stipendiya: 550000, yonalish: "Cloud & DevOps" },
+    { id: 6, ism: "Madina Usmonova", yosh: 20, shahar: "Samarqand", stipendiya: 500000, yonalish: "AI Systems" }
   ],
   kurslar: [
-    { id: 101, nomi: "SQL va Ma'lumotlar Bazasi", narx: 1200000, davomiylik_oy: 3 },
-    { id: 102, nomi: "Python Backend Pro", narx: 1800000, davomiylik_oy: 5 },
-    { id: 103, nomi: "Data Science va AI", narx: 2400000, davomiylik_oy: 6 },
-    { id: 104, nomi: "Frontend React.js", narx: 1500000, davomiylik_oy: 4 }
+    { id: 101, nomi: "SQL & Enterprise Databases", narx: 1200000, davomiylik_oy: 3, kategoriya: "Database" },
+    { id: 102, nomi: "Linux, OS & System Design", narx: 1800000, davomiylik_oy: 5, kategoriya: "Systems" },
+    { id: 103, nomi: "Data Science & AI Engineering", narx: 2400000, davomiylik_oy: 6, kategoriya: "AI & Data" },
+    { id: 104, nomi: "Networks & Cybersecurity", narx: 1500000, davomiylik_oy: 4, kategoriya: "Security" }
   ],
   buyurtmalar: [
     { id: 501, talaba_id: 1, kurs_id: 101, summa: 1200000, holat: "To'langan" },
@@ -1013,10 +1160,10 @@ const INITIAL_DB = {
     { id: 506, talaba_id: 5, kurs_id: 104, summa: 1500000, holat: "To'langan" }
   ],
   xodimlar: [
-    { id: 1, ism: "Rustam Qodirov", bolim: "Arxitektura", maosh: 15000000 },
-    { id: 2, ism: "Nilufar Tursunova", bolim: "DBA", maosh: 12000000 },
-    { id: 3, ism: "Jamshid Bekmurodov", bolim: "Analitika", maosh: 9500000 },
-    { id: 4, ism: "Kamola Saidova", bolim: "DBA", maosh: 11000000 }
+    { id: 1, ism: "Abdulloh Fattoxov", bolim: "System Architecture", maosh: 18000000, tajriba_yil: 6 },
+    { id: 2, ism: "Nilufar Tursunova", bolim: "Database Engineering", maosh: 14000000, tajriba_yil: 5 },
+    { id: 3, ism: "Jamshid Bekmurodov", bolim: "Cloud & Security", maosh: 13500000, tajriba_yil: 4 },
+    { id: 4, ism: "Kamola Saidova", bolim: "Database Engineering", maosh: 1250000, tajriba_yil: 3 }
   ]
 };
 
@@ -1026,7 +1173,7 @@ let lastQueryResult = [];
 function resetDatabase() {
   db = JSON.parse(JSON.stringify(INITIAL_DB));
   inspectTable("talabalar");
-  showToast("Ma'lumotlar bazasi asl holatiga qaytarildi!");
+  showToast("Akademiya ma'lumotlar bazasi asl holatiga qaytarildi!");
 }
 
 function inspectTable(tbl) {
@@ -1145,7 +1292,9 @@ function parseLiteral(val) {
   if (val === undefined) return null;
   val = val.trim();
   if (/^NULL$/i.test(val)) return null;
-  if ((val.startsWith("'") && val.endsWith("'")) || (val.startsWith('"') && val.endsWith('"'))) return val.slice(1, -1);
+  if ((val.startsWith("'") && val.endsWith("'")) || (val.startsWith('"') && val.endsWith('"'))) {
+    return val.slice(1, -1).replace(/''/g, "'");
+  }
   if (!isNaN(Number(val))) return Number(val);
   return val;
 }
@@ -1163,21 +1312,21 @@ function parseValuesList(str) {
 }
 
 function executeSelect(sql) {
-  if (/\bJOIN\b/i.test(sql)) {
-    const isLeft = /\bLEFT\s+JOIN\b/i.test(sql);
+  if (/ JOIN /i.test(sql)) {
+    const isLeft = / LEFT\s+JOIN /i.test(sql);
     const joined = [];
     db.talabalar.forEach(t => {
       const orders = db.buyurtmalar.filter(b => b.talaba_id === t.id);
       if (orders.length === 0 && isLeft) {
         joined.push({
-          id: t.id, ism: t.ism, yosh: t.yosh, shahar: t.shahar, stipendiya: t.stipendiya,
+          id: t.id, ism: t.ism, yosh: t.yosh, shahar: t.shahar, stipendiya: t.stipendiya, yonalish: t.yonalish,
           PK_Talaba: t.id, PK_Buyurtma: null, FK_Talaba: null, summa: null, holat: null, nomi: null
         });
       } else {
         orders.forEach(b => {
           const k = db.kurslar.find(c => c.id === b.kurs_id) || {};
           joined.push({
-            id: t.id, ism: t.ism, yosh: t.yosh, shahar: t.shahar, stipendiya: t.stipendiya,
+            id: t.id, ism: t.ism, yosh: t.yosh, shahar: t.shahar, stipendiya: t.stipendiya, yonalish: t.yonalish,
             PK_Talaba: t.id, PK_Buyurtma: b.id, FK_Talaba: b.talaba_id, summa: b.summa, holat: b.holat, nomi: k.nomi || null
           });
         });
@@ -1196,10 +1345,10 @@ function executeSelect(sql) {
   const isDistinct = !!selM[1];
   const colsExpr = selM[2].trim();
 
-  const whereM = sql.match(/\bWHERE\s+(.+?)(?=\s+GROUP\s+BY|\s+ORDER\s+BY|\s+LIMIT|\s+OFFSET|$)/i);
+  const whereM = sql.match(/ WHERE\s+(.+?)(?=\s+GROUP\s+BY|\s+ORDER\s+BY|\s+LIMIT|\s+OFFSET|$)/i);
   if (whereM) rows = rows.filter(r => evalWhere(r, whereM[1]));
 
-  const groupM = sql.match(/\bGROUP\s+BY\s+(\w+)(?:\s+HAVING\s+(.+?))?(?=\s+ORDER\s+BY|\s+LIMIT|$)/i);
+  const groupM = sql.match(/ GROUP\s+BY\s+(\w+)(?:\s+HAVING\s+(.+?))?(?=\s+ORDER\s+BY|\s+LIMIT|$)/i);
   if (groupM) {
     const gCol = groupM[1];
     const groups = {};
@@ -1229,7 +1378,7 @@ function executeSelect(sql) {
     });
   }
 
-  if (/\b(COUNT|SUM|AVG|MIN|MAX)\s*\(/i.test(colsExpr)) {
+  if (/ (COUNT|SUM|AVG|MIN|MAX)\s*\(/i.test(colsExpr)) {
     const out = {};
     colsExpr.split(",").forEach(c => {
       c = c.trim();
@@ -1254,20 +1403,18 @@ function executeSelect(sql) {
     return [out];
   }
 
-  const orderM = sql.match(/\bORDER\s+BY\s+(\w+)(?:\s+(ASC|DESC))?/i);
+  const orderM = sql.match(/ ORDER\s+BY\s+(\w+)(?:\s+(ASC|DESC))?/i);
   if (orderM) {
     const oCol = orderM[1], dir = (orderM[2] || "ASC").toUpperCase();
     rows.sort((a, b) => (a[oCol] < b[oCol] ? (dir === "ASC" ? -1 : 1) : a[oCol] > b[oCol] ? (dir === "ASC" ? 1 : -1) : 0));
   }
 
-  const offsetM = sql.match(/\bOFFSET\s+(\d+)/i);
+  const offsetM = sql.match(/ OFFSET\s+(\d+)/i);
   if (offsetM) rows = rows.slice(Number(offsetM[1]));
-
-  const limitM = sql.match(/\bLIMIT\s+(\d+)/i);
+  const limitM = sql.match(/ LIMIT\s+(\d+)/i);
   if (limitM) rows = rows.slice(0, Number(limitM[1]));
 
   if (colsExpr !== "*") rows = projectColumns(rows, colsExpr);
-
   if (isDistinct) {
     const seen = new Set();
     rows = rows.filter(r => { const k = JSON.stringify(r); if (seen.has(k)) return false; seen.add(k); return true; });
@@ -1289,7 +1436,7 @@ function projectColumns(rows, colsExpr) {
     const obj = {};
     parts.forEach(p => {
       p = p.trim();
-      if (/^CASE\b/i.test(p)) {
+      if (/^CASE /i.test(p)) {
         const am = p.match(/END\s+AS\s+(\w+)/i);
         const alias = am ? am[1] : "Toifa";
         const wRegex = /WHEN\s+(.+?)\s+THEN\s+'([^']+)'/gi;
@@ -1316,8 +1463,8 @@ function projectColumns(rows, colsExpr) {
 
 function evalWhere(row, clause) {
   clause = clause.trim();
-  if (/\bOR\b/i.test(clause) && !/\bBETWEEN\b/i.test(clause)) return clause.split(/\bOR\b/i).some(p => evalWhere(row, p));
-  if (/\bAND\b/i.test(clause) && !/\bBETWEEN\b/i.test(clause)) return clause.split(/\bAND\b/i).every(p => evalWhere(row, p));
+  if (/ OR /i.test(clause) && !/ BETWEEN /i.test(clause)) return clause.split(/ OR /i).some(p => evalWhere(row, p));
+  if (/ AND /i.test(clause) && !/ BETWEEN /i.test(clause)) return clause.split(/ AND /i).every(p => evalWhere(row, p));
   const btw = clause.match(/(\w+)\s+BETWEEN\s+(\d+)\s+AND\s+(\d+)/i);
   if (btw) { const v = Number(row[btw[1]]); return v >= Number(btw[2]) && v <= Number(btw[3]); }
   const inM = clause.match(/(\w+)\s+IN\s*\(([^)]+)\)/i);
@@ -1363,26 +1510,25 @@ function renderTableResult(rows, msg) {
 }
 
 // ============================================================================
-// 3. LMS CURRICULUM, PRAKTIKUM AUTO-GRADER & MULTI-QUIZ SYSTEM
+// 3. LMS CURRICULUM, AUTO-GRADER & MULTI-QUIZ SYSTEM
 // ============================================================================
 let currentLessonIdx = 0;
 let completedLessons = new Set([1]);
-let userXP = 120;
+let userXP = 150;
 
 function renderCurriculum(filter = "") {
   const container = document.getElementById("curriculumContainer");
   container.innerHTML = "";
-
   MODULES.forEach(mod => {
     const modLessons = mod.lessonIds.map(id => LESSONS.find(l => l.id === id))
-      .filter(l => !filter || l.title.toLowerCase().includes(filter.toLowerCase()));
+      .filter(l => !filter || l.title.toLowerCase().includes(filter.toLowerCase()) || l.subtitle.toLowerCase().includes(filter.toLowerCase()));
     if (modLessons.length === 0) return;
 
     const doneInMod = modLessons.filter(l => completedLessons.has(l.id)).length;
     const modBox = document.createElement("div");
     modBox.className = "rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 overflow-hidden";
     modBox.innerHTML = `
-      <div class="px-3.5 py-2.5 bg-slate-100/80 dark:bg-slate-800/70 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+      <div class="px-3.5 py-2.5 bg-slate-100/80 dark:bg-slate-800/70 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2">
         <span class="text-[11px] font-extrabold text-slate-700 dark:text-slate-200 leading-snug">${mod.title}</span>
         <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-600/15 text-blue-500 shrink-0">${doneInMod}/${modLessons.length}</span>
       </div>
@@ -1395,7 +1541,6 @@ function renderCurriculum(filter = "") {
       const idx = LESSONS.findIndex(x => x.id === lesson.id);
       const isCurrent = idx === currentLessonIdx;
       const isDone = completedLessons.has(lesson.id);
-
       const btn = document.createElement("button");
       btn.onclick = () => { selectLesson(idx); toggleMobileSidebar(false); };
       btn.className = `w-full text-left px-3 py-2 rounded-xl text-xs transition flex items-center justify-between gap-2 ${
@@ -1406,7 +1551,7 @@ function renderCurriculum(filter = "") {
       btn.innerHTML = `
         <div class="min-w-0">
           <div class="truncate">${lesson.title}</div>
-          <div class="text-[10px] ${isCurrent ? "text-blue-200" : "text-slate-400"} mt-0.5">⏱ ${lesson.duration} • Praktikum</div>
+          <div class="text-[10px] ${isCurrent ? "text-blue-200" : "text-slate-400"} mt-0.5">⏱ ${lesson.duration} • Laboratoriya</div>
         </div>
         <span class="shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-extrabold ${
           isDone
@@ -1425,15 +1570,16 @@ function selectLesson(idx) {
   const isDone = completedLessons.has(lesson.id);
 
   document.getElementById("lessonModuleTag").textContent = `${lesson.moduleId}-MODUL`;
-  document.getElementById("lessonNumberTag").textContent = `${lesson.id}-dars / 19`;
+  document.getElementById("lessonNumberTag").textContent = `${lesson.id}-dars / ${LESSONS.length}`;
   document.getElementById("lessonDurationTag").textContent = `⏱ ${lesson.duration}`;
+
   const statusPill = document.getElementById("lessonStatusPill");
   if (isDone) {
     statusPill.className = "px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-500/15 text-emerald-500";
     statusPill.textContent = "✓ Tugallangan";
   } else {
     statusPill.className = "px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-500/15 text-amber-500";
-    statusPill.textContent = "⏳ Jarayonda";
+    statusPill.textContent = "⏳ O'rganilmoqda";
   }
 
   document.getElementById("lessonTitle").textContent = lesson.title;
@@ -1441,7 +1587,6 @@ function selectLesson(idx) {
   document.getElementById("lectureContentBox").innerHTML = lesson.lecture;
   document.getElementById("lectureVisualCard").innerHTML = lesson.visualHTML;
 
-  // Setup Praktikum
   document.getElementById("taskTitle").textContent = lesson.task.title;
   document.getElementById("taskDescription").innerHTML = lesson.task.desc;
   document.getElementById("taskHintBox").textContent = lesson.task.hint;
@@ -1450,7 +1595,6 @@ function selectLesson(idx) {
   document.getElementById("sqlEditor").value = lesson.starterSQL;
   runUserSQL();
 
-  // Setup Mini-Test
   const quizBox = document.getElementById("multiQuizContainer");
   quizBox.innerHTML = "";
   lesson.quizzes.forEach((qz, qIdx) => {
@@ -1458,7 +1602,6 @@ function selectLesson(idx) {
     item.className = "p-4 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-3";
     item.innerHTML = `<div class="font-bold text-sm">${qIdx + 1}. ${qz.q}</div><div class="grid grid-cols-1 sm:grid-cols-3 gap-2" id="qopts-${qIdx}"></div><div id="qfb-${qIdx}" class="text-xs font-semibold hidden"></div>`;
     quizBox.appendChild(item);
-
     const optsEl = item.querySelector(`#qopts-${qIdx}`);
     qz.opts.forEach((optText, oIdx) => {
       const ob = document.createElement("button");
@@ -1470,12 +1613,12 @@ function selectLesson(idx) {
         if (oIdx === qz.ans) {
           ob.classList.add("bg-emerald-600", "text-white", "border-emerald-400");
           fb.className = "text-xs font-bold text-emerald-500";
-          fb.textContent = "✓ To'g'ri javob! (+15 XP)";
+          fb.textContent = "✓ Mukammal! To'g'ri javob (+15 XP)";
           addXP(15);
         } else {
           ob.classList.add("bg-rose-600", "text-white", "border-rose-400");
           fb.className = "text-xs font-bold text-rose-500";
-          fb.textContent = "✕ Noto'g'ri, qayta urinib ko'ring!";
+          fb.textContent = "✕ Noto'g'ri, ma'ruzani qayta ko'rib chiqing!";
         }
       };
       optsEl.appendChild(ob);
@@ -1513,7 +1656,7 @@ function verifyPraktikumTask() {
 
   if (lesson.task.validate(rows, sql)) {
     box.className = "p-4 rounded-xl bg-emerald-500/15 border border-emerald-500 text-emerald-400 text-xs sm:text-sm font-bold space-y-2";
-    box.innerHTML = `<div>🎉 Tabriklaymiz! Praktikum vazifasi 100% to'g'ri bajarildi! (+50 XP)</div>
+    box.innerHTML = `<div>🎉 Ajoyib! Laboratoriya ishi 100% muvaffaqiyatli tekshirildi! (+50 XP)</div>
       <button onclick="nextLesson()" class="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-extrabold">Keyingi darsga o'tish →</button>`;
     if (!completedLessons.has(lesson.id)) {
       completedLessons.add(lesson.id);
@@ -1525,7 +1668,7 @@ function verifyPraktikumTask() {
     }
   } else {
     box.className = "p-4 rounded-xl bg-rose-500/15 border border-rose-500 text-rose-400 text-xs sm:text-sm font-semibold";
-    box.textContent = "❌ Vazifa shartlari to'liq bajarilmadi. Topshiriq matni va yordamchi maslahatni tekshirib qayta urinib ko'ring!";
+    box.textContent = "❌ Vazifa shartlari to'liq bajarilmadi. Topshiriq talabini va maslahatni tekshirib qayta urinib ko'ring!";
   }
 }
 
@@ -1537,7 +1680,7 @@ function copySnippet(btn) {
   ta.select();
   document.execCommand("copy");
   document.body.removeChild(ta);
-  showToast("SQL kod buferga nusxalandi!");
+  showToast("SQL kod nusxalandi!");
 }
 
 function sendSnippetToPraktikum(btn) {
@@ -1562,8 +1705,8 @@ function updateProgressUI() {
   document.getElementById("topProgressBar").style.width = `${pct}%`;
   document.getElementById("topProgressText").textContent = `${pct}%`;
   document.getElementById("sidebarProgressBar").style.width = `${pct}%`;
-  document.getElementById("sidebarDoneBadge").textContent = `${cnt} / 19 dars`;
-  document.getElementById("certLessonsStat").textContent = `${cnt} / 19`;
+  document.getElementById("sidebarDoneBadge").textContent = `${cnt} / ${LESSONS.length} dars`;
+  document.getElementById("certLessonsStat").textContent = `${cnt} / ${LESSONS.length}`;
 }
 
 // ============================================================================
@@ -1595,6 +1738,7 @@ function init3DEngine() {
   const dLight = new THREE.DirectionalLight(0x3b82f6, 1.3);
   dLight.position.set(8, 12, 10);
   scene.add(dLight);
+
   const pLight = new THREE.PointLight(0x10b981, 1.2, 30);
   pLight.position.set(-7, 5, 6);
   scene.add(pLight);
@@ -1615,7 +1759,6 @@ function init3DEngine() {
     rootGroup.rotation.x = Math.max(-0.55, Math.min(0.55, rootGroup.rotation.x + (e.clientY - prevMouse.y) * 0.006));
     prevMouse = { x: e.clientX, y: e.clientY };
   });
-
   dom.addEventListener("touchstart", e => {
     if (e.touches.length === 1) { isDragging3D = true; prevMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY }; }
   }, { passive: true });
@@ -1626,7 +1769,6 @@ function init3DEngine() {
     rootGroup.rotation.x = Math.max(-0.55, Math.min(0.55, rootGroup.rotation.x + (e.touches[0].clientY - prevMouse.y) * 0.008));
     prevMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY };
   }, { passive: true });
-
   dom.addEventListener("wheel", e => {
     e.preventDefault();
     camera.position.z = Math.max(6, Math.min(22, camera.position.z + e.deltaY * 0.01));
@@ -1754,12 +1896,25 @@ function set3DMode(mode) {
     if (b) b.className = m === mode ? "px-3 py-2 rounded-xl text-xs font-bold bg-blue-600 text-white shadow" : "px-3 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800";
   });
   const map = {
-    er: { hud: "3D ER-Diagramma: talabalar ↔ buyurtmalar ↔ kurslar", h: "3D ER-Diagramma (PK ↔ FK)", d: "Barcha jadvallar va ularni bog'lovchi neon chiziqlar.", s: "SELECT t.ism, k.nomi\nFROM talabalar t\nJOIN buyurtmalar b ON t.id = b.talaba_id\nJOIN kurslar k ON k.id = b.kurs_id;", m: "10 ta tugun", n: "0 ta NULL" },
-    inner: { hud: "3D INNER JOIN: Faqat mos kelgan yashil qatorlar", h: "INNER JOIN (A ∩ B)", d: "Ikkala jadvalda ham bog'lanishga ega yashil kublar tanlanadi.", s: "SELECT t.ism, b.summa\nFROM talabalar t\nINNER JOIN buyurtmalar b ON t.id = b.talaba_id;", m: "8 ta yashil", n: "0 ta NULL" },
-    left: { hud: "3D LEFT JOIN: Chap jadval to'liq (qizil kub = NULL)", h: "LEFT JOIN", d: "6-talabaning buyurtmasi yo'qligi sababli qizil (NULL) rangda yonadi.", s: "SELECT t.ism, b.summa\nFROM talabalar t\nLEFT JOIN buyurtmalar b ON t.id = b.talaba_id;", m: "5 ta yashil", n: "1 ta qizil (NULL)" },
-    right: { hud: "3D RIGHT JOIN: O'ng jadval to'liq (qizil kub = NULL)", h: "RIGHT JOIN", d: "O'ng tomondagi 4-kursga talaba yozilmaganligi sababli qizil (NULL) ko'rinadi.", s: "SELECT t.ism, k.nomi\nFROM talabalar t\nRIGHT JOIN kurslar k ON ...;", m: "3 ta yashil", n: "1 ta qizil (NULL)" },
-    full: { hud: "3D FULL OUTER JOIN: Ikkala jadval birlashmasi", h: "FULL OUTER JOIN", d: "Barcha mos kelgan (yashil) va mos kelmagan (qizil NULL) qatorlar birlashadi.", s: "SELECT t.ism, k.nomi\nFROM talabalar t\nFULL OUTER JOIN kurslar k ON ...;", m: "8 ta yashil", n: "2 ta qizil (NULL)" },
-    groupby: { hud: "3D GROUP BY: Shaharlar bo'yicha aggregatsiya ustunlari", h: "3D Aggregatsiya (GROUP BY)", d: "Har bir shahar guruhi 3D ustun balandligi ko'rinishida tasvirlangan.", s: "SELECT shahar, COUNT(*)\nFROM talabalar\nGROUP BY shahar;", m: "3 ta guruh", n: "Aggregat tahlil" }
+    er: { hud: "3D ER-Diagramma: talabalar ↔ buyurtmalar ↔ kurslar", h: "3D ER-Diagramma (PK ↔ FK)", d: "Barcha jadvallar va ularni bog'lovchi neon chiziqlar.", s: "SELECT t.ism, k.nomi
+FROM talabalar t
+JOIN buyurtmalar b ON t.id = b.talaba_id
+JOIN kurslar k ON k.id = b.kurs_id;", m: "10 ta tugun", n: "0 ta NULL" },
+    inner: { hud: "3D INNER JOIN: Faqat mos kelgan yashil qatorlar", h: "INNER JOIN (A ∩ B)", d: "Ikkala jadvalda ham bog'lanishga ega yashil kublar tanlanadi.", s: "SELECT t.ism, b.summa
+FROM talabalar t
+INNER JOIN buyurtmalar b ON t.id = b.talaba_id;", m: "8 ta yashil", n: "0 ta NULL" },
+    left: { hud: "3D LEFT JOIN: Chap jadval to'liq (qizil kub = NULL)", h: "LEFT JOIN", d: "6-talabaning buyurtmasi yo'qligi sababli qizil (NULL) rangda yonadi.", s: "SELECT t.ism, b.summa
+FROM talabalar t
+LEFT JOIN buyurtmalar b ON t.id = b.talaba_id;", m: "5 ta yashil", n: "1 ta qizil (NULL)" },
+    right: { hud: "3D RIGHT JOIN: O'ng jadval to'liq (qizil kub = NULL)", h: "RIGHT JOIN", d: "O'ng tomondagi 4-kursga talaba yozilmaganligi sababli qizil (NULL) ko'rinadi.", s: "SELECT t.ism, k.nomi
+FROM talabalar t
+RIGHT JOIN kurslar k ON ...;", m: "3 ta yashil", n: "1 ta qizil (NULL)" },
+    full: { hud: "3D FULL OUTER JOIN: Ikkala jadval birlashmasi", h: "FULL OUTER JOIN", d: "Barcha mos kelgan (yashil) va mos kelmagan (qizil NULL) qatorlar birlashadi.", s: "SELECT t.ism, k.nomi
+FROM talabalar t
+FULL OUTER JOIN kurslar k ON ...;", m: "8 ta yashil", n: "2 ta qizil (NULL)" },
+    groupby: { hud: "3D GROUP BY: Shaharlar bo'yicha aggregatsiya ustunlari", h: "3D Aggregatsiya (GROUP BY)", d: "Har bir shahar guruhi 3D ustun balandligi ko'rinishida tasvirlangan.", s: "SELECT shahar, COUNT(*)
+FROM talabalar
+GROUP BY shahar;", m: "3 ta guruh", n: "Aggregat tahlil" }
   }[mode];
   document.getElementById("hud3DTitle").textContent = map.hud;
   document.getElementById("panel3DHeading").textContent = map.h;
@@ -1771,12 +1926,12 @@ function set3DMode(mode) {
 }
 
 // ============================================================================
-// 5. THREE ARCADE & LOGIC GAMES (SQL DETECTIVE, SPEED SQL, DEFENDER)
+// 5. KIBER ARENA O'YINLARI
 // ============================================================================
 const DET_CASES = [
   { title: "Kechasi O'tkazilgan Shubhali To'lov", story: "Buyurtmalar jadvalidan summasi 2,000,000 dan katta va holati 'To'langan' bo'lgan yozuvni toping.", opts: ["SELECT * FROM buyurtmalar WHERE summa > 2000000 AND holat = 'To''langan';", "SELECT * FROM buyurtmalar WHERE summa < 2000000;", "DELETE FROM buyurtmalar WHERE summa > 2000000;"], ans: 0 },
   { title: "Buyurtma Qilmagan Talabani Topish", story: "Talabalar jadvalida bor, lekin buyurtmalar jadvalida umuman uchramagan talabani toping.", opts: ["SELECT t.ism FROM talabalar t LEFT JOIN buyurtmalar b ON t.id = b.talaba_id WHERE b.id IS NULL;", "SELECT ism FROM talabalar WHERE id = NULL;", "SELECT * FROM kurslar LIMIT 1;"], ans: 0 },
-  { title: "Eng Yuqori Maoshli Bo'lim", story: "O'rtacha maoshi 11,500,000 dan katta bo'lgan bo'limni GROUP BY va HAVING bilan toping.", opts: ["SELECT bolim, AVG(maosh) FROM xodimlar GROUP BY bolim HAVING AVG(maosh) > 11500000;", "SELECT bolim FROM xodimlar WHERE AVG(maosh) > 11500000;", "SELECT MAX(maosh) FROM xodimlar;"], ans: 0 },
+  { title: "Eng Yuqori Byudjetli Bo'lim", story: "O'rtacha maoshi 13,500,000 dan katta bo'lgan bo'limni GROUP BY va HAVING bilan toping.", opts: ["SELECT bolim, AVG(maosh) FROM xodimlar GROUP BY bolim HAVING AVG(maosh) > 13500000;", "SELECT bolim FROM xodimlar WHERE AVG(maosh) > 13500000;", "SELECT MAX(maosh) FROM xodimlar;"], ans: 0 },
   { title: "Samarqandlik Talabalar Ro'yxati", story: "Shahar nomi 'Samarqand' bo'lgan talabalarni stipendiya kamayish tartibida chiqaring.", opts: ["SELECT * FROM talabalar WHERE shahar = 'Samarqand' ORDER BY stipendiya DESC;", "SELECT * FROM talabalar ORDER BY shahar;", "SELECT shahar FROM talabalar LIMIT 1;"], ans: 0 }
 ];
 let detIdx = 0;
@@ -1809,14 +1964,12 @@ function loadDetective(idx) {
   });
 }
 
-// Game 2: Speed SQL
 const SPD_ROUNDS = [
   { prompt: "Toshkentlik talabalarni ism bo'yicha tartiblang:", tokens: ["SELECT", "*", "FROM", "talabalar", "WHERE", "shahar = 'Toshkent'", "ORDER BY", "ism"] },
   { prompt: "Har bir shahardagi talabalar sonini chiqaring:", tokens: ["SELECT", "shahar,", "COUNT(*)", "FROM", "talabalar", "GROUP BY", "shahar"] },
   { prompt: "Eng qimmat 2 ta kursni chiqaring:", tokens: ["SELECT", "nomi,", "narx", "FROM", "kurslar", "ORDER BY", "narx DESC", "LIMIT 2"] }
 ];
 let spdIdx = 0, spdScore = 0, spdChosen = [], spdInterval = null, spdTimeLeft = 30;
-
 function startSpeedRound(idx) {
   spdIdx = idx % SPD_ROUNDS.length;
   spdChosen = [];
@@ -1826,7 +1979,6 @@ function startSpeedRound(idx) {
   document.getElementById("spdPrompt").textContent = SPD_ROUNDS[spdIdx].prompt;
   document.getElementById("spdFeedback").textContent = "";
   document.getElementById("spdTimer").textContent = spdTimeLeft;
-
   spdInterval = setInterval(() => {
     spdTimeLeft--;
     document.getElementById("spdTimer").textContent = spdTimeLeft;
@@ -1852,14 +2004,12 @@ function startSpeedRound(idx) {
   });
   renderSpeedZone();
 }
-
 function renderSpeedZone() {
   const z = document.getElementById("spdDropZone");
   z.innerHTML = spdChosen.length === 0
     ? `<span class="text-xs text-slate-500 italic">Bloklarni ketma-ket bosing...</span>`
     : spdChosen.map(t => `<span class="px-3 py-1.5 rounded-lg bg-emerald-600 text-white font-mono text-xs font-bold">${t}</span>`).join("");
 }
-
 function checkSpeedSQL() {
   const fb = document.getElementById("spdFeedback");
   if (JSON.stringify(spdChosen) === JSON.stringify(SPD_ROUNDS[spdIdx].tokens)) {
@@ -1876,7 +2026,6 @@ function checkSpeedSQL() {
   }
 }
 
-// Game 3: Constraint Defender
 const DEF_PACKETS = [
   { sql: "INSERT INTO talabalar VALUES (1, 'ali@mail.uz', NULL, 20, 101);", ans: "NOT NULL", msg: "ism ustuni NOT NULL — bo'sh qiymat bloklandi!" },
   { sql: "INSERT INTO talabalar VALUES (2, 'yangi@mail.uz', 'Dilshod', 14, 101);", ans: "CHECK", msg: "CHECK(yosh >= 16) qoidasi 14 yoshli kiritmani to'xtatdi!" },
@@ -1885,13 +2034,11 @@ const DEF_PACKETS = [
   { sql: "INSERT INTO talabalar VALUES (9, 'rustam@mail.uz', 'Rustam', 20, 999);", ans: "FOREIGN KEY", msg: "FOREIGN KEY mavjud bo'lmagan kurs_id=999 ni blokladi!" }
 ];
 let defIdx = 0, defCount = 0;
-
 function loadDefender(idx) {
   defIdx = idx % DEF_PACKETS.length;
   document.getElementById("defPacketText").textContent = DEF_PACKETS[defIdx].sql;
   document.getElementById("defResultBox").classList.add("hidden");
 }
-
 function checkDefense(choice) {
   const pkt = DEF_PACKETS[defIdx];
   const res = document.getElementById("defResultBox");
@@ -1977,7 +2124,6 @@ window.onload = function () {
     const isDark = document.documentElement.classList.toggle("dark");
     document.getElementById("themeIcon").textContent = isDark ? "☀️" : "🌙";
   });
-
   selectLesson(0);
   updateProgressUI();
   loadDetective(0);
