@@ -1,8 +1,3 @@
-
-
-
-HTML belgisi
-QuantumSQL_Academy
 <!DOCTYPE html>
 <html lang="uz" class="dark">
 <head>
@@ -762,6 +757,22 @@ function toggleLanguage() {
   showToast(currentLang === "uz" ? "Interfeys tili: O'zbekcha" : "Interface language: English");
 }
 
+function codeBlock(code) {
+  const escaped = code.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  return `
+    <div class="rounded-xl bg-slate-950 border border-slate-800 overflow-hidden my-3">
+      <div class="px-3 py-1.5 bg-slate-900 border-b border-slate-800 flex items-center justify-between text-[11px] font-mono text-slate-400">
+        <span>SQL Kod Namunasi</span>
+        <div class="flex items-center gap-2">
+          <button onclick="copySnippet(this)" data-code="${encodeURIComponent(code)}" class="hover:text-white transition">📋 Nusxa</button>
+          <button onclick="sendSnippetToPraktikum(this)" data-code="${encodeURIComponent(code)}" class="text-indigo-400 hover:text-indigo-300 font-bold transition">▶ WASM IDE da sinash</button>
+        </div>
+      </div>
+      <pre class="p-3.5 text-xs sm:text-sm text-emerald-300 font-mono overflow-x-auto">${escaped}</pre>
+    </div>
+  `;
+}
+
 // ============================================================================
 // 2. 6 MODULES & 25 PROFESSIONAL CS + SQL LESSONS
 // ============================================================================
@@ -791,10 +802,10 @@ const LESSONS = [
         <li><b>Storage Engine & Buffer Pool:</b> Ma'lumotlarni operativ xotira (RAM) va qattiq disk (NVMe SSD) o'rtasida sahifalar (Pages, 4KB–16KB) ko'rinishida boshqaradi.</li>
         <li><b>Transaction Manager (ACID):</b> Elektr o'chib qolganda ham ma'lumotlar yo'qolmasligini WAL (Write-Ahead Logging) orqali kafolatlaydi.</li>
       </ul>
-      ${codeBlock("SELECT * FROM talabalar;")}
+      ${codeBlock(`SELECT * FROM talabalar;`)}
     `,
     visualHTML: `<div class="text-xs font-mono space-y-1.5 text-center"><div class="p-2 rounded bg-indigo-600/20 border border-indigo-500 text-indigo-400 font-bold">SQL Query → Parser & Optimizer</div><div class="text-slate-400">↓ EXPLAIN Query Plan</div><div class="p-2 rounded bg-emerald-600/20 border border-emerald-500 text-emerald-400 font-bold">Buffer Pool (RAM) ↔ NVMe Disk</div></div>`,
-    starterSQL: "SELECT * FROM talabalar;",
+    starterSQL: `SELECT * FROM talabalar;`,
     task: {
       title: "1-Laboratoriya: Enterprise bazadagi talabalar jadvalini tekshirish",
       desc: "<code>talabalar</code> jadvalidagi barcha ustun va yozuvlarni ekranga chiqaruvchi SQL so'rov yozing.",
@@ -831,8 +842,10 @@ const LESSONS = [
       </div>
 
       <h4 class="font-bold text-base text-slate-900 dark:text-white pt-2">Amaliy Misollar (Operatorlar va Buyruqlar):</h4>
-      ${codeBlock("-- 1-Misol (DQL + WHERE + Taqqoslash operatori): Narxi 1,500,000 dan qimmat kurslar\nSELECT nomi, kategoriya, narx FROM kurslar WHERE narx > 1500000;")}
-      ${codeBlock("-- 2-Misol (Arifmetik operator +, *, -): Kurs narxiga 10% chegirma hisoblash\nSELECT nomi, narx AS Asl_Narx, narx * 0.9 AS Chegirmali_Narx FROM kurslar;")}
+      ${codeBlock(`-- 1-Misol (DQL + WHERE + Taqqoslash operatori): Narxi 1,500,000 dan qimmat kurslar
+SELECT nomi, kategoriya, narx FROM kurslar WHERE narx > 1500000;`)}
+      ${codeBlock(`-- 2-Misol (Arifmetik operator +, *, -): Kurs narxiga 10% chegirma hisoblash
+SELECT nomi, narx AS Asl_Narx, narx * 0.9 AS Chegirmali_Narx FROM kurslar;`)}
 
       <div class="p-4 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex flex-wrap items-center justify-between gap-3">
         <div>
@@ -846,7 +859,7 @@ const LESSONS = [
       </div>
     `,
     visualHTML: `<div class="space-y-2"><div class="grid grid-cols-2 gap-1.5 text-[11px] font-mono"><div class="p-2 rounded bg-indigo-500/20"><b>DDL:</b> CREATE, ALTER</div><div class="p-2 rounded bg-emerald-500/20"><b>DQL:</b> SELECT, WHERE</div><div class="p-2 rounded bg-violet-500/20"><b>DML:</b> INSERT, UPDATE</div><div class="p-2 rounded bg-cyan-500/20"><b>TCL:</b> COMMIT, ROLLBACK</div></div><button onclick="jumpToLessonById(4)" class="w-full py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition">⚡ 2-Modul Operatorlariga O'tish →</button></div>`,
-    starterSQL: "SELECT nomi, kategoriya, narx, narx * 0.9 AS Chegirmali_Narx FROM kurslar WHERE narx >= 1500000;",
+    starterSQL: `SELECT nomi, kategoriya, narx, narx * 0.9 AS Chegirmali_Narx FROM kurslar WHERE narx >= 1500000;`,
     task: {
       title: "2-Laboratoriya: DQL va Taqqoslash operatorlari bilan kurslarni filtrlash",
       desc: "<code>kurslar</code> jadvalidan <code>narx >= 1500000</code> shartiga mos keladigan kurslarning <code>nomi</code>, <code>kategoriya</code> va <code>narx</code> ustunlarini chiqaring.",
@@ -881,7 +894,7 @@ const LESSONS = [
       </div>
     `,
     visualHTML: `<div class="space-y-1.5 text-xs font-mono"><div class="p-2 rounded bg-slate-800 flex justify-between"><span>BIGINT</span><span class="text-indigo-400">8 Bytes (64-bit)</span></div><div class="p-2 rounded bg-slate-800 flex justify-between"><span>DECIMAL(12,2)</span><span class="text-emerald-400">Exact Precision</span></div></div>`,
-    starterSQL: "SELECT nomi, narx FROM kurslar;",
+    starterSQL: `SELECT nomi, narx FROM kurslar;`,
     task: {
       title: "3-Laboratoriya: Kurs nomi va aniq narxini ajratish",
       desc: "<code>kurslar</code> jadvalidan faqat <code>nomi</code> va <code>narx</code> ustunlarini chiqaring.",
@@ -910,13 +923,13 @@ const LESSONS = [
         </table>
       </div>
       <h4 class="font-bold text-base text-slate-900 dark:text-white">Amaliy Misollar:</h4>
-      ${codeBlock("-- 1-Misol: Takrorlanmas shaharlarni chiqarish
-SELECT DISTINCT shahar AS Talaba_Shahri FROM talabalar;")}
-      ${codeBlock("-- 2-Misol: Har bir talabaning yillik stipendiyasini (* 12) hisoblash
-SELECT ism, stipendiya AS Oylik, stipendiya * 12 AS Yillik_Stipendiya FROM talabalar;")}
+      ${codeBlock(`-- 1-Misol: Takrorlanmas shaharlarni chiqarish
+SELECT DISTINCT shahar AS Talaba_Shahri FROM talabalar;`)}
+      ${codeBlock(`-- 2-Misol: Har bir talabaning yillik stipendiyasini (* 12) hisoblash
+SELECT ism, stipendiya AS Oylik, stipendiya * 12 AS Yillik_Stipendiya FROM talabalar;`)}
     `,
     visualHTML: `<div class="text-xs font-mono text-center space-y-1"><div class="p-2 rounded bg-indigo-500/20 text-indigo-300">FROM → WHERE → SELECT (+, -, *, /) → DISTINCT</div></div>`,
-    starterSQL: "SELECT ism, stipendiya, stipendiya * 12 AS Yillik_Stipendiya FROM talabalar;",
+    starterSQL: `SELECT ism, stipendiya, stipendiya * 12 AS Yillik_Stipendiya FROM talabalar;`,
     task: {
       title: "4-Laboratoriya: DISTINCT operatori bilan noyob shaharlarni topish",
       desc: "<code>talabalar</code> jadvalidan takrorlanmaydigan <code>shahar</code> nomlarini <code>DISTINCT</code> operatori yordamida chiqaring.",
@@ -935,18 +948,18 @@ SELECT ism, stipendiya AS Oylik, stipendiya * 12 AS Yillik_Stipendiya FROM talab
     lecture: `
       <p>Jadvalga yangi yozuv qo'shish uchun <code>INSERT INTO ... VALUES (...)</code> operatori ishlatiladi. Yuqori yuklamali tizimlarda bir nechta qatorni vergul bilan ajratib bitta so'rovda kiritish (<b>Multi-Row Insert</b>) 50 barobar tezroq ishlaydi.</p>
       <h4 class="font-bold text-base text-slate-900 dark:text-white">Amaliy Misollar:</h4>
-      ${codeBlock("-- 1-Misol: Bitta yangi talaba qo'shish
+      ${codeBlock(`-- 1-Misol: Bitta yangi talaba qo'shish
 INSERT INTO talabalar (id, ism, yosh, shahar, stipendiya, yonalish)
-VALUES (7, 'Jasur Aliyev', 21, 'Xiva', 700000, 'Cybersecurity');")}
-      ${codeBlock("-- 2-Misol: Bir vaqtning o'zida 2 ta yangi kurs qo'shish (Batch Insert)
+VALUES (7, 'Jasur Aliyev', 21, 'Xiva', 700000, 'Cybersecurity');`)}
+      ${codeBlock(`-- 2-Misol: Bir vaqtning o'zida 2 ta yangi kurs qo'shish (Batch Insert)
 INSERT INTO kurslar (id, nomi, narx, davomiylik_oy, kategoriya)
 VALUES 
   (105, 'Cloud & Kubernetes', 2100000, 4, 'DevOps'),
-  (106, 'Algorithms & C++', 1400000, 3, 'Computer Science');")}
+  (106, 'Algorithms & C++', 1400000, 3, 'Computer Science');`)}
     `,
     visualHTML: `<div class="text-xs font-mono text-center p-2.5 rounded bg-emerald-500/20 text-emerald-300">INSERT INTO → WAL Log → B-Tree Page Write</div>`,
-    starterSQL: "INSERT INTO talabalar (id, ism, yosh, shahar, stipendiya, yonalish) VALUES (7, 'Jasur Aliyev', 21, 'Xiva', 700000, 'Cybersecurity');
-SELECT * FROM talabalar WHERE id = 7;",
+    starterSQL: `INSERT INTO talabalar (id, ism, yosh, shahar, stipendiya, yonalish) VALUES (7, 'Jasur Aliyev', 21, 'Xiva', 700000, 'Cybersecurity');
+SELECT * FROM talabalar WHERE id = 7;`,
     task: {
       title: "5-Laboratoriya: INSERT INTO operatori bilan yangi talaba qo'shish",
       desc: "<code>talabalar</code> jadvaliga <code>id = 7</code> bo'lgan yangi talabani <code>INSERT INTO</code> operatori orqali qo'shing.",
@@ -967,14 +980,14 @@ SELECT * FROM talabalar WHERE id = 7;",
         <b>🚨 Oltin Qoida:</b> <code>UPDATE</code> so'rovida <code>WHERE</code> operatorini unutib qoldirsangiz, jadvaldagi <b>BARCHA</b> qatorlar o'zgarib ketadi!
       </div>
       <h4 class="font-bold text-base text-slate-900 dark:text-white">Amaliy Misollar:</h4>
-      ${codeBlock("-- 1-Misol: ID=1 talabaning stipendiyasini aniq qiymatga o'zgartirish
-UPDATE talabalar SET stipendiya = 950000 WHERE id = 1;")}
-      ${codeBlock("-- 2-Misol: Toshkentlik talabalar stipendiyasini 10% ga oshirish (Arifmetik + UPDATE)
-UPDATE talabalar SET stipendiya = stipendiya * 1.10 WHERE shahar = 'Toshkent';")}
+      ${codeBlock(`-- 1-Misol: ID=1 talabaning stipendiyasini aniq qiymatga o'zgartirish
+UPDATE talabalar SET stipendiya = 950000 WHERE id = 1;`)}
+      ${codeBlock(`-- 2-Misol: Toshkentlik talabalar stipendiyasini 10% ga oshirish (Arifmetik + UPDATE)
+UPDATE talabalar SET stipendiya = stipendiya * 1.10 WHERE shahar = 'Toshkent';`)}
     `,
     visualHTML: `<div class="text-xs font-mono p-2 rounded bg-amber-500/20 text-amber-300 text-center">UPDATE ... SET ... WHERE (MVCC Concurrency)</div>`,
-    starterSQL: "UPDATE talabalar SET stipendiya = 950000 WHERE id = 1;
-SELECT id, ism, stipendiya FROM talabalar WHERE id = 1;",
+    starterSQL: `UPDATE talabalar SET stipendiya = 950000 WHERE id = 1;
+SELECT id, ism, stipendiya FROM talabalar WHERE id = 1;`,
     task: {
       title: "6-Laboratoriya: UPDATE va SET operatorlari bilan stipendiyani yangilash",
       desc: "<code>id = 1</code> bo'lgan talabaning stipendiyasini <code>UPDATE</code> va <code>SET</code> operatorlari orqali <code>950000</code> ga o'zgartiring.",
@@ -992,14 +1005,14 @@ SELECT id, ism, stipendiya FROM talabalar WHERE id = 1;",
     lecture: `
       <p><code>DELETE FROM jadval WHERE shart;</code> — ko'rsatilgan shartga mos qatorlarni o'chiradi. Katta loyihalarda esa odatda <code>deleted_at</code> ustuni to'ldiriladi (<b>Soft Delete</b>).</p>
       <h4 class="font-bold text-base text-slate-900 dark:text-white">Amaliy Misollar:</h4>
-      ${codeBlock("-- 1-Misol: ID=6 bo'lgan yozuvni o'chirish
-DELETE FROM talabalar WHERE id = 6;")}
-      ${codeBlock("-- 2-Misol: Holati 'Kutilmoqda' va summasi 1,000,000 dan kam buyurtmalarni o'chirish
-DELETE FROM buyurtmalar WHERE holat = 'Kutilmoqda' AND summa < 1000000;")}
+      ${codeBlock(`-- 1-Misol: ID=6 bo'lgan yozuvni o'chirish
+DELETE FROM talabalar WHERE id = 6;`)}
+      ${codeBlock(`-- 2-Misol: Holati 'Kutilmoqda' va summasi 1,000,000 dan kam buyurtmalarni o'chirish
+DELETE FROM buyurtmalar WHERE holat = 'Kutilmoqda' AND summa < 1000000;`)}
     `,
     visualHTML: `<div class="text-xs font-mono p-2 rounded bg-rose-500/20 text-rose-300 text-center">DELETE FROM ... WHERE (Row-by-row DML)</div>`,
-    starterSQL: "DELETE FROM talabalar WHERE id = 6;
-SELECT * FROM talabalar;",
+    starterSQL: `DELETE FROM talabalar WHERE id = 6;
+SELECT * FROM talabalar;`,
     task: {
       title: "7-Laboratoriya: DELETE operatori bilan yozuvni o'chirish",
       desc: "<code>talabalar</code> jadvalidan <code>id = 6</code> bo'lgan talabani <code>DELETE FROM</code> operatori yordamida o'chiring.",
@@ -1032,15 +1045,15 @@ SELECT * FROM talabalar;",
         <b>⚡ Ustuvorlik (Precedence):</b> <code>1. Qavslar () → 2. NOT → 3. AND → 4. OR</code>. Shuning uchun <code>AND</code> va <code>OR</code> aralash kelganda doim qavs <code>()</code> ishlating!
       </div>
       <h4 class="font-bold text-base text-slate-900 dark:text-white">Amaliy Misollar:</h4>
-      ${codeBlock("-- 1-Misol (AND + >=): Toshkentlik va stipendiyasi kamida 600,000 bo'lgan talabalar
+      ${codeBlock(`-- 1-Misol (AND + >=): Toshkentlik va stipendiyasi kamida 600,000 bo'lgan talabalar
 SELECT * FROM talabalar
-WHERE shahar = 'Toshkent' AND stipendiya >= 600000;")}
-      ${codeBlock("-- 2-Misol (Qavslar bilan OR va NOT): Toshkent yoki Samarqandlik, lekin yoshi 23 bo'lmaganlar
+WHERE shahar = 'Toshkent' AND stipendiya >= 600000;`)}
+      ${codeBlock(`-- 2-Misol (Qavslar bilan OR va NOT): Toshkent yoki Samarqandlik, lekin yoshi 23 bo'lmaganlar
 SELECT ism, yosh, shahar FROM talabalar
-WHERE (shahar = 'Toshkent' OR shahar = 'Samarqand') AND NOT yosh = 23;")}
+WHERE (shahar = 'Toshkent' OR shahar = 'Samarqand') AND NOT yosh = 23;`)}
     `,
     visualHTML: `<div class="grid grid-cols-3 gap-1.5 text-center text-[11px] font-mono"><div class="p-2 rounded bg-violet-500/20">1. NOT</div><div class="p-2 rounded bg-indigo-500/20">2. AND</div><div class="p-2 rounded bg-emerald-500/20">3. OR</div></div>`,
-    starterSQL: "SELECT * FROM talabalar WHERE shahar = 'Toshkent' AND stipendiya >= 600000;",
+    starterSQL: `SELECT * FROM talabalar WHERE shahar = 'Toshkent' AND stipendiya >= 600000;`,
     task: {
       title: "8-Laboratoriya: AND va >= operatorlari bilan ko'p shartli filtrlash",
       desc: "<code>talabalar</code> jadvalidan <code>shahar = 'Toshkent'</code> va (<code>AND</code>) <code>stipendiya >= 600000</code> shartlariga mos talabalarni chiqaring.",
@@ -1059,17 +1072,17 @@ WHERE (shahar = 'Toshkent' OR shahar = 'Samarqand') AND NOT yosh = 23;")}
     lecture: `
       <p><code>ORDER BY</code> operatori natijani o'sish (<code>ASC</code> — standart) yoki kamayish (<code>DESC</code>) tartibida saralaydi. <code>LIMIT</code> esa qaytariladigan qatorlar sonini cheklaydi.</p>
       <h4 class="font-bold text-base text-slate-900 dark:text-white">Amaliy Misollar:</h4>
-      ${codeBlock("-- 1-Misol: Eng yuqori stipendiyali TOP-3 talabani chiqarish
+      ${codeBlock(`-- 1-Misol: Eng yuqori stipendiyali TOP-3 talabani chiqarish
 SELECT ism, stipendiya FROM talabalar
 ORDER BY stipendiya DESC
-LIMIT 3;")}
-      ${codeBlock("-- 2-Misol: 2-sahifadagi 2 ta talabani olish (LIMIT 2 OFFSET 2)
+LIMIT 3;`)}
+      ${codeBlock(`-- 2-Misol: 2-sahifadagi 2 ta talabani olish (LIMIT 2 OFFSET 2)
 SELECT id, ism, shahar FROM talabalar
 ORDER BY id ASC
-LIMIT 2 OFFSET 2;")}
+LIMIT 2 OFFSET 2;`)}
     `,
     visualHTML: `<div class="text-xs font-mono p-2 rounded bg-indigo-500/20 text-indigo-300 text-center">ORDER BY stipendiya DESC → LIMIT 3</div>`,
-    starterSQL: "SELECT ism, stipendiya FROM talabalar ORDER BY stipendiya DESC LIMIT 3;",
+    starterSQL: `SELECT ism, stipendiya FROM talabalar ORDER BY stipendiya DESC LIMIT 3;`,
     task: {
       title: "9-Laboratoriya: ORDER BY DESC va LIMIT operatorlari bilan TOP-3 ro'yxat",
       desc: "Talabalarni <code>stipendiya</code> bo'yicha kamayish tartibida (<code>ORDER BY stipendiya DESC</code>) saralab, dastlabki <code>3</code> tasini (<code>LIMIT 3</code>) chiqaring.",
@@ -1086,10 +1099,10 @@ LIMIT 2 OFFSET 2;")}
     subtitle: "Analitik hisob-kitoblar va NULL qiymatlarning aggregatsiyaga ta'siri",
     lecture: `
       <p><code>COUNT(*)</code> barcha qatorlarni sanaydi, lekin <code>COUNT(ustun)</code>, <code>AVG(ustun)</code> va <code>SUM(ustun)</code> <b>NULL qiymatlarni e'tiborsiz qoldiradi</b>.</p>
-      ${codeBlock("SELECT COUNT(*) AS Jami, SUM(stipendiya) AS Fond, AVG(stipendiya) AS Ortacha FROM talabalar;")}
+      ${codeBlock(`SELECT COUNT(*) AS Jami, SUM(stipendiya) AS Fond, AVG(stipendiya) AS Ortacha FROM talabalar;`)}
     `,
     visualHTML: `<div class="grid grid-cols-3 gap-1.5 text-center text-xs font-mono"><div class="p-2 rounded bg-indigo-500/20">COUNT</div><div class="p-2 rounded bg-emerald-500/20">SUM / AVG</div><div class="p-2 rounded bg-amber-500/20">MIN / MAX</div></div>`,
-    starterSQL: "SELECT COUNT(*) AS Jami, SUM(stipendiya) AS Fond FROM talabalar;",
+    starterSQL: `SELECT COUNT(*) AS Jami, SUM(stipendiya) AS Fond FROM talabalar;`,
     task: {
       title: "10-Laboratoriya: Umumiy stipendiya fondini hisoblash",
       desc: "<code>talabalar</code> jadvalidan talabalar soni (<code>COUNT(*)</code>) va umumiy stipendiya yig'indisini (<code>SUM(stipendiya)</code>) hisoblang.",
@@ -1106,10 +1119,10 @@ LIMIT 2 OFFSET 2;")}
     subtitle: "Matnli qidiruv va B-Tree indeksdan unumli foydalanish sirlari",
     lecture: `
       <p><code>LIKE 'Ali%'</code> prefiksli qidiruv bo'lib, B-Tree indeksdan foydalana oladi. Biroq <code>LIKE '%Ali%'</code> oddiy indeksni ishlata olmaydi.</p>
-      ${codeBlock("SELECT * FROM talabalar WHERE yosh BETWEEN 19 AND 21;")}
+      ${codeBlock(`SELECT * FROM talabalar WHERE yosh BETWEEN 19 AND 21;`)}
     `,
     visualHTML: `<div class="text-xs font-mono space-y-1"><div class="p-1.5 rounded bg-emerald-500/20">LIKE 'Ali%' → Index Scan (Tez)</div><div class="p-1.5 rounded bg-rose-500/20">LIKE '%Ali%' → Full Scan (Sekin)</div></div>`,
-    starterSQL: "SELECT * FROM talabalar WHERE yosh BETWEEN 19 AND 21;",
+    starterSQL: `SELECT * FROM talabalar WHERE yosh BETWEEN 19 AND 21;`,
     task: {
       title: "11-Laboratoriya: BETWEEN operatori bilan oraliq qidiruv",
       desc: "<code>talabalar</code> jadvalidan yoshi <code>19</code> va <code>21</code> oralig'ida bo'lgan talabalarni <code>BETWEEN</code> yordamida toping.",
@@ -1126,12 +1139,12 @@ LIMIT 2 OFFSET 2;")}
     subtitle: "To'plamlar nazariyasi va Hash Join / Nested Loop algoritmlari",
     lecture: `
       <p>Relyatsion algebrada jadvallarni birlashtirish uchun DBMS uch xil ichki algoritmdan foydalanadi: <b>Nested Loop Join</b>, <b>Hash Join</b> va <b>Merge Join</b>.</p>
-      ${codeBlock("SELECT t.ism, b.summa, b.holat
+      ${codeBlock(`SELECT t.ism, b.summa, b.holat
 FROM talabalar t
-LEFT JOIN buyurtmalar b ON t.id = b.talaba_id;")}
+LEFT JOIN buyurtmalar b ON t.id = b.talaba_id;`)}
     `,
     visualHTML: `<div class="text-center text-xs"><button onclick="switchTopSection('3d'); set3DMode('left');" class="px-3 py-1.5 rounded-lg bg-indigo-600 text-white font-bold">🧊 3D LEFT JOIN Simulyatorini Ochish</button></div>`,
-    starterSQL: "SELECT t.ism, b.summa, b.holat FROM talabalar t LEFT JOIN buyurtmalar b ON t.id = b.talaba_id;",
+    starterSQL: `SELECT t.ism, b.summa, b.holat FROM talabalar t LEFT JOIN buyurtmalar b ON t.id = b.talaba_id;`,
     task: {
       title: "12-Laboratoriya: Talabalar va buyurtmalarni birlashtirish",
       desc: "<code>talabalar</code> va <code>buyurtmalar</code> jadvallarini <code>LEFT JOIN</code> orqali birlashtirib, barcha talabalar ismi va buyurtma summasini chiqaring.",
@@ -1148,13 +1161,13 @@ LEFT JOIN buyurtmalar b ON t.id = b.talaba_id;")}
     subtitle: "3 va undan ortiq jadvallarni Foreign Key orqali bog'lash",
     lecture: `
       <p>Real SQLite WASM dvigatelimizda endi istalgan murakkablikdagi <code>RIGHT JOIN</code>, <code>FULL OUTER JOIN</code> va ko'p jadvalli so'rovlarni ishga tushirishingiz mumkin!</p>
-      ${codeBlock("SELECT t.ism, k.nomi
+      ${codeBlock(`SELECT t.ism, k.nomi
 FROM talabalar t
 INNER JOIN buyurtmalar b ON t.id = b.talaba_id
-INNER JOIN kurslar k ON k.id = b.kurs_id;")}
+INNER JOIN kurslar k ON k.id = b.kurs_id;`)}
     `,
     visualHTML: `<div class="text-center text-xs"><button onclick="switchTopSection('3d'); set3DMode('full');" class="px-3 py-1.5 rounded-lg bg-violet-600 text-white font-bold">🌐 3D FULL OUTER JOIN Ko'rish</button></div>`,
-    starterSQL: "SELECT t.ism, k.nomi FROM talabalar t INNER JOIN buyurtmalar b ON t.id = b.talaba_id INNER JOIN kurslar k ON k.id = b.kurs_id;",
+    starterSQL: `SELECT t.ism, k.nomi FROM talabalar t INNER JOIN buyurtmalar b ON t.id = b.talaba_id INNER JOIN kurslar k ON k.id = b.kurs_id;`,
     task: {
       title: "13-Laboratoriya: 3 ta jadvalni bog'lash",
       desc: "<code>talabalar</code>, <code>buyurtmalar</code> va <code>kurslar</code> jadvallarini <code>JOIN</code> qilib, talaba ismi va kurs nomini chiqaring.",
@@ -1171,13 +1184,13 @@ INNER JOIN kurslar k ON k.id = b.kurs_id;")}
     subtitle: "BI (Business Intelligence) hisobotlari va ko'p o'lchovli agregatsiya",
     lecture: `
       <p><code>WHERE</code> — guruhlashdan <b>oldin</b> individual qatorlarni filtrlaydi, <code>HAVING</code> esa guruhlashdan <b>keyin</b> tayyor guruhlarni filtrlaydi.</p>
-      ${codeBlock("SELECT shahar, COUNT(*) AS Soni, AVG(stipendiya) AS Ortacha
+      ${codeBlock(`SELECT shahar, COUNT(*) AS Soni, AVG(stipendiya) AS Ortacha
 FROM talabalar
 GROUP BY shahar
-HAVING COUNT(*) >= 1;")}
+HAVING COUNT(*) >= 1;`)}
     `,
     visualHTML: `<div class="text-center text-xs"><button onclick="switchTopSection('3d'); set3DMode('groupby');" class="px-3 py-1.5 rounded-lg bg-emerald-600 text-white font-bold">📊 3D GROUP BY Ustunlarini Ko'rish</button></div>`,
-    starterSQL: "SELECT shahar, COUNT(*) AS Soni FROM talabalar GROUP BY shahar;",
+    starterSQL: `SELECT shahar, COUNT(*) AS Soni FROM talabalar GROUP BY shahar;`,
     task: {
       title: "14-Laboratoriya: Shaharlar kesimida talabalar statistikasi",
       desc: "<code>talabalar</code> jadvalini <code>shahar</code> bo'yicha guruhlab (<code>GROUP BY shahar</code>), har bir shahardagi talabalar sonini chiqaring.",
@@ -1194,13 +1207,13 @@ HAVING COUNT(*) >= 1;")}
     subtitle: "Real SQLite WASM dvigatelida CTE va ichma-ich so'rovlar yozish",
     lecture: `
       <p>Zamonaviy SQL muhandisligida murakkab ichma-ich so'rovlar o'rniga <b>CTE (<code>WITH ... AS</code>)</b> ishlatiladi. Pastdagi kodni WASM IDE da ishga tushirib sinab ko'ring!</p>
-      ${codeBlock("WITH YuqoriStipendiya AS (
+      ${codeBlock(`WITH YuqoriStipendiya AS (
   SELECT ism, shahar, stipendiya FROM talabalar WHERE stipendiya >= 750000
 )
-SELECT * FROM YuqoriStipendiya ORDER BY stipendiya DESC;")}
+SELECT * FROM YuqoriStipendiya ORDER BY stipendiya DESC;`)}
     `,
     visualHTML: `<div class="text-xs font-mono text-center p-2 rounded bg-indigo-500/20 text-indigo-300">WITH cte AS (...) → SELECT * FROM cte</div>`,
-    starterSQL: "WITH YuqoriStipendiya AS (SELECT ism, shahar, stipendiya FROM talabalar WHERE stipendiya >= 750000) SELECT * FROM YuqoriStipendiya;",
+    starterSQL: `WITH YuqoriStipendiya AS (SELECT ism, shahar, stipendiya FROM talabalar WHERE stipendiya >= 750000) SELECT * FROM YuqoriStipendiya;`,
     task: {
       title: "15-Laboratoriya: CTE (WITH) yordamida yuqori stipendiyali talabalarni ajratish",
       desc: "<code>WITH</code> (CTE) yoki <code>WHERE stipendiya >= 750000</code> orqali stipendiyasi 750,000 dan yuqori talabalarni chiqaring.",
@@ -1217,12 +1230,12 @@ SELECT * FROM YuqoriStipendiya ORDER BY stipendiya DESC;")}
     subtitle: "SQL da NULL falsafasi, COALESCE va NULLIF funksiyalari",
     lecture: `
       <p>SQL da <code>NULL</code> — bu nol yoki bo'sh satr emas, balki <b>"Noma'lum qiymat"</b>dir. NULL ni tekshirish uchun faqat <code>IS NULL</code> yoki <code>COALESCE(ustun, 0)</code> ishlatiladi.</p>
-      ${codeBlock("SELECT ism, stipendiya,
+      ${codeBlock(`SELECT ism, stipendiya,
   CASE WHEN stipendiya >= 800000 THEN 'Alochi' ELSE 'Standart' END AS Toifa
-FROM talabalar;")}
+FROM talabalar;`)}
     `,
     visualHTML: `<div class="text-xs font-mono p-2 rounded bg-amber-500/20 text-amber-300 text-center">Three-Valued Logic: TRUE | FALSE | UNKNOWN</div>`,
-    starterSQL: "SELECT ism, stipendiya, CASE WHEN stipendiya >= 800000 THEN 'Alochi' ELSE 'Standart' END AS Toifa FROM talabalar;",
+    starterSQL: `SELECT ism, stipendiya, CASE WHEN stipendiya >= 800000 THEN 'Alochi' ELSE 'Standart' END AS Toifa FROM talabalar;`,
     task: {
       title: "16-Laboratoriya: CASE WHEN bilan talaba reytingini hisoblash",
       desc: "<code>CASE WHEN stipendiya >= 800000 THEN 'Alochi' ELSE 'Standart' END AS Toifa</code> ifodasi bilan talabalar ro'yxatini chiqaring.",
@@ -1239,17 +1252,16 @@ FROM talabalar;")}
     subtitle: "Ma'lumotlar bazasi unumdorligini 1000x oshirish va avtomatlashtirish",
     lecture: `
       <p><b>B-Tree Indeks</b> — 100 million qatorli jadvaldan kerakli yozuvni atigi 3–4 ta disk o'qishda (<code>O(log N)</code>) topib beradigan ma'lumotlar tuzilmasi. <code>EXPLAIN QUERY PLAN</code> tabida indeks ishlashini tekshirishingiz mumkin.</p>
-      ${codeBlock("CREATE INDEX IF NOT EXISTS idx_talaba_shahar ON talabalar(shahar);
-SELECT * FROM talabalar WHERE shahar = 'Toshkent';")}
+      ${codeBlock(`CREATE INDEX IF NOT EXISTS idx_talaba_shahar ON talabalar(shahar);
+SELECT * FROM talabalar WHERE shahar = 'Toshkent';`)}
     `,
     visualHTML: `<div class="text-xs font-mono p-2 rounded bg-violet-500/20 text-violet-300 text-center">B-Tree Index: O(log N) Lookup Speed</div>`,
-    starterSQL: "CREATE INDEX IF NOT EXISTS idx_talaba_shahar ON talabalar(shahar);
-SELECT * FROM talabalar WHERE shahar = 'Toshkent';",
+    starterSQL: `CREATE INDEX IF NOT EXISTS idx_talaba_shahar ON talabalar(shahar);
+SELECT * FROM talabalar WHERE shahar = 'Toshkent';`,
     task: {
       title: "17-Laboratoriya: Indeks yaratish va tezkor qidiruv",
       desc: "<code>talabalar(shahar)</code> ustuniga indeks yarating va <code>shahar = 'Toshkent'</code> bo'lgan talabalarni tanlang.",
-      hint: "CREATE INDEX IF NOT EXISTS idx_talaba_shahar ON talabalar(shahar);
-SELECT * FROM talabalar WHERE shahar = 'Toshkent';",
+      hint: "CREATE INDEX IF NOT EXISTS idx_talaba_shahar ON talabalar(shahar); SELECT * FROM talabalar WHERE shahar = 'Toshkent';",
       validate: (rows, sql) => /create\s+index/i.test(sql) && rows.length >= 2
     },
     quizzes: [
@@ -1262,10 +1274,10 @@ SELECT * FROM talabalar WHERE shahar = 'Toshkent';",
     subtitle: "Virtual jadvallar (VIEW) va sxema migratsiyalari",
     lecture: `
       <p><b>VIEW (Virtual Jadval)</b> — murakkab <code>JOIN</code> so'rovlarini bitta oddiy jadvaldek saqlash va xavfsiz taqdim etish imkonini beradi.</p>
-      ${codeBlock("ALTER TABLE talabalar ADD COLUMN telefon TEXT;")}
+      ${codeBlock(`ALTER TABLE talabalar ADD COLUMN telefon TEXT;`)}
     `,
     visualHTML: `<div class="text-xs font-mono p-2 rounded bg-indigo-500/20 text-indigo-300 text-center">ALTER TABLE & CREATE VIEW</div>`,
-    starterSQL: "ALTER TABLE talabalar ADD COLUMN telefon TEXT;",
+    starterSQL: `ALTER TABLE talabalar ADD COLUMN telefon TEXT;`,
     task: {
       title: "18-Laboratoriya: Jadval sxemasiga yangi ustun qo'shish",
       desc: "<code>talabalar</code> jadvaliga <code>telefon</code> nomli yangi ustun qo'shing (<code>ALTER TABLE talabalar ADD COLUMN telefon TEXT;</code>).",
@@ -1282,11 +1294,11 @@ SELECT * FROM talabalar WHERE shahar = 'Toshkent';",
     subtitle: "Ma'lumotlar ortiqchaligini yo'qotish va referensial yaxlitlik",
     lecture: `
       <p><b>Normalizatsiya</b> — ma'lumotlar takrorlanishini bartaraf etish jarayoni: <b>1NF</b> (atomar qiymatlar), <b>2NF</b> (to'liq funksional bog'liqlik), <b>3NF</b> (tranzitiv bog'liqliklarni yo'qotish).</p>
-      ${codeBlock("SELECT t.id AS PK_Talaba, t.ism, b.talaba_id AS FK_Talaba, b.summa
-FROM talabalar t INNER JOIN buyurtmalar b ON t.id = b.talaba_id;")}
+      ${codeBlock(`SELECT t.id AS PK_Talaba, t.ism, b.talaba_id AS FK_Talaba, b.summa
+FROM talabalar t INNER JOIN buyurtmalar b ON t.id = b.talaba_id;`)}
     `,
     visualHTML: `<div class="text-center text-xs"><button onclick="switchTopSection('games'); switchGame('defender');" class="px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold">🛡️ Baza Himoyachisi O'yinini Sinash</button></div>`,
-    starterSQL: "SELECT t.id AS PK_Talaba, t.ism, b.talaba_id AS FK_Talaba, b.summa FROM talabalar t INNER JOIN buyurtmalar b ON t.id = b.talaba_id;",
+    starterSQL: `SELECT t.id AS PK_Talaba, t.ism, b.talaba_id AS FK_Talaba, b.summa FROM talabalar t INNER JOIN buyurtmalar b ON t.id = b.talaba_id;`,
     task: {
       title: "19-Laboratoriya: PK va FK referensial bog'lanishini tekshirish",
       desc: "<code>talabalar</code> (PK: <code>id</code>) va <code>buyurtmalar</code> (FK: <code>talaba_id</code>) jadvallarini <code>INNER JOIN</code> qilib bog'lang.",
@@ -1308,10 +1320,10 @@ FROM talabalar t INNER JOIN buyurtmalar b ON t.id = b.talaba_id;")}
         <li><b>RAM (Operativ xotira):</b> ~100 nanosekund (SQL Buffer Pool shu yerda joylashadi).</li>
         <li><b>NVMe SSD Disk:</b> ~100,000 nanosekund (RAM dan 1000 barobar sekinroq!).</li>
       </ul>
-      ${codeBlock("SELECT ism, yonalish, stipendiya FROM talabalar WHERE yonalish = 'Computer Engineering';")}
+      ${codeBlock(`SELECT ism, yonalish, stipendiya FROM talabalar WHERE yonalish = 'Computer Engineering';`)}
     `,
     visualHTML: `<div class="text-xs font-mono space-y-1"><div class="p-1.5 rounded bg-emerald-500/20 text-emerald-300">L1 Cache: 1 ns (Ultra Fast)</div><div class="p-1.5 rounded bg-indigo-500/20 text-indigo-300">RAM: 100 ns (Buffer Pool)</div><div class="p-1.5 rounded bg-rose-500/20 text-rose-300">NVMe SSD: 100,000 ns</div></div>`,
-    starterSQL: "SELECT ism, yonalish, stipendiya FROM talabalar WHERE yonalish = 'Computer Engineering';",
+    starterSQL: `SELECT ism, yonalish, stipendiya FROM talabalar WHERE yonalish = 'Computer Engineering';`,
     task: {
       title: "20-Laboratoriya: Computer Engineering yo'nalishi talabalarini filtrlash",
       desc: "<code>talabalar</code> jadvalidan <code>yonalish = 'Computer Engineering'</code> bo'lgan talabalarni tanlang.",
@@ -1328,10 +1340,10 @@ FROM talabalar t INNER JOIN buyurtmalar b ON t.id = b.talaba_id;")}
     subtitle: "Process vs Thread, Context Switching va Virtual Xotira",
     lecture: `
       <p><b>Deadlock (O'lik qulf)</b> — ikki jarayon yoki SQL tranzaksiya bir-birining resursini kutib abadiy to'xtab qolishi (Coffman shartlari: Mutual Exclusion, Hold & Wait, No Preemption, Circular Wait).</p>
-      ${codeBlock("SELECT ism, bolim, tajriba_yil FROM xodimlar ORDER BY tajriba_yil DESC;")}
+      ${codeBlock(`SELECT ism, bolim, tajriba_yil FROM xodimlar ORDER BY tajriba_yil DESC;`)}
     `,
     visualHTML: `<div class="text-xs font-mono text-center p-2 rounded bg-violet-500/20 text-violet-300">Linux Kernel → Scheduler → Process / Threads</div>`,
-    starterSQL: "SELECT ism, bolim, tajriba_yil FROM xodimlar ORDER BY tajriba_yil DESC;",
+    starterSQL: `SELECT ism, bolim, tajriba_yil FROM xodimlar ORDER BY tajriba_yil DESC;`,
     task: {
       title: "21-Laboratoriya: Tajribali tizim muhandislarini saralash",
       desc: "<code>xodimlar</code> jadvalidan barcha muhandislarni <code>tajriba_yil</code> bo'yicha kamayish tartibida (<code>DESC</code>) chiqaring.",
@@ -1348,11 +1360,11 @@ FROM talabalar t INNER JOIN buyurtmalar b ON t.id = b.talaba_id;")}
     subtitle: "Algoritmik samaradorlik va kompyuter fanining matematik poydevori",
     lecture: `
       <p><b>Big-O murakkabligi:</b> <code>O(1)</code> Hash Table, <code>O(log N)</code> Binary Search & B-Tree, <code>O(N log N)</code> Merge/Quick Sort.</p>
-      ${codeBlock("SELECT kategoriya, COUNT(*) AS Kurs_Soni, AVG(narx) AS Ortacha_Narx
-FROM kurslar GROUP BY kategoriya;")}
+      ${codeBlock(`SELECT kategoriya, COUNT(*) AS Kurs_Soni, AVG(narx) AS Ortacha_Narx
+FROM kurslar GROUP BY kategoriya;`)}
     `,
     visualHTML: `<div class="text-xs font-mono text-center p-2 rounded bg-emerald-500/20 text-emerald-300">O(1) Hash &lt; O(log N) B-Tree &lt; O(N log N) Sort</div>`,
-    starterSQL: "SELECT kategoriya, COUNT(*) AS Kurs_Soni, AVG(narx) AS Ortacha_Narx FROM kurslar GROUP BY kategoriya;",
+    starterSQL: `SELECT kategoriya, COUNT(*) AS Kurs_Soni, AVG(narx) AS Ortacha_Narx FROM kurslar GROUP BY kategoriya;`,
     task: {
       title: "22-Laboratoriya: Kategoriyalar bo'yicha analitik guruhlash",
       desc: "<code>kurslar</code> jadvalini <code>kategoriya</code> bo'yicha guruhlab, kurslar soni va o'rtacha narxini hisoblang.",
@@ -1369,10 +1381,10 @@ FROM kurslar GROUP BY kategoriya;")}
     subtitle: "Brauzerdan ma'lumotlar bazasigacha tarmoq paketlarining sayohati",
     lecture: `
       <p><b>DNS → TCP 3-Way Handshake → TLS 1.3 → HTTP/3 (QUIC) → Database</b> zanjiri zamonaviy bulutli ilovalarning asosidir.</p>
-      ${codeBlock("SELECT id, talaba_id, summa, holat FROM buyurtmalar WHERE holat = 'To''langan';")}
+      ${codeBlock(`SELECT id, talaba_id, summa, holat FROM buyurtmalar WHERE holat = 'To''langan';`)}
     `,
     visualHTML: `<div class="text-xs font-mono text-center p-2 rounded bg-cyan-500/20 text-cyan-300">DNS → TCP Handshake → TLS 1.3 → HTTP/3 API → SQL</div>`,
-    starterSQL: "SELECT id, talaba_id, summa, holat FROM buyurtmalar WHERE holat = 'To''langan';",
+    starterSQL: `SELECT id, talaba_id, summa, holat FROM buyurtmalar WHERE holat = 'To''langan';`,
     task: {
       title: "23-Laboratoriya: Muvaffaqiyatli yakunlangan tranzaksiyalarni filtrlash",
       desc: "<code>buyurtmalar</code> jadvalidan holati <code>'To''langan'</code> bo'lgan barcha tranzaksiyalarni chiqaring.",
@@ -1380,1160 +1392,4 @@ FROM kurslar GROUP BY kategoriya;")}
       validate: (rows, sql) => /from\s+buyurtmalar/i.test(sql) && /where/i.test(sql) && rows.length >= 4
     },
     quizzes: [
-      { q: "TCP ulanishini o'rnatishdagi 3 bosqichli jarayon qanday nomlanadi?", opts: ["3-Way Handshake (SYN, SYN-ACK, ACK)", "ARP Broadcast", "ICMP Ping"], ans: 0 }
-    ]
-  },
-  {
-    id: 24, moduleId: 6, duration: "28 daqiqa",
-    title: "24. Kiberxavfsizlik: SQL Injection Himoyasi, Kriptografiya va Zero-Trust",
-    subtitle: "Prepared Statements, Argon2id/Bcrypt xeshlash va OWASP Top 10 himoyasi",
-    lecture: `
-      <p><b>Parameterized Queries (Prepared Statements):</b> Ma'lumot va SQL kodi bir-biridan qat'iy ajratiladi (<code>SELECT * FROM users WHERE email = $1</code>). Parollar esa <b>Argon2id</b> yoki <b>bcrypt</b> + Salt bilan saqlanadi.</p>
-      ${codeBlock("SELECT id, ism, shahar FROM talabalar WHERE id = 1;")}
-    `,
-    visualHTML: `<div class="text-xs font-mono text-center p-2 rounded bg-rose-500/20 text-rose-300">Prepared Statements ($1) = Zero SQL Injection</div>`,
-    starterSQL: "SELECT id, ism, shahar FROM talabalar WHERE id = 1;",
-    task: {
-      title: "24-Laboratoriya: Parametrli xavfsiz qidiruv",
-      desc: "<code>talabalar</code> jadvalidan faqat <code>id = 1</code> bo'lgan foydalanuvchining <code>id, ism, shahar</code> ma'lumotlarini oling.",
-      hint: "SELECT id, ism, shahar FROM talabalar WHERE id = 1;",
-      validate: (rows, sql) => /where\s+id\s*=\s*1/i.test(sql) && rows.length === 1
-    },
-    quizzes: [
-      { q: "SQL Injection hujumidan himoyalanishning eng ishonchli va standart usuli qaysi?", opts: ["Parameterized Queries (Prepared Statements)", "HTML rangini o'zgartirish", "Parolni Base64 da saqlash"], ans: 0 }
-    ]
-  },
-  {
-    id: 25, moduleId: 6, duration: "30 daqiqa",
-    title: "25. Cloud System Design: Sharding, Replikatsiya, Redis Kesh va CAP Teoremasi",
-    subtitle: "Millionlab foydalanuvchilarga xizmat ko'rsatuvchi yirik tizimlar arxitekturasi",
-    lecture: `
-      <p><b>Primary-Replica Replication</b>, <b>Database Sharding</b>, <b>Redis In-Memory Cache</b> va <b>CAP Teoremasi</b> (Consistency, Availability, Partition Tolerance) — yirik taqsimlangan tizimlar poydevori.</p>
-      ${codeBlock("SELECT bolim, COUNT(*) AS Jami_Xodim, SUM(maosh) AS Byudjet
-FROM xodimlar GROUP BY bolim;")}
-    `,
-    visualHTML: `<div class="text-xs font-mono text-center p-2 rounded bg-indigo-500/20 text-indigo-300">Load Balancer → Redis Cache → Primary / Read Replicas</div>`,
-    starterSQL: "SELECT bolim, COUNT(*) AS Jami_Xodim, SUM(maosh) AS Byudjet FROM xodimlar GROUP BY bolim;",
-    task: {
-      title: "25-Laboratoriya: Bitiruv Loyihasi — Enterprise Bo'limlar Byudjeti",
-      desc: "<code>xodimlar</code> jadvalidan har bir <code>bolim</code> bo'yicha xodimlar soni (<code>COUNT(*)</code>) va umumiy maosh byudjetini (<code>SUM(maosh)</code>) hisoblang.",
-      hint: "SELECT bolim, COUNT(*) AS Jami_Xodim, SUM(maosh) AS Byudjet FROM xodimlar GROUP BY bolim;",
-      validate: (rows, sql) => /group\s+by\s+bolim/i.test(sql) && /sum\s*\(\s*maosh\s*\)/i.test(sql) && rows.length >= 2
-    },
-    quizzes: [
-      { q: "Katta ma'lumotlar bazasini gorizontal ravishda bir nechta mustaqil serverlarga bo'lish nima deb ataladi?", opts: ["Sharding", "Polling", "Defragmentation"], ans: 0 },
-      { q: "CAP teoremasidagi uchta harf nimani anglatadi?", opts: ["Consistency, Availability, Partition Tolerance", "Cache, API, Protocol", "CPU, ALU, Port"], ans: 0 }
-    ]
-  }
-];
-
-function codeBlock(code) {
-  const escaped = code.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  return `
-    <div class="rounded-xl bg-slate-950 border border-slate-800 overflow-hidden my-3">
-      <div class="px-3 py-1.5 bg-slate-900 border-b border-slate-800 flex items-center justify-between text-[11px] font-mono text-slate-400">
-        <span>SQL Kod Namunasi</span>
-        <div class="flex items-center gap-2">
-          <button onclick="copySnippet(this)" data-code="${encodeURIComponent(code)}" class="hover:text-white transition">📋 Nusxa</button>
-          <button onclick="sendSnippetToPraktikum(this)" data-code="${encodeURIComponent(code)}" class="text-indigo-400 hover:text-indigo-300 font-bold transition">▶ WASM IDE da sinash</button>
-        </div>
-      </div>
-      <pre class="p-3.5 text-xs sm:text-sm text-emerald-300 font-mono overflow-x-auto">${escaped}</pre>
-    </div>
-  `;
-}
-
-// ============================================================================
-// 3. REAL WEBASSEMBLY SQLITE ENGINE (sql.js) + EXPLAIN PLANNER
-// ============================================================================
-let wasmDB = null;
-let SQLModule = null;
-const SEED_SQL = `
-DROP TABLE IF EXISTS buyurtmalar;
-DROP TABLE IF EXISTS kurslar;
-DROP TABLE IF EXISTS talabalar;
-DROP TABLE IF EXISTS xodimlar;
-
-CREATE TABLE talabalar (
-  id INTEGER PRIMARY KEY,
-  ism TEXT NOT NULL,
-  yosh INTEGER CHECK(yosh >= 16),
-  shahar TEXT,
-  stipendiya INTEGER,
-  yonalish TEXT
-);
-
-CREATE TABLE kurslar (
-  id INTEGER PRIMARY KEY,
-  nomi TEXT NOT NULL,
-  narx INTEGER,
-  davomiylik_oy INTEGER,
-  kategoriya TEXT
-);
-
-CREATE TABLE buyurtmalar (
-  id INTEGER PRIMARY KEY,
-  talaba_id INTEGER REFERENCES talabalar(id),
-  kurs_id INTEGER REFERENCES kurslar(id),
-  summa INTEGER,
-  holat TEXT
-);
-
-CREATE TABLE xodimlar (
-  id INTEGER PRIMARY KEY,
-  ism TEXT NOT NULL,
-  bolim TEXT,
-  maosh INTEGER,
-  tajriba_yil INTEGER
-);
-
-INSERT INTO talabalar VALUES
-(1, 'Ali Valiyev', 21, 'Toshkent', 850000, 'Computer Engineering'),
-(2, 'Aziza Karimova', 20, 'Samarqand', 750000, 'Data Science'),
-(3, 'Bobur Rahimov', 22, 'Toshkent', 600000, 'Software Engineering'),
-(4, 'Dilnoza Sobirova', 19, 'Buxoro', 800000, 'Computer Engineering'),
-(5, 'Sardor Alimov', 23, 'Toshkent', 550000, 'Cloud & DevOps'),
-(6, 'Madina Usmonova', 20, 'Samarqand', 500000, 'AI Systems');
-
-INSERT INTO kurslar VALUES
-(101, 'SQL & Enterprise Databases', 1200000, 3, 'Database'),
-(102, 'Linux, OS & System Design', 1800000, 5, 'Systems'),
-(103, 'Data Science & AI Engineering', 2400000, 6, 'AI & Data'),
-(104, 'Networks & Cybersecurity', 1500000, 4, 'Security');
-
-INSERT INTO buyurtmalar VALUES
-(501, 1, 101, 1200000, 'To''langan'),
-(502, 1, 103, 2400000, 'To''langan'),
-(503, 2, 101, 1200000, 'To''langan'),
-(504, 3, 102, 1800000, 'Kutilmoqda'),
-(505, 4, 101, 1200000, 'To''langan'),
-(506, 5, 104, 1500000, 'To''langan');
-
-INSERT INTO xodimlar VALUES
-(1, 'Sardorbek Tursunov', 'System Architecture', 18000000, 6),
-(2, 'Nilufar Tursunova', 'Database Engineering', 14000000, 5),
-(3, 'Jamshid Bekmurodov', 'Cloud & Security', 13500000, 4),
-(4, 'Kamola Saidova', 'Database Engineering', 12500000, 3);
-`;
-
-async function initWasmSQLite() {
-  try {
-    SQLModule = await initSqlJs({
-      locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${file}`
-    });
-    wasmDB = new SQLModule.Database();
-    wasmDB.run(SEED_SQL);
-    document.getElementById("engineBadge").textContent = "⚡ SQLite 3.41 WASM Active";
-    runUserSQL();
-  } catch (e) {
-    document.getElementById("engineBadge").textContent = "⚠️ Offline Fallback Mode";
-  }
-}
-
-function resetDatabase() {
-  if (wasmDB) {
-    wasmDB.run(SEED_SQL);
-    inspectTable("talabalar");
-    showToast("SQLite WebAssembly bazasi asl holatiga qaytarildi!");
-  }
-}
-
-function querySingleValue(q) {
-  if (!wasmDB) return null;
-  const res = wasmDB.exec(q);
-  if (res.length && res[0].values.length) return res[0].values[0][0];
-  return null;
-}
-
-function inspectTable(tbl) {
-  document.getElementById("sqlEditor").value = `SELECT * FROM ${tbl};`;
-  runUserSQL();
-}
-
-function runUserSQL() {
-  const t0 = performance.now();
-  const raw = document.getElementById("sqlEditor").value.trim();
-  const statusEl = document.getElementById("sqlStatus").firstElementChild;
-  const outputEl = document.getElementById("sqlOutput");
-  const timeEl = document.getElementById("execTime");
-
-  if (!wasmDB) {
-    statusEl.innerHTML = `<span class="text-amber-400">SQLite WASM yuklanmoqda...</span>`;
-    return [];
-  }
-  if (!raw) {
-    statusEl.innerHTML = `<span class="text-amber-400">Iltimos, SQL so'rov kiriting.</span>`;
-    return [];
-  }
-
-  try {
-    const results = wasmDB.exec(raw);
-    let rows = [];
-    if (results.length > 0) {
-      const lastRes = results[results.length - 1];
-      const cols = lastRes.columns;
-      rows = lastRes.values.map(valArr => {
-        const obj = {};
-        cols.forEach((c, idx) => obj[c] = valArr[idx]);
-        return obj;
-      });
-      renderTableResult(rows, `${rows.length} ta qator qaytarildi (Real SQLite WASM).`);
-    } else {
-      const modified = wasmDB.getRowsModified();
-      renderTableResult([], `Buyruq muvaffaqiyatli bajarildi. O'zgargan qatorlar: ${modified}`);
-    }
-    timeEl.textContent = `${(performance.now() - t0).toFixed(2)} ms`;
-    return rows;
-  } catch (err) {
-    statusEl.innerHTML = `<span class="text-rose-400">❌ SQLite Xatosi: ${err.message}</span>`;
-    outputEl.innerHTML = `<div class="p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 font-mono text-xs">${err.message}</div>`;
-    return [];
-  }
-}
-
-function explainCurrentSQL() {
-  switchLessonTab("explain");
-  const raw = document.getElementById("sqlEditor").value.trim().replace(/;+$/, "");
-  const statements = raw.split(";").map(s => s.trim()).filter(Boolean);
-  const targetSQL = statements[statements.length - 1] || "SELECT * FROM talabalar";
-  document.getElementById("explainSqlPreview").textContent = `EXPLAIN QUERY PLAN ${targetSQL};`;
-  const container = document.getElementById("explainTreeContainer");
-  if (!wasmDB) return;
-
-  try {
-    const plan = wasmDB.exec(`EXPLAIN QUERY PLAN ${targetSQL};`);
-    if (!plan.length || !plan[0].values.length) {
-      container.innerHTML = `<div class="p-4 rounded-xl bg-slate-900 text-xs text-slate-400">Ushbu buyruq uchun bajarish rejasi mavjud emas.</div>`;
-      return;
-    }
-    container.innerHTML = plan[0].values.map((row, idx) => {
-      const detail = String(row[3] || row[row.length - 1]);
-      const isIndex = /USING.*INDEX/i.test(detail);
-      return `
-        <div class="p-4 rounded-xl border ${isIndex ? "bg-emerald-500/10 border-emerald-500/40" : "bg-amber-500/10 border-amber-500/40"} flex items-center justify-between gap-3">
-          <div class="space-y-1">
-            <div class="text-xs font-extrabold ${isIndex ? "text-emerald-400" : "text-amber-400"}">
-              Bosqich #${idx + 1}: ${isIndex ? "⚡ INDEX SEARCH — O(log N) Yuqori Tezlik" : "🔍 FULL TABLE SCAN — O(N) Ketma-ket Skanerlash"}
-            </div>
-            <div class="font-mono text-xs text-slate-200">${detail}</div>
-          </div>
-          <span class="px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold ${isIndex ? "bg-emerald-600 text-white" : "bg-amber-600 text-white"}">
-            ${isIndex ? "OPTIMAL" : "SCAN"}
-          </span>
-        </div>
-      `;
-    }).join("");
-  } catch (e) {
-    container.innerHTML = `<div class="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs font-mono">${e.message}</div>`;
-  }
-}
-
-function renderTableResult(rows, msg) {
-  document.getElementById("sqlStatus").firstElementChild.innerHTML = `<span class="text-emerald-400">✓ ${msg}</span>`;
-  const out = document.getElementById("sqlOutput");
-  if (!rows || rows.length === 0) {
-    out.innerHTML = `<div class="text-slate-500 italic text-center py-6">Natija bo'sh (0 ta qator).</div>`;
-    return;
-  }
-  const cols = Object.keys(rows[0]);
-  let html = `<table class="w-full text-left border-collapse font-mono text-xs"><thead><tr class="border-b border-slate-800 text-indigo-400">`;
-  cols.forEach(c => html += `<th class="py-2 px-2.5">${c}</th>`);
-  html += `</tr></thead><tbody class="divide-y divide-slate-800/70">`;
-  rows.forEach(r => {
-    html += `<tr class="hover:bg-slate-900/70">`;
-    cols.forEach(c => {
-      const v = r[c] === null || r[c] === undefined ? `<span class="text-rose-400 italic">NULL</span>` : r[c];
-      html += `<td class="py-1.5 px-2.5 text-slate-200">${v}</td>`;
-    });
-    html += `</tr>`;
-  });
-  html += `</tbody></table>`;
-  out.innerHTML = html;
-}
-
-// ============================================================================
-// 4. LMS CURRICULUM, LOCALSTORAGE & TIMED MODULE EXAM
-// ============================================================================
-let currentLessonIdx = 0;
-let completedLessons = new Set([1]);
-let userXP = 150;
-let streakDays = 1;
-let examTimerInt = null;
-let examAnswers = {};
-
-function loadSavedState() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return;
-    const data = JSON.parse(raw);
-    if (Array.isArray(data.completed)) completedLessons = new Set(data.completed);
-    if (typeof data.xp === "number") userXP = data.xp;
-    if (typeof data.streak === "number") streakDays = data.streak;
-    if (typeof data.studentName === "string") document.getElementById("certStudentName").value = data.studentName;
-  } catch (e) {}
-}
-
-function saveState() {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({
-      completed: Array.from(completedLessons),
-      xp: userXP,
-      streak: streakDays,
-      studentName: document.getElementById("certStudentName").value
-    }));
-  } catch (e) {}
-}
-
-function resetAllProgress() {
-  completedLessons = new Set([1]);
-  userXP = 150;
-  saveState();
-  updateProgressUI();
-  selectLesson(0);
-  showToast("Akademik progress noldan boshlandi!");
-}
-
-function jumpToLessonById(lessonId) {
-  const idx = LESSONS.findIndex(l => l.id === lessonId);
-  if (idx !== -1) {
-    switchTopSection("lms");
-    selectLesson(idx);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-}
-
-function renderCurriculum(filter = "") {
-  const container = document.getElementById("curriculumContainer");
-  container.innerHTML = "";
-  MODULES.forEach(mod => {
-    const modLessons = mod.lessonIds.map(id => LESSONS.find(l => l.id === id))
-      .filter(l => !filter || l.title.toLowerCase().includes(filter.toLowerCase()) || l.subtitle.toLowerCase().includes(filter.toLowerCase()));
-    if (modLessons.length === 0) return;
-    const doneInMod = modLessons.filter(l => completedLessons.has(l.id)).length;
-    const modBox = document.createElement("div");
-    modBox.className = "rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 overflow-hidden";
-    modBox.innerHTML = `
-      <div class="px-3.5 py-2.5 bg-slate-100/80 dark:bg-slate-800/70 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2">
-        <span class="text-[11px] font-extrabold text-slate-700 dark:text-slate-200 leading-snug">${mod.title}</span>
-        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-600/15 text-indigo-500 shrink-0">${doneInMod}/${modLessons.length}</span>
-      </div>
-      <div class="p-1.5 space-y-1" id="mod-list-${mod.id}"></div>
-    `;
-    container.appendChild(modBox);
-    const listEl = modBox.querySelector(`#mod-list-${mod.id}`);
-    modLessons.forEach(lesson => {
-      const idx = LESSONS.findIndex(x => x.id === lesson.id);
-      const isCurrent = idx === currentLessonIdx;
-      const isDone = completedLessons.has(lesson.id);
-      const btn = document.createElement("button");
-      btn.onclick = () => { selectLesson(idx); toggleMobileSidebar(false); };
-      btn.className = `w-full text-left px-3 py-2 rounded-xl text-xs transition flex items-center justify-between gap-2 ${
-        isCurrent
-          ? "bg-indigo-600 text-white font-bold shadow-sm"
-          : "hover:bg-slate-200/70 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300"
-      }`;
-      btn.innerHTML = `
-        <div class="min-w-0">
-          <div class="truncate">${lesson.title}</div>
-          <div class="text-[10px] ${isCurrent ? "text-indigo-200" : "text-slate-400"} mt-0.5">⏱ ${lesson.duration} • WASM Lab</div>
-        </div>
-        <span class="shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-extrabold ${
-          isDone
-            ? (isCurrent ? "bg-white text-indigo-600" : "bg-emerald-500/20 text-emerald-500")
-            : "bg-slate-200 dark:bg-slate-800 text-slate-400"
-        }">${isDone ? "✓" : lesson.id}</span>
-      `;
-      listEl.appendChild(btn);
-    });
-  });
-}
-
-function selectLesson(idx) {
-  currentLessonIdx = idx;
-  const lesson = LESSONS[idx];
-  const isDone = completedLessons.has(lesson.id);
-  document.getElementById("lessonModuleTag").textContent = `${lesson.moduleId}-MODUL`;
-  document.getElementById("lessonNumberTag").textContent = `${lesson.id}-dars / ${LESSONS.length}`;
-  document.getElementById("lessonDurationTag").textContent = `⏱ ${lesson.duration}`;
-  const statusPill = document.getElementById("lessonStatusPill");
-  if (isDone) {
-    statusPill.className = "px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-500/15 text-emerald-500";
-    statusPill.textContent = "✓ Tugallangan";
-  } else {
-    statusPill.className = "px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-500/15 text-amber-500";
-    statusPill.textContent = "⏳ O'rganilmoqda";
-  }
-  document.getElementById("lessonTitle").textContent = lesson.title;
-  document.getElementById("lessonSubtitle").textContent = lesson.subtitle;
-  document.getElementById("lectureContentBox").innerHTML = lesson.lecture;
-  document.getElementById("lectureVisualCard").innerHTML = lesson.visualHTML;
-  document.getElementById("taskTitle").textContent = lesson.task.title;
-  document.getElementById("taskDescription").innerHTML = lesson.task.desc;
-  document.getElementById("taskHintBox").textContent = lesson.task.hint;
-  document.getElementById("taskHintBox").classList.add("hidden");
-  document.getElementById("graderResultBox").classList.add("hidden");
-  document.getElementById("sqlEditor").value = lesson.starterSQL;
-  if (wasmDB) runUserSQL();
-  buildModuleExam(lesson.moduleId);
-  document.getElementById("btnPrevLesson").disabled = idx === 0;
-  document.getElementById("btnNextLesson").disabled = idx === LESSONS.length - 1;
-  switchLessonTab("lecture");
-  renderCurriculum(document.getElementById("topicSearch").value);
-}
-
-function buildModuleExam(moduleId) {
-  const mod = MODULES.find(m => m.id === moduleId);
-  document.getElementById("examModuleBadge").textContent = `${moduleId}-MODUL YAKUNIY IMTIHONI`;
-  document.getElementById("examTitle").textContent = mod.title;
-  document.getElementById("examFinalScoreBox").textContent = "";
-  examAnswers = {};
-  const questions = [];
-  mod.lessonIds.forEach(lid => {
-    const l = LESSONS.find(x => x.id === lid);
-    if (l && l.quizzes) l.quizzes.forEach(q => questions.push(q));
-  });
-  const quizBox = document.getElementById("multiQuizContainer");
-  quizBox.innerHTML = "";
-  questions.forEach((qz, qIdx) => {
-    const item = document.createElement("div");
-    item.className = "p-4 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-3";
-    item.innerHTML = `<div class="font-bold text-sm">${qIdx + 1}. ${qz.q}</div><div class="grid grid-cols-1 sm:grid-cols-3 gap-2" id="qopts-${qIdx}"></div>`;
-    quizBox.appendChild(item);
-    const optsEl = item.querySelector(`#qopts-${qIdx}`);
-    qz.opts.forEach((optText, oIdx) => {
-      const ob = document.createElement("button");
-      ob.className = "exam-opt-btn text-left p-3 rounded-xl bg-white dark:bg-slate-900 hover:bg-indigo-600/20 border border-slate-200 dark:border-slate-700 text-xs font-semibold transition";
-      ob.textContent = optText;
-      ob.onclick = () => {
-        optsEl.querySelectorAll(".exam-opt-btn").forEach(b => b.classList.remove("bg-indigo-600", "text-white", "border-indigo-400"));
-        ob.classList.add("bg-indigo-600", "text-white", "border-indigo-400");
-        examAnswers[qIdx] = { chosen: oIdx, correct: qz.ans };
-      };
-      optsEl.appendChild(ob);
-    });
-  });
-  quizBox.dataset.total = questions.length;
-}
-
-function submitModuleExam() {
-  clearInterval(examTimerInt);
-  const total = Number(document.getElementById("multiQuizContainer").dataset.total || 1);
-  let correctCount = 0;
-  Object.values(examAnswers).forEach(a => { if (a.chosen === a.correct) correctCount++; });
-  const pct = Math.round((correctCount / total) * 100);
-  const resBox = document.getElementById("examFinalScoreBox");
-  if (pct >= 70) {
-    resBox.className = "text-sm font-extrabold text-emerald-500";
-    resBox.textContent = `🎉 Tabriklaymiz! Natija: ${correctCount}/${total} (${pct}%) — Imtihondan o'tdingiz! (+60 XP)`;
-    addXP(60);
-  } else {
-    resBox.className = "text-sm font-extrabold text-rose-500";
-    resBox.textContent = `⚠️ Natija: ${correctCount}/${total} (${pct}%). O'tish bali kamida 70%. Ma'ruzalarni qayta ko'rib chiqing!`;
-  }
-}
-
-function switchLessonTab(tab) {
-  ["lecture", "praktikum", "explain", "test"].forEach(t => {
-    document.getElementById(`subview-${t}`).classList.toggle("hidden", t !== tab);
-    const btn = document.getElementById(`ltab-${t}`);
-    if (t === tab) {
-      btn.className = "px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-1.5 bg-indigo-600 text-white shadow";
-    } else {
-      btn.className = "px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-indigo-600/15";
-    }
-  });
-  if (tab === "test") {
-    clearInterval(examTimerInt);
-    let sec = 120;
-    document.getElementById("examTimer").textContent = sec;
-    examTimerInt = setInterval(() => {
-      sec--;
-      document.getElementById("examTimer").textContent = sec;
-      if (sec <= 0) { clearInterval(examTimerInt); submitModuleExam(); }
-    }, 1000);
-  }
-}
-
-function toggleTaskHint() { document.getElementById("taskHintBox").classList.toggle("hidden"); }
-
-function verifyPraktikumTask() {
-  const rows = runUserSQL();
-  const sql = document.getElementById("sqlEditor").value.trim();
-  const lesson = LESSONS[currentLessonIdx];
-  const box = document.getElementById("graderResultBox");
-  box.classList.remove("hidden");
-  if (lesson.task.validate(rows, sql)) {
-    box.className = "p-4 rounded-xl bg-emerald-500/15 border border-emerald-500 text-emerald-400 text-xs sm:text-sm font-bold space-y-2";
-    box.innerHTML = `<div>🎉 Ajoyib! Real SQLite WASM laboratoriyasi 100% muvaffaqiyatli tekshirildi! (+50 XP)</div>
-      <button onclick="nextLesson()" class="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-extrabold">Keyingi darsga o'tish →</button>`;
-    if (!completedLessons.has(lesson.id)) {
-      completedLessons.add(lesson.id);
-      addXP(50);
-      updateProgressUI();
-      renderCurriculum();
-      document.getElementById("lessonStatusPill").className = "px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-500/15 text-emerald-500";
-      document.getElementById("lessonStatusPill").textContent = "✓ Tugallangan";
-    }
-  } else {
-    box.className = "p-4 rounded-xl bg-rose-500/15 border border-rose-500 text-rose-400 text-xs sm:text-sm font-semibold";
-    box.textContent = "❌ Vazifa shartlari to'liq bajarilmadi. Topshiriq talabini va maslahatni tekshirib qayta urinib ko'ring!";
-  }
-}
-
-function copySnippet(btn) {
-  const code = decodeURIComponent(btn.dataset.code);
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(code).then(() => showToast("SQL kod nusxalandi!"));
-  } else {
-    const ta = document.createElement("textarea");
-    ta.value = code;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand("copy");
-    document.body.removeChild(ta);
-    showToast("SQL kod nusxalandi!");
-  }
-}
-
-function sendSnippetToPraktikum(btn) {
-  const code = decodeURIComponent(btn.dataset.code);
-  switchLessonTab("praktikum");
-  document.getElementById("sqlEditor").value = code;
-  runUserSQL();
-}
-
-function prevLesson() { if (currentLessonIdx > 0) selectLesson(currentLessonIdx - 1); }
-function nextLesson() { if (currentLessonIdx < LESSONS.length - 1) selectLesson(currentLessonIdx + 1); }
-
-function addXP(pts) {
-  userXP += pts;
-  document.getElementById("xpCounter").textContent = `${userXP} XP`;
-  document.getElementById("certXPStat").textContent = `${userXP} XP`;
-  saveState();
-}
-
-function updateProgressUI() {
-  const cnt = completedLessons.size;
-  const pct = Math.round((cnt / LESSONS.length) * 100);
-  document.getElementById("topProgressBar").style.width = `${pct}%`;
-  document.getElementById("topProgressText").textContent = `${pct}%`;
-  document.getElementById("sidebarProgressBar").style.width = `${pct}%`;
-  document.getElementById("sidebarDoneBadge").textContent = `${cnt} / ${LESSONS.length}`;
-  document.getElementById("certLessonsStat").textContent = `${cnt} / ${LESSONS.length}`;
-  document.getElementById("xpCounter").textContent = `${userXP} XP`;
-  document.getElementById("certXPStat").textContent = `${userXP} XP`;
-  document.getElementById("streakCounter").textContent = `${streakDays}`;
-  saveState();
-}
-
-// ============================================================================
-// 5. CS INTERACTIVE SIMULATORS (B-TREE, NETWORK FLOW, SQL INJECTION LAB)
-// ============================================================================
-function runBTreeSim() {
-  const target = Number(document.getElementById("btreeTarget").value);
-  const root = document.getElementById("btreeRoot");
-  const left = document.getElementById("btreeLeft");
-  const mid = document.getElementById("btreeMid");
-  const right = document.getElementById("btreeRight");
-  const log = document.getElementById("btreeLog");
-  [root, left, mid, right].forEach(el => el.classList.remove("border-emerald-400", "bg-emerald-600/30", "text-emerald-300"));
-  root.classList.add("border-emerald-400", "bg-emerald-600/30", "text-emerald-300");
-  log.textContent = `1-qadam: Root tuguni [30 | 60] tekshirilmoqda...`;
-  setTimeout(() => {
-    if (target < 30) {
-      left.classList.add("border-emerald-400", "bg-emerald-600/30", "text-emerald-300");
-      log.textContent = `2-qadam: ${target} < 30 → Chap barg [10, 20] dan TOPILDI! (Atigi 2 ta qadam, O(log N))`;
-    } else if (target < 60) {
-      mid.classList.add("border-emerald-400", "bg-emerald-600/30", "text-emerald-300");
-      log.textContent = `2-qadam: 30 <= ${target} < 60 → O'rta barg [40, 50] dan TOPILDI! (Atigi 2 ta qadam, O(log N))`;
-    } else {
-      right.classList.add("border-emerald-400", "bg-emerald-600/30", "text-emerald-300");
-      log.textContent = `2-qadam: ${target} >= 60 → O'ng barg [70, 85] dan TOPILDI! (Atigi 2 ta qadam, O(log N))`;
-    }
-    addXP(10);
-  }, 500);
-}
-
-function runNetworkSim() {
-  const steps = [1, 2, 3, 4];
-  steps.forEach(s => {
-    const el = document.getElementById(`net-step-${s}`);
-    el.className = "p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 transition";
-  });
-  steps.forEach((s, i) => {
-    setTimeout(() => {
-      const el = document.getElementById(`net-step-${s}`);
-      el.className = "p-2 rounded-lg bg-cyan-600/25 border border-cyan-400 text-cyan-200 font-bold transition";
-      if (s === 4) addXP(10);
-    }, i * 420);
-  });
-}
-
-function updateSQLiLab() {
-  const payload = document.getElementById("sqliPayloadInput").value;
-  document.getElementById("sqliVulnOut").textContent = `SELECT * FROM users WHERE email = '${payload}';  --> ⚠️ BARCHA FOYDALANUVCHILAR OCHILDI!`;
-  document.getElementById("sqliSafeOut").textContent = `SELECT * FROM users WHERE email = $1;  --> 🛡️ $1 oddiy matn sifatida qabul qilindi: "${payload}"`;
-  addXP(10);
-}
-
-// ============================================================================
-// 6. THREE.JS 3D ER-DIAGRAMMA, JOIN SIMULATOR & LIVE SYNCHRONIZED TABLES
-// ============================================================================
-let scene, camera, renderer, rootGroup;
-let autoRotate3D = true, isDragging3D = false, prevMouse = { x: 0, y: 0 };
-let threeReady = false;
-let current3DMode = "er";
-
-const DATA_3D_TALABALAR = [
-  { id: 1, ism: "Ali Valiyev", shahar: "Toshkent", stipendiya: 850000 },
-  { id: 2, ism: "Aziza Karimova", shahar: "Samarqand", stipendiya: 750000 },
-  { id: 3, ism: "Bobur Rahimov", shahar: "Toshkent", stipendiya: 600000 },
-  { id: 4, ism: "Dilnoza Sobirova", shahar: "Buxoro", stipendiya: 800000 },
-  { id: 5, ism: "Sardor Alimov", shahar: "Toshkent", stipendiya: 550000 },
-  { id: 6, ism: "Madina Usmonova", shahar: "Samarqand", stipendiya: 500000 }
-];
-
-const DATA_3D_KURSLAR = [
-  { id: 101, nomi: "SQL & Databases", narx: 1200000 },
-  { id: 102, nomi: "Linux & System Design", narx: 1800000 },
-  { id: 103, nomi: "Data Science & AI", narx: 2400000 },
-  { id: 104, nomi: "Cybersecurity", narx: 1500000 }
-];
-
-const DATA_3D_BUYURTMALAR = [
-  { id: 501, talaba_id: 1, kurs_id: 101, summa: 1200000 },
-  { id: 502, talaba_id: 1, kurs_id: 103, summa: 2400000 },
-  { id: 503, talaba_id: 2, kurs_id: 101, summa: 1200000 },
-  { id: 504, talaba_id: 3, kurs_id: 102, summa: 1800000 },
-  { id: 505, talaba_id: 4, kurs_id: 101, summa: 1200000 },
-  { id: 506, talaba_id: 5, kurs_id: 104, summa: 1500000 }
-];
-
-function renderMiniTable(rows, highlightNull = false) {
-  if (!rows || !rows.length) return `<div class="text-slate-400 italic p-2">Ma'lumot yo'q</div>`;
-  const cols = Object.keys(rows[0]);
-  let html = `<table class="w-full text-left border-collapse font-mono text-[11px]"><thead><tr class="border-b border-slate-300 dark:border-slate-800 text-slate-500 dark:text-slate-400">`;
-  cols.forEach(c => html += `<th class="py-1.5 px-2">${c}</th>`);
-  html += `</tr></thead><tbody class="divide-y divide-slate-200 dark:divide-slate-800/70">`;
-  rows.forEach(r => {
-    const hasNull = Object.values(r).some(v => v === null);
-    html += `<tr class="${highlightNull && hasNull ? "bg-rose-500/10" : "hover:bg-slate-200/40 dark:hover:bg-slate-900/60"}">`;
-    cols.forEach(c => {
-      const val = r[c] === null ? `<span class="text-rose-400 font-bold italic">NULL</span>` : r[c];
-      html += `<td class="py-1.5 px-2 text-slate-700 dark:text-slate-200">${val}</td>`;
-    });
-    html += `</tr>`;
-  });
-  html += `</tbody></table>`;
-  return html;
-}
-
-function update3DTables(mode) {
-  document.getElementById("table3DLeft").innerHTML = renderMiniTable(DATA_3D_TALABALAR);
-
-  let rightTitle = "2. kurslar (PK: id)";
-  let rightRows = DATA_3D_KURSLAR;
-  let resultTitle = "3. JOIN Natijasi";
-  let resultRows = [];
-
-  if (mode === "er" || mode === "inner") {
-    rightTitle = "2. buyurtmalar (FK: talaba_id)";
-    rightRows = DATA_3D_BUYURTMALAR;
-    resultTitle = mode === "er" ? "3. ER Bog'langan Yozuvlar" : "3. INNER JOIN Natijasi";
-    resultRows = DATA_3D_BUYURTMALAR.map(b => {
-      const t = DATA_3D_TALABALAR.find(x => x.id === b.talaba_id);
-      const k = DATA_3D_KURSLAR.find(x => x.id === b.kurs_id);
-      return { talaba: t ? t.ism : null, kurs: k ? k.nomi : null, summa: b.summa };
-    });
-  } else if (mode === "left") {
-    rightTitle = "2. buyurtmalar (FK: talaba_id)";
-    rightRows = DATA_3D_BUYURTMALAR;
-    resultTitle = "3. LEFT JOIN (Madina = NULL)";
-    DATA_3D_TALABALAR.forEach(t => {
-      const orders = DATA_3D_BUYURTMALAR.filter(b => b.talaba_id === t.id);
-      if (orders.length) {
-        orders.forEach(o => resultRows.push({ id: t.id, ism: t.ism, summa: o.summa }));
-      } else {
-        resultRows.push({ id: t.id, ism: t.ism, summa: null });
-      }
-    });
-  } else if (mode === "right") {
-    rightTitle = "2. kurslar (PK: id)";
-    rightRows = DATA_3D_KURSLAR;
-    resultTitle = "3. RIGHT JOIN (Kurslar kesimida)";
-    DATA_3D_KURSLAR.forEach(k => {
-      const orders = DATA_3D_BUYURTMALAR.filter(b => b.kurs_id === k.id);
-      if (orders.length) {
-        orders.forEach(o => {
-          const t = DATA_3D_TALABALAR.find(x => x.id === o.talaba_id);
-          resultRows.push({ kurs: k.nomi, talaba: t ? t.ism : null });
-        });
-      } else {
-        resultRows.push({ kurs: k.nomi, talaba: null });
-      }
-    });
-  } else if (mode === "full") {
-    rightTitle = "2. buyurtmalar (FK: talaba_id)";
-    rightRows = DATA_3D_BUYURTMALAR;
-    resultTitle = "3. FULL OUTER JOIN Natijasi";
-    DATA_3D_TALABALAR.forEach(t => {
-      const orders = DATA_3D_BUYURTMALAR.filter(b => b.talaba_id === t.id);
-      if (orders.length) {
-        orders.forEach(o => resultRows.push({ ism: t.ism, buyurtma_id: o.id, summa: o.summa }));
-      } else {
-        resultRows.push({ ism: t.ism, buyurtma_id: null, summa: null });
-      }
-    });
-  } else if (mode === "groupby") {
-    rightTitle = "2. Shahar Kesimida Guruhlash";
-    rightRows = [
-      { ustun: "shahar", funksiya: "GROUP BY" },
-      { ustun: "COUNT(*)", funksiya: "Talabalar soni" },
-      { ustun: "SUM(stipendiya)", funksiya: "Umumiy fond" }
-    ];
-    resultTitle = "3. GROUP BY shahar Natijasi";
-    resultRows = [
-      { shahar: "Toshkent", talabalar_soni: 3, jami_stipendiya: 2000000 },
-      { shahar: "Samarqand", talabalar_soni: 2, jami_stipendiya: 1250000 },
-      { shahar: "Buxoro", talabalar_soni: 1, jami_stipendiya: 800000 }
-    ];
-  }
-
-  document.getElementById("table3DRightTitle").textContent = rightTitle;
-  document.getElementById("table3DRight").innerHTML = renderMiniTable(rightRows);
-  document.getElementById("table3DResultTitle").textContent = resultTitle;
-  document.getElementById("table3DResultCount").textContent = `${resultRows.length} qator`;
-  document.getElementById("table3DResult").innerHTML = renderMiniTable(resultRows, true);
-}
-
-function run3DSQLInIDE() {
-  const sql = document.getElementById("panel3DSQL").textContent;
-  switchTopSection("lms");
-  switchLessonTab("praktikum");
-  document.getElementById("sqlEditor").value = sql;
-  runUserSQL();
-}
-
-function init3DEngine() {
-  if (threeReady) return;
-  const container = document.getElementById("threeCanvasContainer");
-  if (!container || container.clientWidth === 0) return;
-
-  scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x030712);
-  scene.fog = new THREE.FogExp2(0x030712, 0.032);
-
-  camera = new THREE.PerspectiveCamera(48, container.clientWidth / container.clientHeight, 0.1, 1000);
-  camera.position.set(0, 4.2, 13.5);
-  camera.lookAt(0, 0, 0);
-
-  renderer = new THREE.WebGLRenderer({ antialias: true });
-  renderer.setSize(container.clientWidth, container.clientHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  container.appendChild(renderer.domElement);
-
-  scene.add(new THREE.AmbientLight(0xffffff, 0.65));
-  const dLight = new THREE.DirectionalLight(0x6366f1, 1.3);
-  dLight.position.set(8, 12, 10);
-  scene.add(dLight);
-  const pLight = new THREE.PointLight(0x10b981, 1.2, 30);
-  pLight.position.set(-7, 5, 6);
-  scene.add(pLight);
-
-  const grid = new THREE.GridHelper(24, 24, 0x1e293b, 0x0f172a);
-  grid.position.y = -3.3;
-  scene.add(grid);
-
-  rootGroup = new THREE.Group();
-  scene.add(rootGroup);
-
-  const dom = renderer.domElement;
-  dom.addEventListener("mousedown", e => { isDragging3D = true; prevMouse = { x: e.clientX, y: e.clientY }; });
-  window.addEventListener("mouseup", () => { isDragging3D = false; });
-  window.addEventListener("mousemove", e => {
-    if (!isDragging3D) return;
-    rootGroup.rotation.y += (e.clientX - prevMouse.x) * 0.008;
-    rootGroup.rotation.x = Math.max(-0.55, Math.min(0.55, rootGroup.rotation.x + (e.clientY - prevMouse.y) * 0.006));
-    prevMouse = { x: e.clientX, y: e.clientY };
-  });
-  dom.addEventListener("touchstart", e => {
-    if (e.touches.length === 1) { isDragging3D = true; prevMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY }; }
-  }, { passive: true });
-  dom.addEventListener("touchend", () => { isDragging3D = false; });
-  dom.addEventListener("touchmove", e => {
-    if (!isDragging3D || e.touches.length !== 1) return;
-    rootGroup.rotation.y += (e.touches[0].clientX - prevMouse.x) * 0.01;
-    rootGroup.rotation.x = Math.max(-0.55, Math.min(0.55, rootGroup.rotation.x + (e.touches[0].clientY - prevMouse.y) * 0.008));
-    prevMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-  }, { passive: true });
-  dom.addEventListener("wheel", e => {
-    e.preventDefault();
-    camera.position.z = Math.max(6, Math.min(22, camera.position.z + e.deltaY * 0.01));
-  }, { passive: false });
-
-  window.addEventListener("resize", () => {
-    if (!renderer || !container.clientWidth) return;
-    camera.aspect = container.clientWidth / container.clientHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(container.clientWidth, container.clientHeight);
-  });
-
-  threeReady = true;
-  set3DMode(current3DMode);
-  animate3D();
-}
-
-function makeSprite(text, color = "#38bdf8") {
-  const c = document.createElement("canvas");
-  c.width = 280; c.height = 64;
-  const ctx = c.getContext("2d");
-  ctx.fillStyle = "rgba(15, 23, 42, 0.9)";
-  ctx.fillRect(0, 0, 280, 64);
-  ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.strokeRect(2, 2, 276, 60);
-  ctx.fillStyle = color; ctx.font = "bold 21px Inter, sans-serif";
-  ctx.textAlign = "center"; ctx.textBaseline = "middle";
-  ctx.fillText(text, 140, 32);
-  const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(c) }));
-  sp.scale.set(3.0, 0.7, 1);
-  return sp;
-}
-
-function build3DScene(mode) {
-  if (!rootGroup) return;
-  while (rootGroup.children.length) rootGroup.remove(rootGroup.children[0]);
-
-  if (mode === "groupby") {
-    const groups = [
-      { name: "Toshkent (3)", h: 3.8, col: 0x10b981 },
-      { name: "Samarqand (2)", h: 2.5, col: 0x6366f1 },
-      { name: "Buxoro (1)", h: 1.4, col: 0xf59e0b }
-    ];
-    groups.forEach((g, i) => {
-      const mesh = new THREE.Mesh(
-        new THREE.BoxGeometry(1.9, g.h, 1.9),
-        new THREE.MeshStandardMaterial({ color: g.col, roughness: 0.25 })
-      );
-      mesh.position.set((i - 1) * 3.3, -3.3 + g.h / 2, 0);
-      rootGroup.add(mesh);
-      const lbl = makeSprite(g.name, "#38bdf8");
-      lbl.position.set((i - 1) * 3.3, -3.3 + g.h + 0.8, 0);
-      rootGroup.add(lbl);
-    });
-    return;
-  }
-
-  const leftPos = [], rightPos = [];
-  const lTitle = makeSprite("talabalar (PK: id)", "#818cf8");
-  lTitle.position.set(-4.3, 3.2, 0);
-  rootGroup.add(lTitle);
-
-  for (let i = 0; i < 6; i++) {
-    const hasMatch = i < 5;
-    let isMatched = false, isIncluded = false;
-    if (mode === "er") { isMatched = true; isIncluded = true; }
-    else if (mode === "inner") { isMatched = hasMatch; isIncluded = hasMatch; }
-    else if (mode === "left") { isMatched = hasMatch; isIncluded = true; }
-    else if (mode === "right") { isMatched = hasMatch; isIncluded = hasMatch; }
-    else if (mode === "full") { isMatched = hasMatch; isIncluded = true; }
-
-    const color = isMatched ? 0x10b981 : (isIncluded ? 0xf43f5e : 0x1e293b);
-    const mesh = new THREE.Mesh(
-      new THREE.BoxGeometry(2.3, 0.65, 1.2),
-      new THREE.MeshStandardMaterial({ color, transparent: true, opacity: isIncluded ? 0.95 : 0.25 })
-    );
-    mesh.position.set(-4.3, 2.0 - i * 0.95, 0);
-    rootGroup.add(mesh);
-    leftPos.push(mesh.position);
-  }
-
-  const rTitle = makeSprite("kurslar (PK: id)", "#34d399");
-  rTitle.position.set(4.3, 3.2, 0);
-  rootGroup.add(rTitle);
-
-  for (let j = 0; j < 4; j++) {
-    const hasMatch = true;
-    let isMatched = hasMatch, isIncluded = true;
-    const color = isMatched ? 0x10b981 : 0xf43f5e;
-    const mesh = new THREE.Mesh(
-      new THREE.BoxGeometry(2.3, 0.75, 1.2),
-      new THREE.MeshStandardMaterial({ color, transparent: true, opacity: isIncluded ? 0.95 : 0.25 })
-    );
-    mesh.position.set(4.3, 1.7 - j * 1.15, 0);
-    rootGroup.add(mesh);
-    rightPos.push(mesh.position);
-  }
-
-  [[0,0], [0,2], [1,0], [2,1], [3,0], [4,3]].forEach(([l, r]) => {
-    const curve = new THREE.QuadraticBezierCurve3(
-      leftPos[l],
-      new THREE.Vector3(0, (leftPos[l].y + rightPos[r].y) / 2 + 0.6, 1.8),
-      rightPos[r]
-    );
-    const line = new THREE.Line(
-      new THREE.BufferGeometry().setFromPoints(curve.getPoints(24)),
-      new THREE.LineBasicMaterial({ color: 0x38bdf8 })
-    );
-    rootGroup.add(line);
-  });
-}
-
-function animate3D() {
-  requestAnimationFrame(animate3D);
-  if (autoRotate3D && rootGroup && !isDragging3D) rootGroup.rotation.y += 0.004;
-  if (renderer && scene && camera) renderer.render(scene, camera);
-}
-
-function toggle3DRotation() {
-  autoRotate3D = !autoRotate3D;
-  document.getElementById("btnAutoRotate").textContent = autoRotate3D ? "⏸ Avto-aylanish" : "▶ Aylantirish";
-}
-
-function set3DMode(mode) {
-  current3DMode = mode;
-  ["er", "inner", "left", "right", "full", "groupby"].forEach(m => {
-    const b = document.getElementById(`btn3d-${m}`);
-    if (b) b.className = m === mode ? "px-3 py-2 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow" : "px-3 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800";
-  });
-  const map = {
-    er: { hud: "3D ER-Diagramma: talabalar ↔ buyurtmalar ↔ kurslar", h: "3D ER-Diagramma (PK ↔ FK)", d: "Barcha jadvallar va ularni bog'lovchi neon chiziqlar.", s: "SELECT t.ism, k.nomi, b.summa
-FROM talabalar t
-JOIN buyurtmalar b ON t.id = b.talaba_id
-JOIN kurslar k ON k.id = b.kurs_id;", m: "6 ta bog'lanish", n: "0 ta NULL" },
-    inner: { hud: "3D INNER JOIN: Faqat mos kelgan yashil qatorlar", h: "INNER JOIN (A ∩ B)", d: "Ikkala jadvalda ham bog'lanishga ega yashil kublar tanlanadi.", s: "SELECT t.ism, b.summa, b.holat
-FROM talabalar t
-INNER JOIN buyurtmalar b ON t.id = b.talaba_id;", m: "6 ta yashil", n: "0 ta NULL" },
-    left: { hud: "3D LEFT JOIN: Chap jadval to'liq (qizil kub = NULL)", h: "LEFT JOIN", d: "6-talaba (Madina Usmonova) buyurtma qilmaganligi sababli qizil (NULL) rangda yonadi.", s: "SELECT t.ism, b.summa
-FROM talabalar t
-LEFT JOIN buyurtmalar b ON t.id = b.talaba_id;", m: "5 ta talaba", n: "1 ta qizil (NULL)" },
-    right: { hud: "3D RIGHT JOIN: O'ng jadval to'liq", h: "RIGHT JOIN", d: "O'ng tomondagi kurslar jadvali to'liq olinadi va bog'langan talabalar ko'rsatiladi.", s: "SELECT k.nomi, t.ism
-FROM buyurtmalar b
-RIGHT JOIN kurslar k ON k.id = b.kurs_id
-LEFT JOIN talabalar t ON t.id = b.talaba_id;", m: "4 ta kurs", n: "0 ta NULL" },
-    full: { hud: "3D FULL OUTER JOIN: Ikkala jadval birlashmasi", h: "FULL OUTER JOIN", d: "Barcha mos kelgan (yashil) va mos kelmagan (qizil NULL) qatorlar birlashadi.", s: "SELECT t.ism, b.id AS buyurtma_id, b.summa
-FROM talabalar t
-FULL OUTER JOIN buyurtmalar b ON t.id = b.talaba_id;", m: "6 ta yashil", n: "1 ta qizil (NULL)" },
-    groupby: { hud: "3D GROUP BY: Shaharlar bo'yicha aggregatsiya ustunlari", h: "3D Aggregatsiya (GROUP BY)", d: "Har bir shahar guruhi 3D ustun balandligi ko'rinishida tasvirlangan.", s: "SELECT shahar, COUNT(*) AS Soni, SUM(stipendiya) AS Fond
-FROM talabalar
-GROUP BY shahar;", m: "3 ta guruh", n: "Aggregat tahlil" }
-  }[mode];
-  document.getElementById("hud3DTitle").textContent = map.hud;
-  document.getElementById("panel3DHeading").textContent = map.h;
-  document.getElementById("panel3DDesc").textContent = map.d;
-  document.getElementById("panel3DSQL").textContent = map.s;
-  document.getElementById("stat3DMatched").textContent = map.m;
-  document.getElementById("stat3DNull").textContent = map.n;
-  build3DScene(mode);
-  update3DTables(mode);
-}
-
-// ============================================================================
-// 7. KIBER ARENA O'YINLARI
-// ============================================================================
-const DET_CASES = [
-  { title: "Kechasi O'tkazilgan Shubhali To'lov", story: "Buyurtmalar jadvalidan summasi 2,000,000 dan katta va holati 'To'langan' bo'lgan yozuvni toping.", opts: ["SELECT * FROM buyurtmalar WHERE summa > 2000000 AND holat = 'To''langan';", "SELECT * FROM buyurtmalar WHERE summa < 2000000;", "DELETE FROM buyurtmalar WHERE summa > 2000000;"], ans: 0 },
-  { title: "Buyurtma Qilmagan Talabani Topish", story: "Talabalar jadvalida bor, lekin buyurtmalar jadvalida umuman uchramagan talabani toping.", opts: ["SELECT t.ism FROM talabalar t LEFT JOIN buyurtmalar b ON t.id = b.talaba_id WHERE b.id IS NULL;", "SELECT ism FROM talabalar WHERE id = NULL;", "SELECT * FROM kurslar LIMIT 1;"], ans: 0 },
-  { title: "Eng Yuqori Byudjetli Bo'lim", story: "O'rtacha maoshi 13,500,000 dan katta bo'lgan bo'limni GROUP BY va HAVING bilan toping.", opts: ["SELECT bolim, AVG(maosh) FROM xodimlar GROUP BY bolim HAVING AVG(maosh) > 13500000;", "SELECT bolim FROM xodimlar WHERE AVG(maosh) > 13500000;", "SELECT MAX(maosh) FROM xodimlar;"], ans: 0 },
-  { title: "Samarqandlik Talabalar Ro'yxati", story: "Shahar nomi 'Samarqand' bo'lgan talabalarni stipendiya kamayish tartibida chiqaring.", opts: ["SELECT * FROM talabalar WHERE shahar = 'Samarqand' ORDER BY stipendiya DESC;", "SELECT * FROM talabalar ORDER BY shahar;", "SELECT shahar FROM talabalar LIMIT 1;"], ans: 0 }
-];
-let detIdx = 0;
-function loadDetective(idx) {
-  detIdx = idx % DET_CASES.length;
-  const c = DET_CASES[detIdx];
-  document.getElementById("detCaseNum").textContent = detIdx + 1;
-  document.getElementById("detCaseTitle").textContent = c.title;
-  document.getElementById("detCaseStory").textContent = c.story;
-  document.getElementById("detCaseResult").classList.add("hidden");
-  const box = document.getElementById("detCaseOptions");
-  box.innerHTML = "";
-  c.opts.forEach((o, i) => {
-    const b = document.createElement("button");
-    b.className = "w-full text-left p-3.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-indigo-600 hover:text-white font-mono text-xs transition border border-slate-200 dark:border-slate-700";
-    b.textContent = o;
-    b.onclick = () => {
-      const res = document.getElementById("detCaseResult");
-      res.classList.remove("hidden");
-      if (i === c.ans) {
-        res.className = "p-4 rounded-xl bg-emerald-500/20 border border-emerald-500 text-emerald-400 text-sm font-bold flex items-center justify-between";
-        res.innerHTML = `<span>🕵️‍♂️ Dalil topildi! Ish yopildi (+100 XP)</span><button onclick="loadDetective(${detIdx + 1})" class="px-3 py-1 rounded-lg bg-emerald-600 text-white text-xs">Keyingi ish →</button>`;
-        addXP(100);
-      } else {
-        res.className = "p-4 rounded-xl bg-rose-500/20 border border-rose-500 text-rose-400 text-sm font-bold";
-        res.textContent = "❌ Noto'g'ri so'rov. Qayta urinib ko'ring!";
-      }
-    };
-    box.appendChild(b);
-  });
-}
-
-const SPD_ROUNDS = [
-  { prompt: "Toshkentlik talabalarni ism bo'yicha tartiblang:", tokens: ["SELECT", "*", "FROM", "talabalar", "WHERE", "shahar = 'Toshkent'", "ORDER BY", "ism"] },
-  { prompt: "Har bir shahardagi talabalar sonini chiqaring:", tokens: ["SELECT", "shahar,", "COUNT(*)", "FROM", "talabalar", "GROUP BY", "shahar"] },
-  { prompt: "Eng qimmat 2 ta kursni chiqaring:", tokens: ["SELECT", "nomi,", "narx", "FROM", "kurslar", "ORDER BY", "narx DESC", "LIMIT 2"] }
-];
-let spdIdx = 0, spdScore = 0, spdChosen = [], spdInterval = null, spdTimeLeft = 30;
-function startSpeedRound(idx) {
-  spdIdx = idx % SPD_ROUNDS.length;
-  spdChosen = [];
-  spdTimeLeft = 30;
-  clearInterval(spdInterval);
-  document.getElementById("spdRoundNum").textContent = spdIdx + 1;
-  document.getElementById("spdPrompt").textContent = SPD_ROUNDS[spdIdx].prompt;
-  document.getElementById("spdFeedback").textContent = "";
-  document.getElementById("spdTimer").textContent = spdTimeLeft;
-  spdInterval = setInterval(() => {
-    spdTimeLeft--;
-    document.getElementById("spdTimer").textContent = spdTimeLeft;
-    if (spdTimeLeft <= 0) {
-      clearInterval(spdInterval);
-      document.getElementById("spdFeedback").className = "text-sm font-bold text-rose-400";
-      document.getElementById("spdFeedback").textContent = "⏱ Vaqt tugadi! 'Qayta' tugmasini bosing.";
-    }
-  }, 1000);
-  const pool = document.getElementById("spdPool");
-  pool.innerHTML = "";
-  [...SPD_ROUNDS[spdIdx].tokens].sort(() => Math.random() - 0.5).forEach(tok => {
-    const b = document.createElement("button");
-    b.className = "px-3.5 py-2 rounded-xl bg-indigo-600/20 hover:bg-indigo-600 text-indigo-400 hover:text-white border border-indigo-500/40 font-mono text-xs font-bold transition";
-    b.textContent = tok;
-    b.onclick = () => {
-      spdChosen.push(tok);
-      b.disabled = true; b.classList.add("opacity-25");
-      renderSpeedZone();
-    };
-    pool.appendChild(b);
-  });
-  renderSpeedZone();
-}
-function renderSpeedZone() {
-  const z = document.getElementById("spdDropZone");
-  z.innerHTML = spdChosen.length === 0
-    ? `<span class="text-xs text-slate-500 italic">Bloklarni ketma-ket bosing...</span>`
-    : spdChosen.map(t => `<span class="px-3 py-1.5 rounded-lg bg-emerald-600 text-white font-mono text-xs font-bold">${t}</span>`).join("");
-}
-function checkSpeedSQL() {
-  const fb = document.getElementById("spdFeedback");
-  if (JSON.stringify(spdChosen) === JSON.stringify(SPD_ROUNDS[spdIdx].tokens)) {
-    clearInterval(spdInterval);
-    spdScore += 100;
-    document.getElementById("spdScore").textContent = spdScore;
-    fb.className = "text-sm font-bold text-emerald-400";
-    fb.textContent = "⚡ Ajoyib tezlik! To'g'ri terildi (+80 XP)!";
-    addXP(80);
-    setTimeout(() => startSpeedRound(spdIdx + 1), 1200);
-  } else {
-    fb.className = "text-sm font-bold text-rose-400";
-    fb.textContent = "❌ Tartib noto'g'ri, qayta urining!";
-  }
-}
-
-const DEF_PACKETS = [
-  { sql: "INSERT INTO talabalar VALUES (7, 'ali@mail.uz', NULL, 20, 101);", ans: "NOT NULL", msg: "ism ustuni NOT NULL — bo'sh qiymat bloklandi!" },
-  { sql: "INSERT INTO talabalar VALUES (8, 'yangi@mail.uz', 'Dilshod', 14, 101);", ans: "CHECK", msg: "CHECK(yosh >= 16) qoidasi 14 yoshli kiritmani to'xtatdi!" },
-  { sql: "INSERT INTO talabalar VALUES (1, 'kamola@mail.uz', 'Kamola', 21, 102);", ans: "PRIMARY KEY", msg: "PRIMARY KEY takroriy id=1 qiymatini blokladi!" },
-  { sql: "INSERT INTO talabalar VALUES (9, 'ali@mail.uz', 'Otabek', 22, 101);", ans: "UNIQUE", msg: "UNIQUE cheklovi takroriy emailni to'xtatdi!" },
-  { sql: "INSERT INTO talabalar VALUES (10, 'rustam@mail.uz', 'Rustam', 20, 999);", ans: "FOREIGN KEY", msg: "FOREIGN KEY mavjud bo'lmagan kurs_id=999 ni blokladi!" }
-];
-let defIdx = 0, defCount = 0;
-function loadDefender(idx) {
-  defIdx = idx % DEF_PACKETS.length;
-  document.getElementById("defPacketText").textContent = DEF_PACKETS[defIdx].sql;
-  document.getElementById("defResultBox").classList.add("hidden");
-}
-function checkDefense(choice) {
-  const pkt = DEF_PACKETS[defIdx];
-  const res = document.getElementById("defResultBox");
-  res.classList.remove("hidden");
-  if (choice === pkt.ans) {
-    defCount++;
-    document.getElementById("defCount").textContent = defCount;
-    res.className = "p-3.5 rounded-xl bg-emerald-500/20 border border-emerald-500 text-emerald-300 text-xs sm:text-sm font-bold";
-    res.textContent = `🛡️ Qalqon ishladi! ${pkt.msg} (+70 XP)`;
-    addXP(70);
-    setTimeout(() => loadDefender(defIdx + 1), 1500);
-  } else {
-    res.className = "p-3.5 rounded-xl bg-rose-500/20 border border-rose-500 text-rose-300 text-xs sm:text-sm font-bold";
-    res.textContent = "⚠️ Noto'g'ri cheklov tanlandi! Paket ustunlarini tekshiring.";
-  }
-}
-
-// ============================================================================
-// 8. TOP NAVIGATION, MODALS & INITIALIZATION
-// ============================================================================
-function switchTopSection(sec) {
-  ["lms", "simulators", "3d", "games", "founder"].forEach(s => {
-    document.getElementById(`section-${s}`).classList.toggle("hidden", s !== sec);
-    const btn = document.getElementById(`nav-${s}`);
-    btn.className = s === sec
-      ? "px-2.5 sm:px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-indigo-600 text-white shadow shrink-0"
-      : "px-2.5 sm:px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 text-slate-600 dark:text-slate-300 hover:text-indigo-400 shrink-0";
-  });
-  if (sec === "3d") {
-    update3DTables(current3DMode);
-    setTimeout(() => {
-      init3DEngine();
-      const c = document.getElementById("threeCanvasContainer");
-      if (renderer && c && c.clientWidth) {
-        camera.aspect = c.clientWidth / c.clientHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(c.clientWidth, c.clientHeight);
-      }
-    }, 60);
-  }
-  if (sec === "games" && spdInterval === null) startSpeedRound(0);
-}
-
-function switchGame(g) {
-  ["detective", "speed", "defender"].forEach(x => {
-    document.getElementById(`game-${x}`).classList.toggle("hidden", x !== g);
-    const card = document.getElementById(`gcard-${x}`);
-    card.className = x === g
-      ? "text-left p-5 rounded-2xl bg-gradient-to-br from-indigo-600 to-violet-700 text-white shadow-lg border-2 border-indigo-400 transition"
-      : "text-left p-5 rounded-2xl bg-white dark:bg-[#0B1120] border border-slate-200 dark:border-slate-800 hover:border-indigo-500 shadow-sm transition";
-  });
-  if (g === "speed") startSpeedRound(spdIdx);
-}
-
-function toggleMobileSidebar(open) {
-  const sb = document.getElementById("sidebar");
-  const bd = document.getElementById("sidebarBackdrop");
-  if (open) { sb.classList.remove("-translate-x-full"); bd.classList.remove("hidden"); }
-  else { sb.classList.add("-translate-x-full"); bd.classList.add("hidden"); }
-}
-
-function openCertificateModal() {
-  document.getElementById("certModal").classList.remove("hidden");
-  document.getElementById("certModal").classList.add("flex");
-}
-function closeCertificateModal() {
-  document.getElementById("certModal").classList.add("hidden");
-  document.getElementById("certModal").classList.remove("flex");
-}
-
-function showToast(msg) {
-  const t = document.getElementById("toast");
-  t.textContent = msg;
-  t.classList.remove("translate-y-20", "opacity-0");
-  setTimeout(() => t.classList.add("translate-y-20", "opacity-0"), 2800);
-}
-
-window.onload = async function () {
-  loadSavedState();
-  document.getElementById("mobileMenuBtn").addEventListener("click", () => {
-    toggleMobileSidebar(document.getElementById("sidebar").classList.contains("-translate-x-full"));
-  });
-  document.getElementById("topicSearch").addEventListener("input", e => renderCurriculum(e.target.value));
-  document.getElementById("themeToggle").addEventListener("click", () => {
-    const isDark = document.documentElement.classList.toggle("dark");
-    document.getElementById("themeIcon").textContent = isDark ? "☀️" : "🌙";
-  });
-  selectLesson(0);
-  updateProgressUI();
-  update3DTables("er");
-  loadDetective(0);
-  loadDefender(0);
-  await initWasmSQLite();
-};
-</script>
-</body>
-</html>
-Обработано и проанализировано в коде
+      { q: "TCP ulanishini o'rnatishdagi 3 bosqichli jarayon q
